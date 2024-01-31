@@ -1,173 +1,259 @@
 import React, { useState } from 'react';
-import {
-  FormControl,
-  FormLabel,
-  Input,
-  Heading,
-  Button,
-  Checkbox,
-  Radio,
-  RadioGroup,
-  VStack,
-  Center,
-  Textarea,
-} from '@chakra-ui/react';
+import { Center, VStack, Heading, Button, Box, FormControl, FormLabel, Input, Textarea, RadioGroup, Radio } from '@chakra-ui/react';
+import PropertyInformation from '../../components/Froms/PropertyInformation/PropertyInformation';
 import Rating from './FromsComponent/Rating';
-// import Rating from './Rating'; // Adjust the path based on your project structure
+import HandleMediaUpload from '../../components/MediaUploading/MediaUploading';
 
-const dummyData = [
-  { id: 1, label: 'Option 1' },
-  { id: 2, label: 'Option 2' },
-  { id: 3, label: 'Option 3' },
-  // Add more dummy data as needed
-];
-
-const radioOptions = [
-  { id: 'male', label: 'Male' },
-  { id: 'female', label: 'Female' },
-  // Add more radio options as needed
-];
+// ... (import statements)
 
 const Forms = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    selectedOptions: [],
-    selectedGender: '',
-    additionalInfo: '',
-    selectedDate: new Date(),
-    selectedRating: 0,
-    // Add more form fields as needed
-  });
+    const [formData, setFormData] = useState({
+        propertyInformation: {
+            scopeOfRenovation: [],
+            stateOfRepair: ''
+        },
+        healthSafety: {
+            lastReviewDate: '',
+            rating: 0,
+            comments: '',
+            policyForEvacuation: [
+                {
+                    title: '',
+                    url: ''
+                }
+            ],
+            medicalEmergencyPolicy: [
+                {
+                    title: '',
+                    url: ''
+                }
+            ],
+            doctorOnSite: '',
+            doctorIsPermanent: '',
+            nurseOnsite: '',
+            nurseIsPermanent: '',
+            onPremiseQualifications: '',
+            defibrillatorsOnProperty: '',
+            defibrillatorsByPool: ''
+        },
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+        beach: {
+            length: 0,
+            features: "",
+            instagramSpots: "",
+            tidesRips: "",
+            hoursofLifeguardDuty: 0,
+            areoffBeachPatrolledbyLifeguards: "",
+            lifeguardQualifications: [],
+            outerReef: ""
 
-  const handleCheckboxChange = (id) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      selectedOptions: prevData.selectedOptions.includes(id)
-        ? prevData.selectedOptions.filter((item) => item !== id)
-        : [...prevData.selectedOptions, id],
-    }));
-  };
+        },
+        transferOptions: {
+            weatherlimited: "",
+            timeLimitedbyTransferType: '',
+        },
+        reef: {
+            entryPointSandLengthofSwim: "",
+            accessibleFromBeach: [],
+            houseReefAccessiblebyBoat: "",
+            houseReefAccessibleCost: 0,
+            accessiblebyBoatCostTravelTime: [],
+            sites: ""
+        },
+        gym: {
+            qualityOfEquipment: "",
+            rangeofEquipment: "",
+        },
+        kidsClub: {
+            ratioofStafftoChildren: 0,
+            staffQualifications: [],
+            languagesSpoken: []
+        },
+        foodAndBeverage: {
+            InclusionsOrExclusionsforFullOrhalfBoard: "",
+            extraCostForRoomService: ""
+        },
+        services: {
+            trainingOrQualifications: [],
+            needToPreBook: "",
+            //(limited number available:
+            length: 0,
+            depth: 0,
+            lapPool: "",
+            safetyFeatures: ""
+        },
+        rooms: {
+            maxOccupancy: "",
+            adultAndChildCombinations: "",
+            NeedtoPreBookExtraBedding: "",
 
-  const handleGenderChange = (value) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      selectedGender: value,
-    }));
-  };
+            // (limited availability)
+            safetyFeaturesForPool: "",
+            safetyFeaturesifOverwaterBungalow: "",
+            interconnected: "",
+            noiseAtNight: "",
+            privacyLevelsGoodEnoughForStrictMuslim: "",
+            movieSystemsOrDVDs: ""
+        }
+    });
 
-  const handleRatingChange = (value) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      selectedRating: value,
-    }));
-  };
+    const handlePropertyDataChange = (newPropertyData) => {
+        setFormData((prevData) => ({
+            ...prevData,
+            propertyInformation: {
+                ...prevData.propertyInformation,
+                ...newPropertyData,
+            },
+        }));
+    };
 
-  const handleDateChange = (date) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      selectedDate: date,
-    }));
-  };
+    const handleInputChange = (section, field, value) => {
+        setFormData((prevData) => ({
+            ...prevData,
+            [section]: {
+                ...prevData[section],
+                [field]: value,
+            },
+        }));
+    };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form submitted with data:', formData);
-  };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('Form submitted with data:', formData);
+    };
+    const handleMediaDataChange = (section, index, updatedMedia) => {
+        console.log({ updatedMedia });
+        setFormData((prevData) => ({
+            ...prevData,
+            [section]: {
+                ...prevData[section],
+                [index]: updatedMedia,
+            },
+        }));
+    };
+    return (
+        <Center>
+            <VStack mt={10} align="start" w="90%" spacing={4} p={4} boxShadow="lg" borderRadius="md" bgColor="white">
+                <Heading as="h2" size="lg">
+                    Form To Collect Data
+                </Heading>
+                <form onSubmit={handleSubmit} style={{ width: '100%' }}>
+                    <Heading as="h5">Property Data</Heading>
+                    <Box id='propertyInformation'>
+                        <PropertyInformation propertyData={formData.propertyInformation} onPropertyDataChange={handlePropertyDataChange} />
 
-  return (
-    <Center>
-      <VStack align="start" spacing={4} p={4} boxShadow="lg" borderRadius="md" bgColor="white" maxW="md">
-        <Heading as="h2" size="lg">
-          Form To Collect Data
-        </Heading>
-        <form onSubmit={handleSubmit} style={{ width: '100%' }}>
-          <FormControl>
-            <FormLabel htmlFor="name">Name:</FormLabel>
-            <Input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              size="sm"
-              borderRadius="md"
-            />
-          </FormControl>
+                    </Box>
+                    <a href='#healthSafety'> <Button colorScheme='blue'>Complete This Step</Button></a>
 
-          <FormControl>
-            <FormLabel>Options:</FormLabel>
-            <VStack align="start" spacing={2}>
-              {dummyData.map((option) => (
-                <Checkbox
-                  key={option.id}
-                  isChecked={formData.selectedOptions.includes(option.id)}
-                  onChange={() => handleCheckboxChange(option.id)}
-                >
-                  {option.label}
-                </Checkbox>
-              ))}
+                    <Box id='healthSafety' style={{ marginTop: "40vh" }}>
+                        <Heading as="h5">Health And Security</Heading>
+                        <FormControl>
+                            <FormLabel>Last Review Date:</FormLabel>
+                            <Input
+                                type="date"
+                                value={formData.healthSafety.lastReviewDate}
+                                onChange={(e) => handleInputChange('healthSafety', 'lastReviewDate', e.target.value)}
+                                size="sm"
+                                borderRadius="md"
+                            />
+                        </FormControl>
+                        <FormControl>
+                            <FormLabel>Rating:</FormLabel>
+                            <Rating value={formData.healthSafety.rating} onChange={(newRating) => handleInputChange('healthSafety', 'rating', newRating)} />
+                        </FormControl>
+                        <FormControl>
+                            <FormLabel>Comments:</FormLabel>
+                            <Textarea
+                                id="comments"
+                                name="comments"
+                                value={formData.healthSafety.comments}
+                                onChange={(e) => handleInputChange('healthSafety', 'comments', e.target.value)}
+                            />
+                        </FormControl>
+                        <FormControl>
+                            <FormLabel>Is There Any Doctor On Site:</FormLabel>
+                            <RadioGroup onChange={(value) => handleInputChange('healthSafety', 'doctorOnSite', value)} value={formData.healthSafety.doctorOnSite.toString()}>
+                                <VStack align="start" spacing={2}>
+                                    <Radio value="true">Yes</Radio>
+                                    <Radio value="false">No</Radio>
+                                </VStack>
+                            </RadioGroup>
+                        </FormControl>
+                        <FormControl>
+                            <FormLabel>Is The Nurse Permanent:</FormLabel>
+                            <RadioGroup onChange={(value) => handleInputChange('healthSafety', 'doctorIsPermanent', value)} value={formData.healthSafety.doctorIsPermanent.toString()}>
+                                <VStack align="start" spacing={2}>
+                                    <Radio value="true">Yes</Radio>
+                                    <Radio value="false">No</Radio>
+                                </VStack>
+                            </RadioGroup>
+                        </FormControl>
+                        <FormControl>
+                            <FormLabel>Is The Doctor Permanent:</FormLabel>
+                            <RadioGroup onChange={(value) => handleInputChange('healthSafety', 'nurseOnsite', value)} value={formData.healthSafety.nurseOnsite.toString()}>
+                                <VStack align="start" spacing={2}>
+                                    <Radio value="true">Yes</Radio>
+                                    <Radio value="false">No</Radio>
+                                </VStack>
+                            </RadioGroup>
+                        </FormControl>
+                        <FormControl>
+                            <FormLabel>Is The Nurse Permanent:</FormLabel>
+                            <RadioGroup onChange={(value) => handleInputChange('healthSafety', 'nurseIsPermanent', value)} value={formData.healthSafety.nurseIsPermanent.toString()}>
+                                <VStack align="start" spacing={2}>
+                                    <Radio value="true">Yes</Radio>
+                                    <Radio value="false">No</Radio>
+                                </VStack>
+                            </RadioGroup>
+                        </FormControl>
+                        <FormControl>
+                            <FormLabel>Defibrillators on Property:</FormLabel>
+                            <Textarea
+                                id="defibrillatorsOnProperty"
+                                name="defibrillatorsOnProperty"
+                                value={formData.healthSafety.defibrillatorsOnProperty}
+                                onChange={(e) => handleInputChange('healthSafety', 'defibrillatorsOnProperty', e.target.value)}
+                            />
+                        </FormControl>
+                        <FormControl>
+                            <FormLabel>Defibrillators by Pool:</FormLabel>
+                            <Textarea
+                                id="defibrillatorsByPool"
+                                name="defibrillatorsByPool"
+                                value={formData.healthSafety.defibrillatorsByPool}
+                                onChange={(e) => handleInputChange('healthSafety', 'defibrillatorsByPool', e.target.value)}
+                            />
+                        </FormControl>
+                        <FormControl>
+                            <FormLabel>Defibrillators by Pool:</FormLabel>
+                            <HandleMediaUpload
+                                mediaData={formData.healthSafety.policyForEvacuation}
+                                onMediaDataChange={(index, updatedMedia) => handleMediaDataChange('healthSafety', index, updatedMedia)}
+                                mediaType="policyForEvacuation"
+                            />
+                        </FormControl>
+
+
+                        {/* Add other health and security form elements here */}
+                    </Box>
+                    <Box mt={"40vh"} id='beach'>
+                    <Heading as="h5">Health And Security</Heading>
+                        <FormControl>
+                            <FormLabel>Defibrillators by Pool:</FormLabel>
+                            <HandleMediaUpload
+                                mediaData={formData.healthSafety.policyForEvacuation}
+                                onMediaDataChange={(index, updatedMedia) => handleMediaDataChange('healthSafety', index, updatedMedia)}
+                                mediaType="policyForEvacuation"
+                            />
+                        </FormControl>
+                    </Box>
+                    <Button type="submit" mt={4} colorScheme="teal" size="sm">
+                        Submit
+                    </Button>
+                </form>
             </VStack>
-          </FormControl>
-
-          <FormControl>
-            <FormLabel>Gender:</FormLabel>
-            <RadioGroup onChange={(value) => handleGenderChange(value)} value={formData.selectedGender}>
-              <VStack align="start" spacing={2}>
-                {radioOptions.map((radioOption) => (
-                  <Radio key={radioOption.id} value={radioOption.id}>
-                    {radioOption.label}
-                  </Radio>
-                ))}
-              </VStack>
-            </RadioGroup>
-          </FormControl>
-
-          <FormControl>
-            <FormLabel>Date:</FormLabel>
-            <Input
-              type="date"
-              id="date"
-              name="date"
-              value={formData.selectedDate.toISOString().split('T')[0]}
-              onChange={(e) => handleDateChange(new Date(e.target.value))}
-              size="sm"
-              borderRadius="md"
-            />
-          </FormControl>
-
-          <FormControl>
-            <FormLabel>Rating:</FormLabel>
-            <Rating value={formData.selectedRating} onChange={handleRatingChange} />
-          </FormControl>
-
-          <FormControl>
-            <FormLabel>Additional Information:</FormLabel>
-            <Textarea
-              id="additionalInfo"
-              name="additionalInfo"
-              value={formData.additionalInfo}
-              onChange={handleChange}
-              size="sm"
-              borderRadius="md"
-            />
-          </FormControl>
-
-          <Button type="submit" mt={4} colorScheme="teal" size="sm">
-            Submit
-          </Button>
-        </form>
-      </VStack>
-    </Center>
-  );
+        </Center>
+    );
 };
 
 export default Forms;

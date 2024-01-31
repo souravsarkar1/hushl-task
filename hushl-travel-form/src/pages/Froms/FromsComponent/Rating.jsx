@@ -4,7 +4,7 @@ import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
 const Rating = ({ value, max = 5, onChange }) => {
   const starColor = useColorModeValue('teal.500', 'teal.300');
-
+console.log(value);
   const handleClick = (ratingValue) => {
     if (onChange) {
       // Toggle the rating if the clicked star is already filled
