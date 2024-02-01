@@ -2,10 +2,10 @@ import { legacy_createStore, applyMiddleware, combineReducers } from 'redux';
 import { thunk } from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-
+import { reducer as productReducer } from './Products/reducer';
 // Combine your reducers
 const rootReducer = combineReducers({
-
+ productReducer
 
 });
 

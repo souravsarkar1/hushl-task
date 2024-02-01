@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
-import { Center, VStack, Heading, Button, Box, FormControl, FormLabel, Input, Textarea, RadioGroup, Radio } from '@chakra-ui/react';
+import { Center, VStack, Heading, Button, Box, } from '@chakra-ui/react';
 import PropertyInformation from '../../components/Froms/PropertyInformation/PropertyInformation';
-import Rating from './FromsComponent/Rating';
-import HandleMediaUpload from '../../components/MediaUploading/MediaUploading';
+import HealthAndSafetyForm from '../../components/Froms/HealthSafety/HealthSafety';
+import BeachForm from '../../components/Froms/Beach/Beach';
+import ReefForm from '../../components/Froms/Reef/Reef';
+import GymForm from '../../components/Froms/Gym/Gym';
+import KidsClubForm from '../../components/Froms/KidsClub/KidsClub';
+import FoodAndBeveragesForm from '../../components/Froms/FoodAndBeverage/FoodAndBeverage';
+import ServicesForm from '../../components/Froms/Service/Service';
+import RoomsForm from '../../components/Froms/Rooms/Rooms';
+import {useDispatch} from "react-redux"
 
-// ... (import statements)
 
 const Forms = () => {
     const [formData, setFormData] = useState({
@@ -96,7 +102,7 @@ const Forms = () => {
             movieSystemsOrDVDs: ""
         }
     });
-
+const dispatch = useDispatch();
     const handlePropertyDataChange = (newPropertyData) => {
         setFormData((prevData) => ({
             ...prevData,
@@ -108,6 +114,7 @@ const Forms = () => {
     };
 
     const handleInputChange = (section, field, value) => {
+        console.log({ section, field, value });
         setFormData((prevData) => ({
             ...prevData,
             [section]: {
@@ -116,10 +123,21 @@ const Forms = () => {
             },
         }));
     };
+    const handleCheckboxChange = (section, field, checkboxValues) => {
+        console.log({ section, field, checkboxValues });
+        setFormData((prevData) => ({
+            ...prevData,
+            [section]: {
+                ...prevData[section],
+                [field]: checkboxValues,
+            },
+        }));
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Form submitted with data:', formData);
+
     };
     const handleMediaDataChange = (section, index, updatedMedia) => {
         console.log({ updatedMedia });
@@ -147,105 +165,64 @@ const Forms = () => {
 
                     <Box id='healthSafety' style={{ marginTop: "40vh" }}>
                         <Heading as="h5">Health And Security</Heading>
-                        <FormControl>
-                            <FormLabel>Last Review Date:</FormLabel>
-                            <Input
-                                type="date"
-                                value={formData.healthSafety.lastReviewDate}
-                                onChange={(e) => handleInputChange('healthSafety', 'lastReviewDate', e.target.value)}
-                                size="sm"
-                                borderRadius="md"
-                            />
-                        </FormControl>
-                        <FormControl>
-                            <FormLabel>Rating:</FormLabel>
-                            <Rating value={formData.healthSafety.rating} onChange={(newRating) => handleInputChange('healthSafety', 'rating', newRating)} />
-                        </FormControl>
-                        <FormControl>
-                            <FormLabel>Comments:</FormLabel>
-                            <Textarea
-                                id="comments"
-                                name="comments"
-                                value={formData.healthSafety.comments}
-                                onChange={(e) => handleInputChange('healthSafety', 'comments', e.target.value)}
-                            />
-                        </FormControl>
-                        <FormControl>
-                            <FormLabel>Is There Any Doctor On Site:</FormLabel>
-                            <RadioGroup onChange={(value) => handleInputChange('healthSafety', 'doctorOnSite', value)} value={formData.healthSafety.doctorOnSite.toString()}>
-                                <VStack align="start" spacing={2}>
-                                    <Radio value="true">Yes</Radio>
-                                    <Radio value="false">No</Radio>
-                                </VStack>
-                            </RadioGroup>
-                        </FormControl>
-                        <FormControl>
-                            <FormLabel>Is The Nurse Permanent:</FormLabel>
-                            <RadioGroup onChange={(value) => handleInputChange('healthSafety', 'doctorIsPermanent', value)} value={formData.healthSafety.doctorIsPermanent.toString()}>
-                                <VStack align="start" spacing={2}>
-                                    <Radio value="true">Yes</Radio>
-                                    <Radio value="false">No</Radio>
-                                </VStack>
-                            </RadioGroup>
-                        </FormControl>
-                        <FormControl>
-                            <FormLabel>Is The Doctor Permanent:</FormLabel>
-                            <RadioGroup onChange={(value) => handleInputChange('healthSafety', 'nurseOnsite', value)} value={formData.healthSafety.nurseOnsite.toString()}>
-                                <VStack align="start" spacing={2}>
-                                    <Radio value="true">Yes</Radio>
-                                    <Radio value="false">No</Radio>
-                                </VStack>
-                            </RadioGroup>
-                        </FormControl>
-                        <FormControl>
-                            <FormLabel>Is The Nurse Permanent:</FormLabel>
-                            <RadioGroup onChange={(value) => handleInputChange('healthSafety', 'nurseIsPermanent', value)} value={formData.healthSafety.nurseIsPermanent.toString()}>
-                                <VStack align="start" spacing={2}>
-                                    <Radio value="true">Yes</Radio>
-                                    <Radio value="false">No</Radio>
-                                </VStack>
-                            </RadioGroup>
-                        </FormControl>
-                        <FormControl>
-                            <FormLabel>Defibrillators on Property:</FormLabel>
-                            <Textarea
-                                id="defibrillatorsOnProperty"
-                                name="defibrillatorsOnProperty"
-                                value={formData.healthSafety.defibrillatorsOnProperty}
-                                onChange={(e) => handleInputChange('healthSafety', 'defibrillatorsOnProperty', e.target.value)}
-                            />
-                        </FormControl>
-                        <FormControl>
-                            <FormLabel>Defibrillators by Pool:</FormLabel>
-                            <Textarea
-                                id="defibrillatorsByPool"
-                                name="defibrillatorsByPool"
-                                value={formData.healthSafety.defibrillatorsByPool}
-                                onChange={(e) => handleInputChange('healthSafety', 'defibrillatorsByPool', e.target.value)}
-                            />
-                        </FormControl>
-                        <FormControl>
-                            <FormLabel>Defibrillators by Pool:</FormLabel>
-                            <HandleMediaUpload
-                                mediaData={formData.healthSafety.policyForEvacuation}
-                                onMediaDataChange={(index, updatedMedia) => handleMediaDataChange('healthSafety', index, updatedMedia)}
-                                mediaType="policyForEvacuation"
-                            />
-                        </FormControl>
-
-
-                        {/* Add other health and security form elements here */}
+                        <HealthAndSafetyForm
+                            formData={formData.healthSafety}
+                            handleInputChange={handleInputChange}
+                            handleCheckboxChange={handleCheckboxChange}
+                            handleMediaDataChange={handleMediaDataChange}
+                        />
                     </Box>
                     <Box mt={"40vh"} id='beach'>
-                    <Heading as="h5">Health And Security</Heading>
-                        <FormControl>
-                            <FormLabel>Defibrillators by Pool:</FormLabel>
-                            <HandleMediaUpload
-                                mediaData={formData.healthSafety.policyForEvacuation}
-                                onMediaDataChange={(index, updatedMedia) => handleMediaDataChange('healthSafety', index, updatedMedia)}
-                                mediaType="policyForEvacuation"
-                            />
-                        </FormControl>
+                        <Heading as="h5">Beach Details</Heading>
+                        <BeachForm
+                            formData={formData.beach}
+                            handleInputChange={handleInputChange}
+                            handleCheckboxChange={handleCheckboxChange}
+                        />
+                    </Box>
+                    <Box mt={"40vh"} id='reef'>
+                        <Heading as="h5">Reef Details</Heading>
+                        <ReefForm
+                            formData={formData.reef}
+                            handleInputChange={handleInputChange}
+                        />
+                    </Box>
+                    <Box mt={"40vh"} id='gym'>
+                        <Heading as="h5">Gym Details</Heading>
+                        <GymForm
+                            formData={formData.gym}
+                            handleInputChange={handleInputChange}
+                        />
+                    </Box>
+                    <Box mt={"40vh"} id='kidsClub'>
+                        <Heading as="h5">Kids Club Details</Heading>
+                        <KidsClubForm
+                            formData={formData.kidsClub}
+                            handleInputChange={handleInputChange}
+                            handleCheckboxChange={handleCheckboxChange}
+                        />
+                    </Box>
+                    <Box mt={"40vh"} id='foodAndBeverages'>
+                        <Heading as="h5">Food and Beverages Details</Heading>
+                        <FoodAndBeveragesForm
+                            formData={formData.foodAndBeverage}
+                            handleInputChange={handleInputChange}
+                        />
+                    </Box>
+                    <Box mt={"40vh"} id='services'>
+                        <Heading as="h5">Services Details</Heading>
+                        <ServicesForm
+                            formData={formData.services}
+                            handleInputChange={handleInputChange}
+                            handleCheckboxChange={handleCheckboxChange}
+                        />
+                    </Box>
+                    <Box mt={"40vh"} id='rooms'>
+                        <Heading as="h5">Rooms Details</Heading>
+                        <RoomsForm
+                            formData={formData.rooms}
+                            handleInputChange={handleInputChange}
+                        />
                     </Box>
                     <Button type="submit" mt={4} colorScheme="teal" size="sm">
                         Submit
