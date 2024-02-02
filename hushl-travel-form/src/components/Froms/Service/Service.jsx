@@ -1,8 +1,15 @@
-// ServicesForm.js
 import React from 'react';
-import { FormControl, FormLabel, Input } from '@chakra-ui/react';
+import { FormControl, FormLabel, Input, Radio, RadioGroup, Stack, CheckboxGroup, Checkbox, Wrap, WrapItem } from '@chakra-ui/react';
 
 const ServicesForm = ({ formData, handleInputChange, handleCheckboxChange }) => {
+    const commonSafetyFeatures = [
+        'Lifeguards on duty',
+        'First aid kit available',
+        'Emergency phone',
+        'Pool depth markers',
+        'Non-slip surfaces',
+    ];
+
     return (
         <>
             <FormControl>
@@ -17,53 +24,28 @@ const ServicesForm = ({ formData, handleInputChange, handleCheckboxChange }) => 
             </FormControl>
             <FormControl>
                 <FormLabel>Need to Pre-Book:</FormLabel>
-                <Input
-                    type="text"
-                    value={formData.needToPreBook}
-                    onChange={(e) => handleInputChange('services', 'needToPreBook', e.target.value)}
-                    size="sm"
-                    borderRadius="md"
-                />
-            </FormControl>
-            <FormControl>
-                <FormLabel>Length:</FormLabel>
-                <Input
-                    type="number"
-                    value={formData.length}
-                    onChange={(e) => handleInputChange('services', 'length', e.target.value)}
-                    size="sm"
-                    borderRadius="md"
-                />
-            </FormControl>
-            <FormControl>
-                <FormLabel>Depth:</FormLabel>
-                <Input
-                    type="number"
-                    value={formData.depth}
-                    onChange={(e) => handleInputChange('services', 'depth', e.target.value)}
-                    size="sm"
-                    borderRadius="md"
-                />
-            </FormControl>
-            <FormControl>
-                <FormLabel>Lap Pool:</FormLabel>
-                <Input
-                    type="text"
-                    value={formData.lapPool}
-                    onChange={(e) => handleInputChange('services', 'lapPool', e.target.value)}
-                    size="sm"
-                    borderRadius="md"
-                />
+                <RadioGroup onChange={(value) => handleInputChange('services', 'needToPreBook', value)} value={formData.needToPreBook.toString()}>
+                    <Stack direction="row">
+                        <Radio value="true">Yes</Radio>
+                        <Radio value="false">No</Radio>
+                    </Stack>
+                </RadioGroup>
             </FormControl>
             <FormControl>
                 <FormLabel>Safety Features:</FormLabel>
-                <Input
-                    type="text"
+                <CheckboxGroup
+                    colorScheme="teal"
+                    onChange={(values) => handleCheckboxChange('services', 'safetyFeatures', values)}
                     value={formData.safetyFeatures}
-                    onChange={(e) => handleInputChange('services', 'safetyFeatures', e.target.value)}
-                    size="sm"
-                    borderRadius="md"
-                />
+                >
+                    <Wrap spacing={4} justify="flex-start">
+                        {commonSafetyFeatures.map((feature) => (
+                            <WrapItem key={feature}>
+                                <Checkbox value={feature}>{feature}</Checkbox>
+                            </WrapItem>
+                        ))}
+                    </Wrap>
+                </CheckboxGroup>
             </FormControl>
         </>
     );

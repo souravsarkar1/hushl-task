@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Center, VStack, Heading, Button, Box, } from '@chakra-ui/react';
+import { Center, VStack, Heading, Button, Box, useToast, } from '@chakra-ui/react';
 import PropertyInformation from '../../components/Froms/PropertyInformation/PropertyInformation';
 import HealthAndSafetyForm from '../../components/Froms/HealthSafety/HealthSafety';
 import BeachForm from '../../components/Froms/Beach/Beach';
@@ -10,6 +10,8 @@ import FoodAndBeveragesForm from '../../components/Froms/FoodAndBeverage/FoodAnd
 import ServicesForm from '../../components/Froms/Service/Service';
 import RoomsForm from '../../components/Froms/Rooms/Rooms';
 import {useDispatch} from "react-redux"
+import { addProduct } from '../../redux/Products/action';
+import PoolForm from '../../components/Froms/Pool/Pool';
 
 
 const Forms = () => {
@@ -63,8 +65,11 @@ const Forms = () => {
             accessibleFromBeach: [],
             houseReefAccessiblebyBoat: "",
             houseReefAccessibleCost: 0,
-            accessiblebyBoatCostTravelTime: [],
-            sites: ""
+            accessiblebyBoat : "",
+            costTravel : 0,
+            travelTime: [],
+            sites: "",
+            outerReef : ""
         },
         gym: {
             qualityOfEquipment: "",
@@ -83,19 +88,18 @@ const Forms = () => {
             trainingOrQualifications: [],
             needToPreBook: "",
             //(limited number available:
+            safetyFeatures: []
+        },
+        pool : {
             length: 0,
             depth: 0,
             lapPool: "",
-            safetyFeatures: ""
         },
         rooms: {
             maxOccupancy: "",
             adultAndChildCombinations: "",
             NeedtoPreBookExtraBedding: "",
-
-            // (limited availability)
-            safetyFeaturesForPool: "",
-            safetyFeaturesifOverwaterBungalow: "",
+            safetyFeaturesifOverwaterBungalow: [],
             interconnected: "",
             noiseAtNight: "",
             privacyLevelsGoodEnoughForStrictMuslim: "",
@@ -103,6 +107,10 @@ const Forms = () => {
         }
     });
 const dispatch = useDispatch();
+const toast = useToast();
+
+
+
     const handlePropertyDataChange = (newPropertyData) => {
         setFormData((prevData) => ({
             ...prevData,
@@ -137,6 +145,7 @@ const dispatch = useDispatch();
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Form submitted with data:', formData);
+        dispatch(addProduct(formData,toast))
 
     };
     const handleMediaDataChange = (section, index, updatedMedia) => {
@@ -150,7 +159,7 @@ const dispatch = useDispatch();
         }));
     };
     return (
-        <Center>
+        <Center mt={20}>
             <VStack mt={10} align="start" w="90%" spacing={4} p={4} boxShadow="lg" borderRadius="md" bgColor="white">
                 <Heading as="h2" size="lg">
                     Form To Collect Data
@@ -202,7 +211,7 @@ const dispatch = useDispatch();
                             handleCheckboxChange={handleCheckboxChange}
                         />
                     </Box>
-                    <Box mt={"40vh"} id='foodAndBeverages'>
+                    <Box mt={"40vh"} id='foodAndBeverage'>
                         <Heading as="h5">Food and Beverages Details</Heading>
                         <FoodAndBeveragesForm
                             formData={formData.foodAndBeverage}
@@ -210,9 +219,17 @@ const dispatch = useDispatch();
                         />
                     </Box>
                     <Box mt={"40vh"} id='services'>
-                        <Heading as="h5">Services Details</Heading>
+                        <Heading as="h5">Pool Services Details</Heading>
                         <ServicesForm
                             formData={formData.services}
+                            handleInputChange={handleInputChange}
+                            handleCheckboxChange={handleCheckboxChange}
+                        />
+                    </Box>
+                    <Box mt={"40vh"} id='pool'>
+                        <Heading as="h5">Pool Details</Heading>
+                        <PoolForm
+                            formData={formData.pool}
                             handleInputChange={handleInputChange}
                             handleCheckboxChange={handleCheckboxChange}
                         />
@@ -222,6 +239,7 @@ const dispatch = useDispatch();
                         <RoomsForm
                             formData={formData.rooms}
                             handleInputChange={handleInputChange}
+                            handleCheckboxChange={handleCheckboxChange}
                         />
                     </Box>
                     <Button type="submit" mt={4} colorScheme="teal" size="sm">

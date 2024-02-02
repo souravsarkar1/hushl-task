@@ -1,8 +1,12 @@
-// KidsClubForm.js
 import React from 'react';
-import { FormControl, FormLabel, Input, CheckboxGroup, Checkbox, Stack } from '@chakra-ui/react';
+import { FormControl, FormLabel, Input, CheckboxGroup, Checkbox, Stack, Wrap, WrapItem } from '@chakra-ui/react';
 
 const KidsClubForm = ({ formData, handleInputChange, handleCheckboxChange }) => {
+    const languagesList = [
+        'English', 'Mandarin', 'Hindi', 'Spanish', 'French',
+        'Arabic', 'Bengali', 'Russian', 'Portuguese', 'Urdu'
+    ];
+
     return (
         <>
             <FormControl>
@@ -29,15 +33,21 @@ const KidsClubForm = ({ formData, handleInputChange, handleCheckboxChange }) => 
                     </Stack>
                 </CheckboxGroup>
             </FormControl>
-            <FormControl>
+            <FormControl mb={4}>
                 <FormLabel>Languages Spoken:</FormLabel>
-                <Input
-                    type="text"
+                <CheckboxGroup
+                    colorScheme="teal"
+                    onChange={(values) => handleCheckboxChange('kidsClub', 'languagesSpoken', values)}
                     value={formData.languagesSpoken}
-                    onChange={(e) => handleInputChange('kidsClub', 'languagesSpoken', e.target.value)}
-                    size="sm"
-                    borderRadius="md"
-                />
+                >
+                    <Wrap spacing={4} justify="flex-start">
+                        {languagesList.map((language) => (
+                            <WrapItem key={language}>
+                                <Checkbox value={language}>{language}</Checkbox>
+                            </WrapItem>
+                        ))}
+                    </Wrap>
+                </CheckboxGroup>
             </FormControl>
         </>
     );

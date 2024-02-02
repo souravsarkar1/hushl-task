@@ -46,7 +46,7 @@ const BeachForm = ({ formData, handleInputChange, handleCheckboxChange }) => {
                 />
             </FormControl>
             <FormControl>
-                <FormLabel>Beach Tides/Rips:</FormLabel>
+                <FormLabel>Beach Hours of lifeguard duty:</FormLabel>
                 <Input
                     type="number"
                     value={formData.hoursofLifeguardDuty}
