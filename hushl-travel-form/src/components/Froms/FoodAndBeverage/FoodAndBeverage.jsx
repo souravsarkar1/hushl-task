@@ -5,26 +5,6 @@ const FoodAndBeveragesForm = ({ formData, handleInputChange }) => {
     return (
         <>
             <FormControl>
-                <FormLabel>Quality of Equipment:</FormLabel>
-                <Input
-                    type="text"
-                    value={formData.qualityOfEquipment}
-                    onChange={(e) => handleInputChange('foodAndBeverages', 'qualityOfEquipment', e.target.value)}
-                    size="sm"
-                    borderRadius="md"
-                />
-            </FormControl>
-            <FormControl>
-                <FormLabel>Range of Equipment:</FormLabel>
-                <Input
-                    type="text"
-                    value={formData.rangeofEquipment}
-                    onChange={(e) => handleInputChange('foodAndBeverages', 'rangeofEquipment', e.target.value)}
-                    size="sm"
-                    borderRadius="md"
-                />
-            </FormControl>
-            <FormControl>
                 <FormLabel>Inclusions/Exclusions for Full or Half Board:</FormLabel>
                 <Input
                     type="text"

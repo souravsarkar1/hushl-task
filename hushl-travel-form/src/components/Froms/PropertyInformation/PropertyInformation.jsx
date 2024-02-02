@@ -1,6 +1,6 @@
 // PropertyInformation.js
 import React from 'react';
-import { FormControl, FormLabel, Textarea, Checkbox, CheckboxGroup, VStack } from '@chakra-ui/react';
+import { FormControl, FormLabel, Textarea, Checkbox, CheckboxGroup, HStack } from '@chakra-ui/react';
 
 const PropertyInformation = ({ propertyData, onPropertyDataChange }) => {
   const handleStateOfRepairChange = (e) => {
@@ -29,14 +29,14 @@ const PropertyInformation = ({ propertyData, onPropertyDataChange }) => {
           onChange={handleScopeChange}
           value={propertyData.scopeOfRenovation}
         >
-          <VStack align="start">
+          <HStack align="start">
             <Checkbox value="Soft">Soft</Checkbox>
             <Checkbox value="Full">Full</Checkbox>
             <Checkbox value="Rooms">Rooms</Checkbox>
             <Checkbox value="Bathrooms">Bathrooms</Checkbox>
             <Checkbox value="Amenities">Amenities</Checkbox>
             <Checkbox value="CommonAreas">Common Areas</Checkbox>
-          </VStack>
+          </HStack>
         </CheckboxGroup>
       </FormControl>
     </div>

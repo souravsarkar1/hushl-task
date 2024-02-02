@@ -1,7 +1,7 @@
 // HealthAndSafetyForm.js
 import React from 'react';
 import { FormControl, FormLabel, Input, Textarea, RadioGroup, Radio,  Stack } from '@chakra-ui/react';
-import Rating from '../../../pages/Froms/FromsComponent/Rating';
+import Rating from '../../Rating/Rating';
 import HandleMediaUpload from '../../MediaUploading/MediaUploading';
 
 
