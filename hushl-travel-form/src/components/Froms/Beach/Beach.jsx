@@ -80,16 +80,7 @@ const BeachForm = ({ formData, handleInputChange, handleCheckboxChange }) => {
                     </Stack>
                 </CheckboxGroup>
             </FormControl>
-            <FormControl>
-                <FormLabel>Beach Outer Reef:</FormLabel>
-                <Input
-                    type="text"
-                    value={formData.outerReef}
-                    onChange={(e) => handleInputChange('beach', 'outerReef', e.target.value)}
-                    size="sm"
-                    borderRadius="md"
-                />
-            </FormControl>
+            
         </>
     );
 };
