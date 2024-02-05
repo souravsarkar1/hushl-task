@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 
 const ProductSchema = mongoose.Schema({
   propertyInformation: {
-    scopeOfRenovation: [{ type: String }],  // Assuming an array of strings for renovation scope
+    scopeOfRenovation: [{ type: String }],  
     stateOfRepair: { type: String, default: '' }
   },
   healthSafety: {
-    lastReviewDate: { type: Date, default: null },
-    rating: { type: Number, default: 0 },
+    lastReviewDate: { type: Date, default: Date.now },
+    rating: { type: Number, default: 0.0 },
     comments: { type: String, default: '' },
     policyForEvacuation: [{
       title: { type: String, default: '' },
@@ -33,20 +33,23 @@ const ProductSchema = mongoose.Schema({
     tidesRips: { type: String, default: '' },
     hoursofLifeguardDuty: { type: Number, default: 0 },
     areoffBeachPatrolledbyLifeguards: { type: String, default: '' },
-    lifeguardQualifications: [{ type: String }],  // Assuming an array of strings for qualifications
-    outerReef: { type: String, default: '' }
+    lifeguardQualifications: [{ type: String }],
+    //outerReef: { type: String, default: '' }
   },
   transferOptions: {
     weatherlimited: { type: String, default: '' },
-    timeLimitedbyTransferType: { type: String, default: '' },
+    timeLimitedbyTransferType: { type: Number, default: 0 },
   },
   reef: {
     entryPointSandLengthofSwim: { type: String, default: '' },
     accessibleFromBeach: [{ type: String }],  // Assuming an array of strings for accessibility
     houseReefAccessiblebyBoat: { type: String, default: '' },
     houseReefAccessibleCost: { type: Number, default: 0 },
-    accessiblebyBoatCostTravelTime: [{ type: String }],  // Assuming an array of strings for cost and travel time
-    sites: { type: String, default: '' }
+    accessiblebyBoat : {type : String, default : ''},
+    costTravel : {type : Number, default : 0},
+    travelTime : {type : Number, default: 0},
+    sites: { type: String, default: '' },
+    outerReef : {type : String, default : ''}
   },
   gym: {
     qualityOfEquipment: { type: String, default: '' },
@@ -64,21 +67,30 @@ const ProductSchema = mongoose.Schema({
   services: {
     trainingOrQualifications: [{ type: String }],  // Assuming an array of strings for qualifications
     needToPreBook: { type: String, default: '' },
+    safetyFeatures: [{ type: String, default: '' }]
+  },
+  pool : {
     length: { type: Number, default: 0 },
     depth: { type: Number, default: 0 },
     lapPool: { type: String, default: '' },
-    safetyFeatures: { type: String, default: '' }
   },
   rooms: {
-    maxOccupancy: { type: String, default: '' },
-    adultAndChildCombinations: { type: String, default: '' },
+    maxOccupancy: { type: Number, default: 0 },
+    adultAndChildCombinations: { type: Number, default: 0 },
     NeedtoPreBookExtraBedding: { type: String, default: '' },
-    safetyFeaturesForPool: { type: String, default: '' },
-    safetyFeaturesifOverwaterBungalow: { type: String, default: '' },
+    safetyFeaturesifOverwaterBungalow: [{ type: String, default: '' }],
     interconnected: { type: String, default: '' },
     noiseAtNight: { type: String, default: '' },
     privacyLevelsGoodEnoughForStrictMuslim: { type: String, default: '' },
-    movieSystemsOrDVDs: { type: String, default: '' }
+    movieSystemsOrDVDs: { type: String, default: '' },
+  },
+  media: {
+    images: [
+      {
+        title: { type: String, default: '' },
+        url: { type: String, default: '' }
+      }
+    ]
   }
 }, {
   timestamps: true,
@@ -87,4 +99,4 @@ const ProductSchema = mongoose.Schema({
 
 const ProductModel = mongoose.model('Product', ProductSchema);
 
-module.exports = {ProductModel}
+module.exports = { ProductModel };
