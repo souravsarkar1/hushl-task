@@ -12,6 +12,8 @@ import RoomsForm from '../../components/Froms/Rooms/Rooms';
 import {useDispatch} from "react-redux"
 import { addProduct } from '../../redux/Products/action';
 import PoolForm from '../../components/Froms/Pool/Pool';
+import HandleImageUpload from '../../components/Froms/HandleImageUplaod/HandleImageUpload';
+import HandleUploadPdf from '../../components/Froms/HandleUploadPdf/HandleUploadPdf';
 
 
 const Forms = () => {
@@ -53,7 +55,7 @@ const Forms = () => {
             hoursofLifeguardDuty: 0,
             areoffBeachPatrolledbyLifeguards: "",
             lifeguardQualifications: [],
-            outerReef: ""
+           // outerReef: ""
 
         },
         transferOptions: {
@@ -67,7 +69,7 @@ const Forms = () => {
             houseReefAccessibleCost: 0,
             accessiblebyBoat : "",
             costTravel : 0,
-            travelTime: [],
+            travelTime: 0,
             sites: "",
             outerReef : ""
         },
@@ -104,6 +106,14 @@ const Forms = () => {
             noiseAtNight: "",
             privacyLevelsGoodEnoughForStrictMuslim: "",
             movieSystemsOrDVDs: ""
+        },
+        media : {
+            images : [
+                {
+                    title: "",
+                    url: ""
+                }
+            ]
         }
     });
 const dispatch = useDispatch();
@@ -241,6 +251,12 @@ const toast = useToast();
                             handleInputChange={handleInputChange}
                             handleCheckboxChange={handleCheckboxChange}
                         />
+                    </Box>
+                    <Box mt={"40vh"} id='media'>
+                    <HandleImageUpload formData={formData} setFormData={handleInputChange} id={"12345gfdgd"} />
+                    </Box>
+                    <Box mt={"40vh"} id='pdf'>
+                    <HandleUploadPdf formData={formData} setFormData={handleInputChange} id={"12345gfdgd"} />
                     </Box>
                     <Button type="submit" mt={4} colorScheme="teal" size="sm">
                         Submit
