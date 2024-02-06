@@ -18,8 +18,8 @@ const PoolForm = ({ formData, handleInputChange }) => {
                 <FormLabel>Width:</FormLabel>
                 <Input
                     type="number"
-                    value={formData.width}
-                    onChange={(e) => handleInputChange('pool', 'width', e.target.value)}
+                    value={formData.depth}
+                    onChange={(e) => handleInputChange('pool', 'depth', e.target.value)}
                     size="sm"
                     borderRadius="md"
                 />

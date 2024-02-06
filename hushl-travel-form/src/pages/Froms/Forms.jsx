@@ -9,11 +9,14 @@ import KidsClubForm from '../../components/Froms/KidsClub/KidsClub';
 import FoodAndBeveragesForm from '../../components/Froms/FoodAndBeverage/FoodAndBeverage';
 import ServicesForm from '../../components/Froms/Service/Service';
 import RoomsForm from '../../components/Froms/Rooms/Rooms';
-import {useDispatch} from "react-redux"
-import { addProduct } from '../../redux/Products/action';
+import { useDispatch, useSelector } from "react-redux"
+import { addProduct, addProductMedia } from '../../redux/Products/action';
 import PoolForm from '../../components/Froms/Pool/Pool';
 import HandleImageUpload from '../../components/Froms/HandleImageUplaod/HandleImageUpload';
-import HandleUploadPdf from '../../components/Froms/HandleUploadPdf/HandleUploadPdf';
+import HandleUploadPdf from '../../components/Froms/HandleUploadPdf/PolicyForEvacuationPdfUpload';
+import { validateFormData } from '../../utils/formValidation';
+import TransferOptionsForm from '../../components/Froms/TransferOptions/TransferOptions';
+import HandleUploadPdf1 from '../../components/Froms/HandleUploadPdf/MedicalEmergencyPolicyPdfUpload';
 
 
 const Forms = () => {
@@ -55,7 +58,7 @@ const Forms = () => {
             hoursofLifeguardDuty: 0,
             areoffBeachPatrolledbyLifeguards: "",
             lifeguardQualifications: [],
-           // outerReef: ""
+            // outerReef: ""
 
         },
         transferOptions: {
@@ -67,11 +70,11 @@ const Forms = () => {
             accessibleFromBeach: [],
             houseReefAccessiblebyBoat: "",
             houseReefAccessibleCost: 0,
-            accessiblebyBoat : "",
-            costTravel : 0,
+            accessiblebyBoat: "",
+            costTravel: 0,
             travelTime: 0,
             sites: "",
-            outerReef : ""
+            outerReef: ""
         },
         gym: {
             qualityOfEquipment: "",
@@ -92,7 +95,7 @@ const Forms = () => {
             //(limited number available:
             safetyFeatures: []
         },
-        pool : {
+        pool: {
             length: 0,
             depth: 0,
             lapPool: "",
@@ -107,19 +110,46 @@ const Forms = () => {
             privacyLevelsGoodEnoughForStrictMuslim: "",
             movieSystemsOrDVDs: ""
         },
-        media : {
-            images : [
+        media: {
+            images: [
                 {
                     title: "",
                     url: ""
                 }
             ]
-        }
+        },
     });
-const dispatch = useDispatch();
-const toast = useToast();
+    const [firstStep, setFirstStep] = useState(false);
+const [mediaStates, setMediaStates] = useState({
+    media: {
+        images: [
+            {
+                title: "",
+                url: ""
+            }
+        ]
+    },
+    healthSafety: {
+        policyForEvacuation: [
+            {
+                title: "",
+                url: ""
+            }
+        ],
+        medicalEmergencyPolicy: [
+            {
+                title: "",
+                url: ""
+            }
+        ]
+    }
 
+});
+    const dispatch = useDispatch();
+    const toast = useToast();
 
+const preGeneratedId = useSelector(st=>st.productReducer.preGeneratedProductId);
+const [id, setId]  = useState(preGeneratedId)
 
     const handlePropertyDataChange = (newPropertyData) => {
         setFormData((prevData) => ({
@@ -155,9 +185,30 @@ const toast = useToast();
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Form submitted with data:', formData);
-        dispatch(addProduct(formData,toast))
+       
+
+        const flag = validateFormData(formData, toast);
+        if (flag) {
+            dispatch(addProduct(formData, toast))
+            .then((res)=>{
+                setId(preGeneratedId);
+            })
+           setTimeout(() => {
+            setFirstStep(true);
+           }, 100);
+            console.log({preGeneratedId})
+        }
+
+
 
     };
+    const hanhdleUploadMedia = () => {
+        console.log(mediaStates);
+        dispatch(addProductMedia(id,mediaStates,toast))
+    }
+
+
+
     const handleMediaDataChange = (section, index, updatedMedia) => {
         console.log({ updatedMedia });
         setFormData((prevData) => ({
@@ -175,6 +226,7 @@ const toast = useToast();
                     Form To Collect Data
                 </Heading>
                 <form onSubmit={handleSubmit} style={{ width: '100%' }}>
+                {!firstStep &&<Box>
                     <Heading as="h5">Property Data</Heading>
                     <Box id='propertyInformation'>
                         <PropertyInformation propertyData={formData.propertyInformation} onPropertyDataChange={handlePropertyDataChange} />
@@ -203,6 +255,13 @@ const toast = useToast();
                         <Heading as="h5">Reef Details</Heading>
                         <ReefForm
                             formData={formData.reef}
+                            handleInputChange={handleInputChange}
+                        />
+                    </Box>
+                    <Box mt={"40vh"} id='reef'>
+                        <Heading as="h5">Reef Details</Heading>
+                        <TransferOptionsForm
+                            formData={formData.transferOptions}
                             handleInputChange={handleInputChange}
                         />
                     </Box>
@@ -252,15 +311,23 @@ const toast = useToast();
                             handleCheckboxChange={handleCheckboxChange}
                         />
                     </Box>
-                    <Box mt={"40vh"} id='media'>
-                    <HandleImageUpload formData={formData} setFormData={handleInputChange} id={"12345gfdgd"} />
-                    </Box>
-                    <Box mt={"40vh"} id='pdf'>
-                    <HandleUploadPdf formData={formData} setFormData={handleInputChange} id={"12345gfdgd"} />
-                    </Box>
                     <Button type="submit" mt={4} colorScheme="teal" size="sm">
                         Submit
                     </Button>
+                    </Box>}
+                    
+                    {firstStep && <Box>
+                        <Heading as="h5">Images</Heading>
+                            <HandleImageUpload formData={mediaStates} setFormData={setMediaStates} id={"12345gfdgd"} />
+                       
+                       
+                        <Heading as="h5">Health And Seafty</Heading>
+                            <HandleUploadPdf formData={mediaStates} setFormData={setMediaStates} id={"12345gfdgd"} />
+                        <HandleUploadPdf1 formData={mediaStates} setFormData={setMediaStates} id={"12345gfdgd"} />
+                        <Button mt={10} colorScheme='teal' onClick={hanhdleUploadMedia}>Uploa Media</Button>
+                    </Box>}
+
+
                 </form>
             </VStack>
         </Center>
