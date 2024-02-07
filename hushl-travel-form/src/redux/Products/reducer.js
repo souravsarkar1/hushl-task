@@ -5,7 +5,9 @@ const initialState = {
     addProductIsLoading: false,
     addProductIsError: false,
     addProductMediaIsLoading: false,
-    addProductMediaIsError: false
+    addProductMediaIsError: false,
+    addProductFirstStep : false,
+    updateProductId : ""
 }
 
 export const reducer = (state = initialState, { type, payload }) => {
@@ -13,7 +15,7 @@ export const reducer = (state = initialState, { type, payload }) => {
         case ADD_PRODUCT_REQUEST:
             return { ...state, addProductIsLoading: true };
         case ADD_PRODUCT_SUCCESS:
-            return { ...state, addProductIsLoading: false };
+            return { ...state, addProductIsLoading: false,addProductFirstStep : true,updateProductId : payload   };
         case ADD_PRODUCT_ERROR:
             return { ...state, addProductIsLoading: false, addProductIsError: true };
         case ADD_PRODUCT_MEDIA_REQUEST:

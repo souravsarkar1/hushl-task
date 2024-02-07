@@ -4,9 +4,10 @@ const api = process.env.REACT_APP_API
 export const addProduct = (data, toast) => (dispatch) => {
     dispatch({ type: ADD_PRODUCT_REQUEST });
     return axios.post(`${api}/product/`, data).then((res) => {
-        dispatch({ type: ADD_PRODUCT_SUCCESS });
+        console.log({ id : res.data.product._id});
+        dispatch({ type: ADD_PRODUCT_SUCCESS ,payload : res.data.product._id});
         toast({
-            title: res.data.message,
+            title: res.data.message || "New Product is created",
             status: "success",
             isClosable: true,
             position: "top",
@@ -37,11 +38,11 @@ export const addProduct = (data, toast) => (dispatch) => {
 
 export const addProductMedia = (id,data, toast)=>(dispatch)=>{
     dispatch({type : ADD_PRODUCT_MEDIA_REQUEST});
-    return axios.post(`${api}/product/${id}`,data).then(res=>{
-        console.log(res);
+    return axios.put(`${api}/product/${id}`,data).then(res=>{
+        
         dispatch({type : ADD_PRODUCT_MEDIA_SUCCESS});
         toast({
-            title: res.data.message,
+            title: res.data.message || "Media Uploaded Successfully",
             status: "success",
             isClosable: true,
             position: "top",

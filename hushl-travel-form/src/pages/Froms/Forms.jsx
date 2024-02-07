@@ -9,11 +9,12 @@ import KidsClubForm from '../../components/Froms/KidsClub/KidsClub';
 import FoodAndBeveragesForm from '../../components/Froms/FoodAndBeverage/FoodAndBeverage';
 import ServicesForm from '../../components/Froms/Service/Service';
 import RoomsForm from '../../components/Froms/Rooms/Rooms';
-import {useDispatch} from "react-redux"
-import { addProduct } from '../../redux/Products/action';
+import {useDispatch, useSelector} from "react-redux"
+import { addProduct, addProductMedia } from '../../redux/Products/action';
 import PoolForm from '../../components/Froms/Pool/Pool';
 import HandleImageUpload from '../../components/Froms/HandleImageUplaod/HandleImageUpload';
-import HandleUploadPdf from '../../components/Froms/HandleUploadPdf/HandleUploadPdf';
+import HandleUploadPolicyForEvacuationPdf from '../../components/Froms/HandleUploadPdf/HandleHandleUploadPolicyForEvacuationPdfUploadPdf';
+import HandleUploadMedicalEmergencyPolicyPdf from '../../components/Froms/HandleUploadPdf/HandleUploadmedicalEmergencyPolicyDocs';
 
 
 const Forms = () => {
@@ -116,9 +117,38 @@ const Forms = () => {
             ]
         }
     });
+
+    const [media, setMedia] = useState({
+        media : {
+            images : [
+                {
+                    title: "",
+                    url: ""
+                }
+            ]
+        },
+        healthSafety: {
+           
+            policyForEvacuation: [
+                {
+                    title: '',
+                    url: ''
+                }
+            ],
+            medicalEmergencyPolicy: [
+                {
+                    title: '',
+                    url: ''
+                }
+            ],
+            
+        },
+    })
 const dispatch = useDispatch();
 const toast = useToast();
-
+const id = useSelector(st=>st.productReducer.updateProductId);
+console.log(id);
+const firstStep = useSelector(st=>st.productReducer.addProductFirstStep);
 
 
     const handlePropertyDataChange = (newPropertyData) => {
@@ -155,9 +185,15 @@ const toast = useToast();
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Form submitted with data:', formData);
-        dispatch(addProduct(formData,toast))
+        dispatch(addProduct(formData,toast)).then(()=>{
+            // setFlagFirstStep(true);
+        })
 
     };
+
+    const uploadMedia = ()=>{
+        dispatch(addProductMedia(id,media,toast));
+    }
     const handleMediaDataChange = (section, index, updatedMedia) => {
         console.log({ updatedMedia });
         setFormData((prevData) => ({
@@ -174,9 +210,11 @@ const toast = useToast();
                 <Heading as="h2" size="lg">
                     Form To Collect Data
                 </Heading>
-                <form onSubmit={handleSubmit} style={{ width: '100%' }}>
+                <Box style={{ width: '100%' }}>
+                    
+                    { !firstStep && <Box>
+                        <Box id='propertyInformation'>
                     <Heading as="h5">Property Data</Heading>
-                    <Box id='propertyInformation'>
                         <PropertyInformation propertyData={formData.propertyInformation} onPropertyDataChange={handlePropertyDataChange} />
 
                     </Box>
@@ -244,6 +282,7 @@ const toast = useToast();
                             handleCheckboxChange={handleCheckboxChange}
                         />
                     </Box>
+
                     <Box mt={"40vh"} id='rooms'>
                         <Heading as="h5">Rooms Details</Heading>
                         <RoomsForm
@@ -252,16 +291,24 @@ const toast = useToast();
                             handleCheckboxChange={handleCheckboxChange}
                         />
                     </Box>
-                    <Box mt={"40vh"} id='media'>
-                    <HandleImageUpload formData={formData} setFormData={handleInputChange} id={"12345gfdgd"} />
+                    <Button onClick={handleSubmit} colorSchema = "teal">Complete And Upload Media</Button>
                     </Box>
-                    <Box mt={"40vh"} id='pdf'>
-                    <HandleUploadPdf formData={formData} setFormData={handleInputChange} id={"12345gfdgd"} />
-                    </Box>
-                    <Button type="submit" mt={4} colorScheme="teal" size="sm">
-                        Submit
-                    </Button>
-                </form>
+                }
+                    {
+                     firstStep &&  <Box>
+                       <Box mt={"40vh"} id='media'>
+                       <HandleImageUpload formData={media} setFormData={setMedia} id={"12345gfdgd"} />
+                       </Box>
+                       <Box mt={"40vh"} id='pdf'>
+                       <HandleUploadPolicyForEvacuationPdf formData={media} setFormData={setMedia} id={"12345gfdgd"} />
+                       </Box>
+                       <HandleUploadMedicalEmergencyPolicyPdf formData={media} setFormData={setMedia} id={"12345gfdgd"}/>
+                       <Button onClick={uploadMedia} type="submit" mt={4} colorScheme="teal" size="sm">
+                           Submit
+                       </Button></Box> 
+                    }
+                   
+                </Box>
             </VStack>
         </Center>
     );
