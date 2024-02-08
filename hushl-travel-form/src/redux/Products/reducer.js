@@ -21,7 +21,7 @@ export const reducer = (state = initialState, { type, payload }) => {
         case ADD_PRODUCT_MEDIA_REQUEST:
             return { ...state, addProductMediaIsLoading: true };
         case ADD_PRODUCT_MEDIA_SUCCESS:
-            return { ...state, addProductMediaIsLoading: false };
+            return { ...state, addProductMediaIsLoading: false, addProductFirstStep : false };
         case ADD_PRODUCT_MEDIA_ERROR:
             return { ...state, addProductMediaIsLoading: false, addProductMediaIsError: true };
         default:

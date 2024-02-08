@@ -1,18 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { Box, Tabs, Tab, Flex } from "@chakra-ui/react";
 import { Link } from 'react-scroll';
+import { VscSymbolProperty } from "react-icons/vsc";
+import { MdOutlineHealthAndSafety } from "react-icons/md";
+import { FaUmbrellaBeach } from "react-icons/fa";
+import { GiCoral } from "react-icons/gi";
+import { MdSportsGymnastics } from "react-icons/md";
+import { FaChild } from "react-icons/fa";
+import { FaBowlFood } from "react-icons/fa6";
+import { FaServicestack } from "react-icons/fa6";
+import { MdOutlinePool } from "react-icons/md";
+import { FaHouseUser } from "react-icons/fa";
+
 
 const tabData = [
-  { label: "Property Data", href: "propertyInformation" },
-  { label: "Health And Security", href: "healthSafety" },
-  { label: "Beach", href: "beach" },
-  { label: "Reef", href: "reef" },
-  { label: "Gym", href: "gym" },
-  { label: "Kids Club", href: "kidsClub" },
-  { label: "Food & Beverage", href: "foodAndBeverage" },
-  { label: "Services", href: "services" },
-  { label: "Pool", href: "pool" },
-  { label: "Rooms", href: "rooms" },
+  { label: <VscSymbolProperty color="blue" />, text: "Property", href: "propertyInformation" },
+  { label: <MdOutlineHealthAndSafety color="blue" />, text: "Health", href: "healthSafety" },
+  { label: <FaUmbrellaBeach color="blue" />, text: "Beach ", href: "beach" },
+  { label: <GiCoral color="blue" />, text: 'Reef', href: "reef" },
+  { label: <MdSportsGymnastics />, text: "Gym", href: "gym" },
+  { label: <FaChild />, text: "Kids", href: "kidsClub" },
+  { label: <FaBowlFood />, text: "Food", href: "foodAndBeverage" },
+  { label: <FaServicestack />, text: "Services", href: "services" },
+  { label: <MdOutlinePool />, text: "Pool", href: "pool" },
+  { label: <FaHouseUser />, text: "Rooms", href: "rooms" },
 ];
 
 const NavBar = () => {
@@ -51,14 +62,14 @@ const NavBar = () => {
       zIndex={999}
       bgColor="#f7e705"
       h={tabHeight - 15}
-      mt={-2}
+      mt={-5}
     >
       <Tabs isFitted variant="enclosed">
         <Flex
           flexDir="row"
           justifyContent="space-around"
           alignItems="center"
-          width="100%"
+          width="96%"
           h={tabHeight - 46} // Adjusted for better visual balance
         >
           {tabData.map((tab, index) => (
@@ -66,11 +77,14 @@ const NavBar = () => {
               key={index}
               to={tab.href}
               smooth={true}
-              offset={-tabHeight} 
+              offset={-tabHeight}
               duration={400}
             >
               <Tab fontSize={fontSize - 5} _hover={{ bg: "pink.600" }}>
-                {tab.label}
+                <Flex align="center">
+                  {tab.label}
+                  <Box ml={2}>{tab.text}</Box>
+                </Flex>
               </Tab>
             </Link>
           ))}
