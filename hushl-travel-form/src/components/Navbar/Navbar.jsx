@@ -11,12 +11,15 @@ import { FaBowlFood } from "react-icons/fa6";
 import { FaServicestack } from "react-icons/fa6";
 import { MdOutlinePool } from "react-icons/md";
 import { FaHouseUser } from "react-icons/fa";
+import { MdPermMedia } from "react-icons/md";
+import { MdEmojiTransportation } from "react-icons/md";
 
 
 const tabData = [
   { label: <VscSymbolProperty color="blue" />, text: "Property", href: "propertyInformation" },
   { label: <MdOutlineHealthAndSafety color="blue" />, text: "Health", href: "healthSafety" },
   { label: <FaUmbrellaBeach color="blue" />, text: "Beach ", href: "beach" },
+  { label: <MdEmojiTransportation />, text: "Transprotation", href: "transferOptions" },
   { label: <GiCoral color="blue" />, text: 'Reef', href: "reef" },
   { label: <MdSportsGymnastics />, text: "Gym", href: "gym" },
   { label: <FaChild />, text: "Kids", href: "kidsClub" },
@@ -24,6 +27,7 @@ const tabData = [
   { label: <FaServicestack />, text: "Services", href: "services" },
   { label: <MdOutlinePool />, text: "Pool", href: "pool" },
   { label: <FaHouseUser />, text: "Rooms", href: "rooms" },
+  { label: <MdPermMedia />, text: "Media", href: "media" },
 ];
 
 const NavBar = () => {
@@ -67,7 +71,7 @@ const NavBar = () => {
       <Tabs isFitted variant="enclosed">
         <Flex
           flexDir="row"
-          justifyContent="space-around"
+          justifyContent="space-between"
           alignItems="center"
           width="96%"
           h={tabHeight - 46} // Adjusted for better visual balance

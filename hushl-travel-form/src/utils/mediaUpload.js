@@ -13,8 +13,8 @@ const api = process.env.REACT_APP_API;
           {
             fileName: name,
             contentType: contentType || currentPhoto.type,
-            fileType: 'form-media-image',
-            fileTypeId: id, 
+            fileType: 'adminFile',
+            fileTypeId: id || 123, 
           }
         );
 
@@ -33,8 +33,8 @@ const api = process.env.REACT_APP_API;
           {
             fileName: currentPhoto.name,
             contentType: contentType || currentPhoto.type,
-            fileType: 'form-media-image', // Replace with the correct fileType
-            fileTypeId: id, // Replace with the correct fileTypeId
+            fileType: 'adminFile', // Replace with the correct fileType
+            fileTypeId: id || 123, // Replace with the correct fileTypeId
           }
         );
 

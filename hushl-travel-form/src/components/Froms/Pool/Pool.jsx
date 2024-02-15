@@ -5,7 +5,7 @@ const PoolForm = ({ formData, handleInputChange }) => {
     return (
         <>
             <FormControl>
-                <FormLabel>Length:</FormLabel>
+                <FormLabel>Pool Length:</FormLabel>
                 <Input
                     type="number"
                     value={formData.length}
@@ -15,11 +15,21 @@ const PoolForm = ({ formData, handleInputChange }) => {
                 />
             </FormControl>
             <FormControl>
-                <FormLabel>Width:</FormLabel>
+                <FormLabel>Pool Width:</FormLabel>
                 <Input
                     type="number"
                     value={formData.width}
                     onChange={(e) => handleInputChange('pool', 'width', e.target.value)}
+                    size="sm"
+                    borderRadius="md"
+                />
+            </FormControl>
+            <FormControl>
+                <FormLabel>Pool Depth:</FormLabel>
+                <Input
+                    type="number"
+                    value={formData.depth}
+                    onChange={(e) => handleInputChange('pool', 'depth', e.target.value)}
                     size="sm"
                     borderRadius="md"
                 />

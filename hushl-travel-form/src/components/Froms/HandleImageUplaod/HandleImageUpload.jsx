@@ -134,6 +134,7 @@ const HandleImageUpload = ({ setFormData, formData, id }) => {
               colorScheme="red"
               isDisabled={isRemoveButtonDisabled}
               onClick={() => handleRemoveImgUrl(index)}
+              mt={8}
             >
               {loaderRemove[index] ? <ClipLoader  /> : ' Remove'}
             </Button>

@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const ProductSchema = mongoose.Schema({
+  hotelName : {
+    name : [{type : String, default : ""}],
+    address : [{type : String,default : ""}]
+  },
   propertyInformation: {
     scopeOfRenovation: [{ type: String }],  
     stateOfRepair: { type: String, default: '' }
