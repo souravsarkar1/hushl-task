@@ -125,7 +125,7 @@ const HandleUploadPolicyForEvacuationPdf = ({ setFormData, formData, id }) => {
               />
             </FormControl>
 
-            <Button w={300} colorScheme="red" isDisabled={isRemoveButtonDisabled} onClick={() => handleRemoveImgUrl(index)}>
+            <Button mt={8} w={300} colorScheme="red" isDisabled={isRemoveButtonDisabled} onClick={() => handleRemoveImgUrl(index)}>
               {loaderRemove[index] ? <ClipLoader /> : 'Remove'}
             </Button>
           </Box>

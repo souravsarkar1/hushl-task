@@ -22,6 +22,6 @@ app.listen(process.env.PORT, async()=>{
         
     } catch (error) {
         console.error(`something went wrong`);
-        console.error(error);
+        console.error(error)
     }
 })

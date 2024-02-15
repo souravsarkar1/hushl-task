@@ -8,10 +8,10 @@ export default function SuccessFormSubmission() {
     useEffect(()=>{
        setTimeout(() => {
         window.location.href="/"
-       }, 2000);
+       }, 3000);
     },[])
   return (
-    <Box textAlign="center" py={10} px={6}>
+    <Box className='animation' textAlign="center" py={10} px={6}>
       <CheckCircleIcon boxSize={'50px'} color={'green.500'} />
       <Heading as="h2" size="xl" mt={6} mb={4} color="green.500">
         Form Submitted Successfully!

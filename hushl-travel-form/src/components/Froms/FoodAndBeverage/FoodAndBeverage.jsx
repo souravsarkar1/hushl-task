@@ -9,7 +9,7 @@ const FoodAndBeveragesForm = ({ formData, handleInputChange }) => {
                 <Input
                     type="text"
                     value={formData.InclusionsOrExclusionsforFullOrhalfBoard}
-                    onChange={(e) => handleInputChange('foodAndBeverages', 'InclusionsOrExclusionsforFullOrhalfBoard', e.target.value)}
+                    onChange={(e) => handleInputChange('foodAndBeverage', 'InclusionsOrExclusionsforFullOrhalfBoard', e.target.value)}
                     size="sm"
                     borderRadius="md"
                 />
@@ -19,7 +19,7 @@ const FoodAndBeveragesForm = ({ formData, handleInputChange }) => {
                 <Input
                     type="text"
                     value={formData.extraCostForRoomService}
-                    onChange={(e) => handleInputChange('foodAndBeverages', 'extraCostForRoomService', e.target.value)}
+                    onChange={(e) => handleInputChange('foodAndBeverage', 'extraCostForRoomService', e.target.value)}
                     size="sm"
                     borderRadius="md"
                 />
