@@ -1,12 +1,12 @@
 // BeachForm.js
 import React from 'react';
-import { FormControl, FormLabel, Input, Textarea, CheckboxGroup, Checkbox, Stack } from '@chakra-ui/react';
+import { FormControl, FormLabel, Input, Textarea, CheckboxGroup, Checkbox, Stack, WrapItem, Wrap, RadioGroup, Radio } from '@chakra-ui/react';
 
 const BeachForm = ({ formData, handleInputChange, handleCheckboxChange }) => {
     return (
         <>
             <FormControl>
-                <FormLabel>Beach Length:</FormLabel>
+                <FormLabel>Beach Length(meter):</FormLabel>
                 <Input
                     type="number"
                     value={formData.length}
@@ -15,8 +15,28 @@ const BeachForm = ({ formData, handleInputChange, handleCheckboxChange }) => {
                     borderRadius="md"
                 />
             </FormControl>
+
             <FormControl>
-                <FormLabel>Beach Features:</FormLabel>
+                <FormLabel>Beach Type:</FormLabel>
+                <CheckboxGroup
+                colorScheme="teal"
+                onChange={(values) => handleCheckboxChange('beach', 'type', values)}
+                value={formData.type}
+            >
+            <Wrap spacing={4} justify="flex-start">
+
+            <WrapItem> <Checkbox value="White">White</Checkbox></WrapItem>
+            <WrapItem><Checkbox value="Queaky sand fine grain,">Queaky sand fine grain,</Checkbox></WrapItem>
+            <WrapItem><Checkbox value="Granular">Granular</Checkbox></WrapItem>
+            <WrapItem> <Checkbox value="Brown">Brown</Checkbox></WrapItem>
+            <WrapItem><Checkbox value="Black">Black</Checkbox></WrapItem>
+            <WrapItem><Checkbox value="Volcanic">Volcanic</Checkbox></WrapItem>
+
+            </Wrap>
+            </CheckboxGroup>
+            </FormControl>
+            <FormControl>
+                <FormLabel>Beach Features(e.g. a loop around the island):</FormLabel>
                 <Textarea
                     type="text"
                     value={formData.features}
@@ -26,7 +46,7 @@ const BeachForm = ({ formData, handleInputChange, handleCheckboxChange }) => {
                 />
             </FormControl>
             <FormControl>
-                <FormLabel>Beach InstagramSpots:</FormLabel>
+                <FormLabel>Beach Instagram Spots:</FormLabel>
                 <Input
                     type="text"
                     value={formData.instagramSpots}
@@ -46,7 +66,7 @@ const BeachForm = ({ formData, handleInputChange, handleCheckboxChange }) => {
                 />
             </FormControl>
             <FormControl>
-                <FormLabel>Beach Hours of lifeguard duty:</FormLabel>
+                <FormLabel>Hours of lifeguard duty(Hours):</FormLabel>
                 <Input
                     type="number"
                     value={formData.hoursofLifeguardDuty}
@@ -56,15 +76,15 @@ const BeachForm = ({ formData, handleInputChange, handleCheckboxChange }) => {
                 />
             </FormControl>
             <FormControl>
-                <FormLabel>Beach Are off beach patrolled by lifeguards:</FormLabel>
-                <Input
-                    type="text"
-                    value={formData.areoffBeachPatrolledbyLifeguards}
-                    onChange={(e) => handleInputChange('beach', 'areoffBeachPatrolledbyLifeguards', e.target.value)}
-                    size="sm"
-                    borderRadius="md"
-                />
+                <FormLabel>Are off beach patrolled by lifeguards:</FormLabel>
+                <RadioGroup onChange={(value) => handleInputChange('beach','areoffBeachPatrolledbyLifeguards', value)} value={formData.areoffBeachPatrolledbyLifeguards.toString()}>
+                    <Stack direction="row">
+                        <Radio value={"true"}>Yes</Radio>
+                        <Radio value={"false"}>No</Radio>
+                    </Stack>
+                </RadioGroup>
             </FormControl>
+            
 
             <FormControl mb={4}>
                 <FormLabel>Beach Life Guards Qualifications</FormLabel>
@@ -74,13 +94,31 @@ const BeachForm = ({ formData, handleInputChange, handleCheckboxChange }) => {
                     value={formData.lifeguardQualifications}
                 >
                     <Stack align="start">
-                        <Checkbox value="Matric">Matric</Checkbox>
-                        <Checkbox value="highersecondary">Higher secondary</Checkbox>
-                        <Checkbox value="graduate">Graduate</Checkbox>
+                        <Checkbox value="1">1</Checkbox>
+                        <Checkbox value="2">2</Checkbox>
+                        <Checkbox value="3">3</Checkbox>
                     </Stack>
                 </CheckboxGroup>
             </FormControl>
-            
+            <FormControl>
+            <FormLabel>Are some parts of the beach only for private use</FormLabel>
+            <RadioGroup onChange={(value) => handleInputChange('beach','areSomePartsofTheBeachOnlyForPrivateUse', value)} value={formData.areSomePartsofTheBeachOnlyForPrivateUse.toString()}>
+                    <Stack direction="row">
+                        <Radio value={"true"}>Yes</Radio>
+                        <Radio value={"false"}>No</Radio>
+                    </Stack>
+                </RadioGroup>
+            </FormControl>
+
+            <FormControl>
+                <FormLabel>Will beach villas be disturbed?</FormLabel>
+                <RadioGroup onChange={(value) => handleInputChange('beach','willBeachVillasbeDisturbed', value)} value={formData.willBeachVillasbeDisturbed.toString()}>
+                    <Stack direction="row">
+                        <Radio value={"true"}>Yes</Radio>
+                        <Radio value={"false"}>No</Radio>
+                    </Stack>
+                </RadioGroup>
+            </FormControl>
         </>
     );
 };

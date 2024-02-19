@@ -13,11 +13,19 @@ const RoomsForm = ({ formData, handleInputChange ,handleCheckboxChange}) => {
     return (
         <>
             <FormControl>
-                <FormLabel>Max Occupancy:</FormLabel>
+                <FormLabel>Max Occupancy Adult:</FormLabel>
                 <Input
                     type="number"
-                    value={formData.maxOccupancy}
-                    onChange={(e) => handleInputChange('rooms', 'maxOccupancy', e.target.value)}
+                    value={formData.maxOccupancyAdult}
+                    onChange={(e) => handleInputChange('rooms', 'maxOccupancyAdult', e.target.value)}
+                    size="sm"
+                    borderRadius="md"
+                />
+                <FormLabel>Max Occupancy Child:</FormLabel>
+                <Input
+                    type="number"
+                    value={formData.maxOccupancyChild}
+                    onChange={(e) => handleInputChange('rooms', 'maxOccupancyChild', e.target.value)}
                     size="sm"
                     borderRadius="md"
                 />

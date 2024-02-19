@@ -13,7 +13,16 @@ const ServicesForm = ({ formData, handleInputChange, handleCheckboxChange }) => 
     return (
         <>
             <FormControl>
-                <FormLabel>Training or Qualifications:</FormLabel>
+                <FormLabel>Nanny Available or Not:</FormLabel>
+                <RadioGroup onChange={(value) => handleInputChange('services', 'isNannyavAilable', value)} value={formData.isNannyavAilable.toString()}>
+                    <Stack direction="row">
+                        <Radio value="true">Yes</Radio>
+                        <Radio value="false">No</Radio>
+                    </Stack>
+                </RadioGroup>
+            </FormControl>
+            <FormControl>
+                <FormLabel>{`Nanny's Training or Qualifications:`}</FormLabel>
                 <Input
                     type="text"
                     value={formData.trainingOrQualifications}

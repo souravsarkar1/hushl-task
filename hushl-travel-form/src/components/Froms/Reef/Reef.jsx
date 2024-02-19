@@ -5,7 +5,7 @@ const ReefForm = ({ formData, handleInputChange }) => {
     return (
         <>
             <FormControl>
-                <FormLabel>Reef Entry Point Sand Length of Swim:</FormLabel>
+                <FormLabel>Entry Points and Length of Swim(meter):</FormLabel>
                 <Textarea
                     type="text"
                     value={formData.entryPointSandLengthofSwim}
@@ -24,7 +24,7 @@ const ReefForm = ({ formData, handleInputChange }) => {
                 </RadioGroup>
             </FormControl>
             <FormControl>
-                <FormLabel>Reef House Reef Accessible by Boat:</FormLabel>
+                <FormLabel>House Reef Accessible by Boat:</FormLabel>
                 <RadioGroup onChange={(value) => handleInputChange('reef', 'houseReefAccessiblebyBoat', value)} value={formData.houseReefAccessiblebyBoat.toString()}>
                 <Stack direction="row">
                     <Radio value="true">Yes</Radio>
@@ -33,7 +33,7 @@ const ReefForm = ({ formData, handleInputChange }) => {
             </RadioGroup>
             </FormControl>
             <FormControl>
-                <FormLabel>Reef House Reef Accessible Cost:</FormLabel>
+                <FormLabel>House Reef Accessible Cost(MRF):</FormLabel>
                 <Input
                     type="number"
                     value={formData.houseReefAccessibleCost}
@@ -52,7 +52,7 @@ const ReefForm = ({ formData, handleInputChange }) => {
                 </RadioGroup>
             </FormControl>
             <FormControl>
-                <FormLabel>Reef Travel Coast:</FormLabel>
+                <FormLabel>Reef Travel Coast(MRF):</FormLabel>
                 <Input
                     type="number"
                     value={formData.costTravel}
@@ -62,7 +62,7 @@ const ReefForm = ({ formData, handleInputChange }) => {
                 />
             </FormControl>
             <FormControl>
-                <FormLabel>Reef Travel Time:</FormLabel>
+                <FormLabel>Reef Travel Time(Hours):</FormLabel>
                 <Input
                     type="number"
                     value={formData.travelTime}
