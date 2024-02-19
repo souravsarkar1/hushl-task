@@ -15,7 +15,7 @@ const FoodAndBeveragesForm = ({ formData, handleInputChange }) => {
                 />
             </FormControl>
             <FormControl>
-                <FormLabel>Extra Cost for Room Service:</FormLabel>
+                <FormLabel>Extra Cost for Room Service(MRF):</FormLabel>
                 <Input
                     type="text"
                     value={formData.extraCostForRoomService}

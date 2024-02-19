@@ -80,7 +80,7 @@ const HealthAndSafetyForm = ({ formData, handleInputChange, handleCheckboxChange
                 />
             </FormControl>
             <FormControl>
-                <FormLabel>On premise qualifications:</FormLabel>
+                <FormLabel>Defibrillators on property:</FormLabel>
                 <Input
                     type="text"
                     value={formData.defibrillatorsOnProperty}
@@ -90,7 +90,7 @@ const HealthAndSafetyForm = ({ formData, handleInputChange, handleCheckboxChange
                 />
             </FormControl>
             <FormControl>
-                <FormLabel>On premise qualifications:</FormLabel>
+                <FormLabel>Defibrillators by pool:</FormLabel>
                 <Input
                     type="text"
                     value={formData.defibrillatorsByPool}
@@ -100,9 +100,11 @@ const HealthAndSafetyForm = ({ formData, handleInputChange, handleCheckboxChange
                 />
             </FormControl>
             <FormControl>
+
                 <HandleUploadMedicalEmergencyPolicyPdf formData={fullData} setFormData={setFormData} />
             </FormControl>
             <FormControl>
+
                 <HandleUploadPolicyForEvacuationPdf formData={fullData} setFormData={setFormData} />
             </FormControl>
             {/* Add other health and safety form elements here */}

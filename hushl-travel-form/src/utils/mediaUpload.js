@@ -26,7 +26,7 @@ const api = process.env.REACT_APP_API;
 
         // 3. Upload the photo to S3 using the generated link
         const uploaded = await uploadImage(uploadUrl, currentPhoto,contentType);
-        console.log(uploaded);
+         console.log(uploaded);
         // 4. Update the state with the new photo URL
         const uploadLinkResponseFinal = await axios.post(
           `${api}/document/getviewmedialink`,

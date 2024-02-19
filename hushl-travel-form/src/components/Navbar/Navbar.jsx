@@ -13,12 +13,13 @@ import { MdOutlinePool } from "react-icons/md";
 import { FaHouseUser } from "react-icons/fa";
 import { MdPermMedia } from "react-icons/md";
 import { MdEmojiTransportation } from "react-icons/md";
-
-
+import { MdOutlineSportsMartialArts } from "react-icons/md";
+// import { FaSpa } from "react-icons/fa";
 const tabData = [
   { label: <VscSymbolProperty color="blue" />, text: "Property", href: "propertyInformation" },
   { label: <MdOutlineHealthAndSafety color="blue" />, text: "Health", href: "healthSafety" },
   { label: <FaUmbrellaBeach color="blue" />, text: "Beach ", href: "beach" },
+  { label: <MdOutlineSportsMartialArts /> , text: "Aquamotion", href: "waterSports" },
   { label: <MdEmojiTransportation />, text: "Transprotation", href: "transferOptions" },
   { label: <GiCoral color="blue" />, text: 'Reef', href: "reef" },
   { label: <MdSportsGymnastics />, text: "Gym", href: "gym" },
@@ -73,7 +74,7 @@ const NavBar = () => {
           flexDir="row"
           justifyContent="space-between"
           alignItems="center"
-          width="96%"
+          width="100%"
           h={tabHeight - 46} // Adjusted for better visual balance
         >
           {tabData.map((tab, index) => (

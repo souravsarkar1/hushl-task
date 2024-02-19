@@ -99,7 +99,7 @@ const HandleUploadPolicyForEvacuationPdf = ({ setFormData, formData, id }) => {
   return (
     <div>
       <FormControl id="policyForEvacuation">
-        <FormLabel>Policy For Evacuation URLs</FormLabel>
+        <FormLabel>Policy For Evacuation File</FormLabel>
         {formData.healthSafety.policyForEvacuation?.map((imgUrl, index) => (
           <Box p={2} key={index} gap={3} display="flex" alignItems="center">
             <FormControl id="title">

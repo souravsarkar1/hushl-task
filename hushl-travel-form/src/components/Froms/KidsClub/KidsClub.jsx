@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormControl, FormLabel, Input, CheckboxGroup, Checkbox, Stack, Wrap, WrapItem } from '@chakra-ui/react';
+import { FormControl, FormLabel, Input, CheckboxGroup, Checkbox, Wrap, WrapItem } from '@chakra-ui/react';
 
 const KidsClubForm = ({ formData, handleInputChange, handleCheckboxChange }) => {
     const languagesList = [
@@ -26,11 +26,12 @@ const KidsClubForm = ({ formData, handleInputChange, handleCheckboxChange }) => 
                     onChange={(values) => handleCheckboxChange('kidsClub', 'staffQualifications', values)}
                     value={formData.staffQualifications}
                 >
-                    <Stack align="start">
-                        <Checkbox value="FirstAid">First Aid</Checkbox>
-                        <Checkbox value="ChildCareCertification">Child Care Certification</Checkbox>
-                        <Checkbox value="CPR">CPR</Checkbox>
-                    </Stack>
+                <Wrap spacing={4} justify="flex-start">
+                <WrapItem><Checkbox value="FirstAid">First Aid</Checkbox></WrapItem>
+                <WrapItem><Checkbox value="ChildCareCertification">Child Care Certification</Checkbox></WrapItem>
+                <WrapItem><Checkbox value="CPR">CPR</Checkbox></WrapItem>
+                <WrapItem><Checkbox value="Other">Other</Checkbox></WrapItem>
+                </Wrap>
                 </CheckboxGroup>
             </FormControl>
             <FormControl mb={4}>
