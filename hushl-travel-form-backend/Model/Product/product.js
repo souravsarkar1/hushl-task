@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const ProductSchema = mongoose.Schema({
   hotelName : {
-    name : [{type : String, default : ""}],
-    address : [{type : String,default : ""}]
+    name : {type : String, default : ""},
+    address : {type : String,default : ""}
   },
   propertyInformation: {
     scopeOfRenovation: [{ type: String }],  
@@ -31,18 +31,23 @@ const ProductSchema = mongoose.Schema({
   },
 
   beach: {
+    beachType : [{type : String}],
     length: { type: Number, default: 0 },
     features: { type: String, default: '' },
     instagramSpots: { type: String, default: '' },
     tidesRips: { type: String, default: '' },
     hoursofLifeguardDuty: { type: Number, default: 0 },
     areoffBeachPatrolledbyLifeguards: { type: String, default: '' },
-    lifeguardQualifications: [{ type: String }],
-    //outerReef: { type: String, default: '' }
+    lifeguardQualifications: [{ type: String,  }],
+    areSomePartsofTheBeachOnlyForPrivateUse : {type : String, default: ''},
+    willBeachVillasbeDisturbed : {type : String, default: ''},
   },
   transferOptions: {
     weatherlimited: { type: String, default: '' },
-    timeLimitedbyTransferType: { type: Number, default: 0 },
+    timeLimitedbyTransferType: { type: String, default: ""},
+    hotelFacilitatesTransferBooking : {type : String, default: ""},
+    qualityofBoats : {type : String, default : ""}
+
   },
   reef: {
     entryPointSandLengthofSwim: { type: String, default: '' },
@@ -57,8 +62,10 @@ const ProductSchema = mongoose.Schema({
   },
   gym: {
     qualityOfEquipment: { type: String, default: '' },
-    rangeofEquipment: { type: String, default: '' },
+    rangeofEquipment: [{ type: String, default: '' }],
+    spaPreBookingAdvised : {type : String, default : ""}
   },
+
   kidsClub: {
     ratioofStafftoChildren: { type: Number, default: 0 },
     staffQualifications: [{ type: String }],  // Assuming an array of strings for qualifications
@@ -71,18 +78,25 @@ const ProductSchema = mongoose.Schema({
   services: {
     trainingOrQualifications: [{ type: String }],  // Assuming an array of strings for qualifications
     needToPreBook: { type: String, default: '' },
-    safetyFeatures: [{ type: String, default: '' }]
+    safetyFeatures: [{ type: String, default: '' }],
+    isNannyavAilable : {type : String,default : ""}
   },
   pool : {
     length: { type: Number, default: 0 },
     depth: { type: Number, default: 0 },
     lapPool: { type: String, default: '' },
+    safetyFeatures: [{type : String, default : ""}] 
   },
   rooms: {
-    maxOccupancy: { type: Number, default: 0 },
-    adultAndChildCombinations: { type: Number, default: 0 },
+    // maxOccupancy: ,
+    maxOccupancyAdult : { type: Number, default: 0 },
+    maxOccupancyChild : { type: Number, default: 0 },
+    //adultAndChildCombinations: { type: Number, default: 0 },
     NeedtoPreBookExtraBedding: { type: String, default: '' },
     safetyFeaturesifOverwaterBungalow: [{ type: String, default: '' }],
+    safetyFeaturesForBalcony: [{ type: String, default: '' }],
+    safetyFeaturesForPool: [{ type: String, default: '' }],
+    commentsOnHowPrivacyIsImpacted :{type : String, default: ""}, 
     interconnected: { type: String, default: '' },
     noiseAtNight: { type: String, default: '' },
     privacyLevelsGoodEnoughForStrictMuslim: { type: String, default: '' },

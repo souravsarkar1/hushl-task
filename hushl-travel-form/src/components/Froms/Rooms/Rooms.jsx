@@ -1,6 +1,6 @@
 // RoomsForm.js
 import React from 'react';
-import { Checkbox, CheckboxGroup, FormControl, FormLabel, Input, Radio, RadioGroup, Stack, Wrap, WrapItem } from '@chakra-ui/react';
+import { Checkbox, CheckboxGroup, FormControl, FormLabel, Input, Radio, RadioGroup, Stack, Textarea, Wrap, WrapItem } from '@chakra-ui/react';
 
 const RoomsForm = ({ formData, handleInputChange ,handleCheckboxChange}) => {
     const commonSafetyFeaturesOverwaterBungalow = [
@@ -10,6 +10,25 @@ const RoomsForm = ({ formData, handleInputChange ,handleCheckboxChange}) => {
         'Fire extinguisher',
         'First aid kit',
     ];
+    const poolSafetyFeatures = [
+        "Pool fence with self-closing gate",
+        "Lifebuoy rings",
+        "Swimming lessons for guests",
+        "Clear and visible depth markers",
+        "Safety signage with pool rules",
+        "CPR-trained staff on-site",
+        "Regular pool maintenance and cleaning",
+        "Non-slip pool deck surface",
+        "Emergency phone or intercom near the pool area",
+        "Pool alarm system for detecting motion or unauthorized entry"
+      ];
+      const safetyFeatures = [
+        "Sturdy railing",
+        "Safety netting",
+        "Non-slip flooring",
+        "Warning signs",
+        "Regular maintenance checks"
+      ];
     return (
         <>
             <FormControl>
@@ -26,16 +45,6 @@ const RoomsForm = ({ formData, handleInputChange ,handleCheckboxChange}) => {
                     type="number"
                     value={formData.maxOccupancyChild}
                     onChange={(e) => handleInputChange('rooms', 'maxOccupancyChild', e.target.value)}
-                    size="sm"
-                    borderRadius="md"
-                />
-            </FormControl>
-            <FormControl>
-                <FormLabel>Adult and Child Combinations:</FormLabel>
-                <Input
-                    type="number"
-                    value={formData.adultAndChildCombinations}
-                    onChange={(e) => handleInputChange('rooms', 'adultAndChildCombinations', e.target.value)}
                     size="sm"
                     borderRadius="md"
                 />
@@ -67,11 +76,53 @@ const RoomsForm = ({ formData, handleInputChange ,handleCheckboxChange}) => {
                 </CheckboxGroup>
             </FormControl>
             <FormControl>
+                <FormLabel>Safety Features of Balcony:</FormLabel>
+                <CheckboxGroup
+                    colorScheme="teal"
+                    onChange={(values) => handleCheckboxChange('rooms', 'safetyFeaturesForBalcony', values)}
+                    value={formData.safetyFeaturesForBalcony}
+                >
+                    <Wrap spacing={4} justify="flex-start">
+                        {safetyFeatures.map((feature) => (
+                            <WrapItem key={feature}>
+                                <Checkbox value={feature}>{feature}</Checkbox>
+                            </WrapItem>
+                        ))}
+                    </Wrap>
+                </CheckboxGroup>
+            </FormControl>
+            <FormControl>
+                <FormLabel>Safety Features For Poool:</FormLabel>
+                <CheckboxGroup
+                    colorScheme="teal"
+                    onChange={(values) => handleCheckboxChange('rooms', 'safetyFeaturesForPool', values)}
+                    value={formData.safetyFeaturesForPool}
+                >
+                    <Wrap spacing={4} justify="flex-start">
+                        {poolSafetyFeatures.map((feature) => (
+                            <WrapItem key={feature}>
+                                <Checkbox value={feature}>{feature}</Checkbox>
+                            </WrapItem>
+                        ))}
+                    </Wrap>
+                </CheckboxGroup>
+            </FormControl>
+            <FormControl>
                 <FormLabel>Interconnected:</FormLabel>
                 <Input
                     type="text"
                     value={formData.interconnected}
                     onChange={(e) => handleInputChange('rooms', 'interconnected', e.target.value)}
+                    size="sm"
+                    borderRadius="md"
+                />
+            </FormControl>
+            <FormControl>
+                <FormLabel>Comments on how privacy is impacted:</FormLabel>
+                <Textarea
+                    type="text"
+                    value={formData.commentsOnHowPrivacyIsImpacted}
+                    onChange={(e) => handleInputChange('rooms', 'commentsOnHowPrivacyIsImpacted', e.target.value)}
                     size="sm"
                     borderRadius="md"
                 />

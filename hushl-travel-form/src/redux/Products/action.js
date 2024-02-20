@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_PRODUCT_ERROR, ADD_PRODUCT_MEDIA_ERROR, ADD_PRODUCT_MEDIA_REQUEST, ADD_PRODUCT_MEDIA_SUCCESS, ADD_PRODUCT_REQUEST, ADD_PRODUCT_SUCCESS } from "./actionTypes";
+import { ADD_PRODUCT_ERROR, ADD_PRODUCT_MEDIA_ERROR, ADD_PRODUCT_MEDIA_REQUEST, ADD_PRODUCT_MEDIA_SUCCESS, ADD_PRODUCT_REQUEST, ADD_PRODUCT_SUCCESS, GET_ALL_PRODUCTS_ERROR, GET_ALL_PRODUCTS_REQUEST, GET_ALL_PRODUCTS_SUCCESS } from "./actionTypes";
 const api = process.env.REACT_APP_API
 export const addProduct = (data, toast) => (dispatch) => {
     dispatch({ type: ADD_PRODUCT_REQUEST });
@@ -71,3 +71,11 @@ export const addProductMedia = (id, data, toast) => (dispatch) => {
 }
 
 
+export const getAllProduct = () => (dispatch) => {
+    dispatch({ type: GET_ALL_PRODUCTS_REQUEST });
+    return axios.get(`${api}/product/`).then(res => {
+        dispatch({ type: GET_ALL_PRODUCTS_SUCCESS, payload: res.data.products });
+    }).catch(err => {
+        dispatch({ type: GET_ALL_PRODUCTS_ERROR });
+    })
+}
