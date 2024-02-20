@@ -1,7 +1,18 @@
 import React from 'react';
-import { FormControl, FormLabel, Input, RadioGroup, HStack, Radio } from '@chakra-ui/react';
-
-const PoolForm = ({ formData, handleInputChange }) => {
+import { FormControl, FormLabel, Input, RadioGroup, HStack, Radio, CheckboxGroup, Wrap, WrapItem, Checkbox } from '@chakra-ui/react';
+const poolSafetyFeatures = [
+    "Pool fence with self-closing gate",
+    "Lifebuoy rings",
+    "Swimming lessons for guests",
+    "Clear and visible depth markers",
+    "Safety signage with pool rules",
+    "CPR-trained staff on-site",
+    "Regular pool maintenance and cleaning",
+    "Non-slip pool deck surface",
+    "Emergency phone or intercom near the pool area",
+    "Pool alarm system for detecting motion or unauthorized entry"
+  ];
+const PoolForm = ({ formData, handleInputChange,handleCheckboxChange }) => {
     return (
         <>
             <FormControl>
@@ -48,6 +59,22 @@ const PoolForm = ({ formData, handleInputChange }) => {
                         <Radio value="no">No</Radio>
                     </HStack>
                 </RadioGroup>
+            </FormControl>
+            <FormControl>
+                <FormLabel>Safety Features:</FormLabel>
+                <CheckboxGroup
+                    colorScheme="teal"
+                    onChange={(values) => handleCheckboxChange('pool', 'safetyFeatures', values)}
+                    value={formData.safetyFeatures}
+                >
+                    <Wrap spacing={4} justify="flex-start">
+                        {poolSafetyFeatures.map((feature) => (
+                            <WrapItem key={feature}>
+                                <Checkbox value={feature}>{feature}</Checkbox>
+                            </WrapItem>
+                        ))}
+                    </Wrap>
+                </CheckboxGroup>
             </FormControl>
         </>
     );

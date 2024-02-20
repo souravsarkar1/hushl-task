@@ -58,7 +58,7 @@ const Forms = () => {
         beach: {
             length: "",
             features: "",
-            type: [],
+            beachType: [],
             areSomePartsofTheBeachOnlyForPrivateUse: "",
             willBeachVillasbeDisturbed: "",
             instagramSpots: "",
@@ -117,13 +117,17 @@ const Forms = () => {
             length: "",
             depth: "",
             lapPool: "",
+            safetyFeatures : []
         },
         rooms: {
             maxOccupancyAdult : "",
             maxOccupancyChild : "",
-            adultAndChildCombinations: "",
+            //adultAndChildCombinations: "",
             NeedtoPreBookExtraBedding: "",
             safetyFeaturesifOverwaterBungalow: [],
+            safetyFeaturesForBalcony: [],
+            safetyFeaturesForPool: [],
+            commentsOnHowPrivacyIsImpacted :"",
             interconnected: "",
             noiseAtNight: "",
             privacyLevelsGoodEnoughForStrictMuslim: "",

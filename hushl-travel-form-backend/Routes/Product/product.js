@@ -46,13 +46,14 @@ productRoute.get('/:id', async (req,res)=>{
 
 // POST A NEW PRODUCT
 productRoute.post('/', async(req,res)=>{
+    console.log(req.body.beach);
     try {
         const data = req.body;
         const product = new ProductModel(data);
         await product.save();
         res.status(201).json({message : "Diteals is Added",product});
     } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error('Error fetching products:', error.message);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 })

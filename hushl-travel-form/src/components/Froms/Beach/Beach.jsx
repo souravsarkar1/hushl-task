@@ -20,8 +20,8 @@ const BeachForm = ({ formData, handleInputChange, handleCheckboxChange }) => {
                 <FormLabel>Beach Type:</FormLabel>
                 <CheckboxGroup
                 colorScheme="teal"
-                onChange={(values) => handleCheckboxChange('beach', 'type', values)}
-                value={formData.type}
+                onChange={(values) => handleCheckboxChange('beach', 'beachType', values)}
+                value={formData.beachType}
             >
             <Wrap spacing={4} justify="flex-start">
 
