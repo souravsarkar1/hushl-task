@@ -1,7 +1,9 @@
 import React from 'react';
 import { Box, Heading, Text } from '@chakra-ui/react';
+import Popup from '../../Modal/Popup';
+import FoodAndBeverageUpdate from '../../UpdateData/FoodandBeverage/FoodAndBeverage';
 
-const FoodAndBeverageOnTable = ({ foodAndBeverage }) => {
+const FoodAndBeverageOnTable = ({ foodAndBeverage , id}) => {
   const { InclusionsOrExclusionsforFullOrhalfBoard, extraCostForRoomService } = foodAndBeverage;
 
   return (
@@ -11,6 +13,7 @@ const FoodAndBeverageOnTable = ({ foodAndBeverage }) => {
       </Heading>
       <Text>Inclusions/Exclusions for Full or Half Board: {InclusionsOrExclusionsforFullOrhalfBoard}</Text>
       <Text>Extra Cost for Room Service: {extraCostForRoomService}</Text>
+      <Popup modalTitle={"Edit"} colorofModal={"orange"} children={<FoodAndBeverageUpdate foodAndBeverage={foodAndBeverage} id={id}/>}/>
     </Box>
   );
 };

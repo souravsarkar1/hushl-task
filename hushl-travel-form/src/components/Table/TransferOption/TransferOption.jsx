@@ -1,7 +1,9 @@
 import React from 'react';
 import { Box, Heading, Text } from '@chakra-ui/react';
+import Popup from '../../Modal/Popup';
+import TransferOptionsUpdate from '../../UpdateData/TransferOptions/TransferOptions';
 
-const TransferOptionsOnTable = ({ transferOptions }) => {
+const TransferOptionsOnTable = ({ transferOptions,id }) => {
   const {
     weatherlimited,
     timeLimitedbyTransferType,
@@ -18,6 +20,7 @@ const TransferOptionsOnTable = ({ transferOptions }) => {
       <Text>Time Limited by Transfer Type: {timeLimitedbyTransferType}</Text>
       <Text>Hotel Facilitates Transfer Booking: {hotelFacilitatesTransferBooking}</Text>
       <Text>Quality of Boats: {qualityofBoats}</Text>
+      <Popup modalTitle={"Edit"} colorofModal={"orange"} children={<TransferOptionsUpdate transferOptions={transferOptions} id={id}/>}/>
     </Box>
   );
 };

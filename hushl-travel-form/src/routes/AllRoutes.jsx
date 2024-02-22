@@ -9,9 +9,9 @@ const AllRoutes = () => {
     return (
         <div>
             <Routes>
-            <Route path='/' element={<Dashboard />}/> 
+                <Route path='/' element={<Dashboard />} />
                 <Route path='/add' element={<Forms />} />
-                <Route path='/thankyou' element={<SuccessFormSubmission/>}/>
+                <Route path='/thankyou' element={<SuccessFormSubmission />} />
             </Routes>
         </div>
     )

@@ -1,7 +1,9 @@
-import React from 'react';
-import { Box, Heading, Text, UnorderedList, ListItem } from '@chakra-ui/react';
 
-const MediaOnTable = ({ media }) => {
+import { Box, Heading, Text, UnorderedList, ListItem } from '@chakra-ui/react';
+import Popup from '../../Modal/Popup';
+import UpdateImage from '../../UpdateData/MediaUpdate/MediaUpdate';
+
+const MediaOnTable = ({ media, id }) => {
   const { images } = media;
 
   return (
@@ -20,6 +22,7 @@ const MediaOnTable = ({ media }) => {
           </ListItem>
         ))}
       </UnorderedList>
+      <Popup modalTitle={"Edit"} colorofModal={"orange"} children={<UpdateImage initialFormData={media} id={id}/>}/>
     </Box>
   );
 };

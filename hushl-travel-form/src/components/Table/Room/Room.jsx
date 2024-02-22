@@ -1,7 +1,9 @@
 import React from 'react';
 import { Box, Heading, Text } from '@chakra-ui/react';
+import Popup from '../../Modal/Popup';
+import RoomUpdate from '../../UpdateData/Room/Room';
 
-const RoomsOnTable = ({ rooms }) => {
+const RoomsOnTable = ({ rooms , id}) => {
   const {
     maxOccupancyAdult,
     maxOccupancyChild,
@@ -32,6 +34,7 @@ const RoomsOnTable = ({ rooms }) => {
       <Text>Noise at Night: {noiseAtNight}</Text>
       <Text>Privacy Levels Good Enough for Strict Muslim: {privacyLevelsGoodEnoughForStrictMuslim}</Text>
       <Text>Movie Systems or DVDs: {movieSystemsOrDVDs}</Text>
+      <Popup modalTitle={"Edit"} colorofModal={"orange"} children={<RoomUpdate rooms={rooms} id={id}/>}/>
     </Box>
   );
 };

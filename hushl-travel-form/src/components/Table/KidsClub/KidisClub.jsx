@@ -1,7 +1,9 @@
 import React from 'react';
 import { Box, Heading, Text, UnorderedList, ListItem } from '@chakra-ui/react';
+import Popup from '../../Modal/Popup';
+import KidsClubUpdate from '../../UpdateData/KidsClub/KidsClub';
 
-const KidsClubOnTable = ({ kidsClub }) => {
+const KidsClubOnTable = ({ kidsClub, id }) => {
   const { ratioofStafftoChildren, staffQualifications, languagesSpoken } = kidsClub;
 
   return (
@@ -26,6 +28,7 @@ const KidsClubOnTable = ({ kidsClub }) => {
           <ListItem key={index}>{language}</ListItem>
         ))}
       </UnorderedList>
+      <Popup modalTitle={"Edit"} colorofModal={"orange"} children={<KidsClubUpdate kidsClub={kidsClub} id={id}/>}/>
     </Box>
   );
 };
