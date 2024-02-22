@@ -1,7 +1,9 @@
 import React from 'react';
 import { Box, Heading, Text, UnorderedList, ListItem } from '@chakra-ui/react';
+import Popup from '../../Modal/Popup';
+import BeachUpdate from '../../UpdateData/Beach/Beach';
 
-const BeachOnTable = ({ beach }) => {
+const BeachOnTable = ({ beach , id}) => {
   const {
     beachType,
     length,
@@ -37,6 +39,7 @@ const BeachOnTable = ({ beach }) => {
       </UnorderedList>
       <Text>Are Some Parts of The Beach Only for Private Use: {areSomePartsofTheBeachOnlyForPrivateUse}</Text>
       <Text>Will Beach Villas be Disturbed: {willBeachVillasbeDisturbed}</Text>
+      <Popup modalTitle={"Edit"} colorofModal={"orange"} children={<BeachUpdate beach={beach} id={id}/>}/>
     </Box>
   );
 };

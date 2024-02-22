@@ -150,9 +150,9 @@ export const validateFormData = (formData, toast) => {
   }
 
   // Validation for rooms
-  if (!formData.rooms.maxOccupancy.trim()) {
+  if (!formData.rooms.maxOccupancyAdult && !formData.rooms.maxOccupancyChild) {
     toast({
-      title: "Max Occupancy is required.",
+      title: "Max Occupancy Adult and Occupancy Child are required.",
       status: "error",
       duration: 2000,
       isClosable: true,

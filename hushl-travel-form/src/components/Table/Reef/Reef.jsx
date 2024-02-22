@@ -1,7 +1,9 @@
 import React from 'react';
 import { Box, Heading, Text, UnorderedList, ListItem } from '@chakra-ui/react';
+import Popup from '../../Modal/Popup';
+import ReefUpdate from '../../UpdateData/Reef/Reef';
 
-const ReefOnTable = ({ reef }) => {
+const ReefOnTable = ({ reef ,id}) => {
   const {
     entryPointSandLengthofSwim,
     accessibleFromBeach,
@@ -35,6 +37,7 @@ const ReefOnTable = ({ reef }) => {
       <Text>Travel Time: {travelTime}</Text>
       <Text>Sites: {sites}</Text>
       <Text>Outer Reef: {outerReef}</Text>
+      <Popup modalTitle={"Edit"} colorofModal={"orange"} children={<ReefUpdate reef={reef} id ={id}/>}/>
     </Box>
   );
 };

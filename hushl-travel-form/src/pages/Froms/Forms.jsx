@@ -22,10 +22,6 @@ import TransferOptions from '../../components/Froms/TransferOptions/TransferOpti
 import WaterSports from '../../components/Froms/WaterSports/WaterSports';
 const Forms = () => {
     const [formData, setFormData] = useState({
-        hotelName: {
-            name: "",
-            address: "",
-        },
         propertyInformation: {
             scopeOfRenovation: [],
             stateOfRepair: ''
@@ -143,15 +139,19 @@ const Forms = () => {
         }
     });
 
-
+const [hotelName, setHotelName] = useState({
+    hotelName: {
+        name: "",
+        address: ""
+    }
+})
 
     const dispatch = useDispatch();
     const toast = useToast();
     const id = useSelector(st => st.productReducer.updateProductId);
-    //console.log(id);
+
     const firstStep = useSelector(st => st.productReducer.addProductFirstStep);
-    //   const secondStep = useSelector(st => st.productReducer.addProductSecondStep);
-    //   console.log({ firstStep });
+
     const handlePropertyDataChange = (newPropertyData) => {
         setFormData((prevData) => ({
             ...prevData,
@@ -165,6 +165,16 @@ const Forms = () => {
     const handleInputChange = (section, field, value) => {
         console.log({ section, field, value });
         setFormData((prevData) => ({
+            ...prevData,
+            [section]: {
+                ...prevData[section],
+                [field]: value,
+            },
+        }));
+    };
+    const handleInputChangeForHotelName = (section, field, value) => {
+        console.log({ section, field, value });
+        setHotelName((prevData) => ({
             ...prevData,
             [section]: {
                 ...prevData[section],
@@ -186,10 +196,10 @@ const Forms = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Form submitted with data:', formData);
-        const flag = initialFromValidations(formData, toast)
+        const flag = initialFromValidations(hotelName, toast)
         if (flag) {
 
-            dispatch(addProduct(formData, toast)).then(() => {
+            dispatch(addProduct(hotelName, toast)).then(() => {
                 // setFlagFirstStep(true);
             })
         }
@@ -229,7 +239,7 @@ const Forms = () => {
                     <Box id='initialData' style={{ width: '100%' }}>
                         <Heading as="h2" size="lg" textAlign="center"> Hotel From </Heading>
                         <Heading as="h5">Hotel Name & Address</Heading>
-                        <EntryFrom formData={formData.hotelName} handleInputChange={handleInputChange} />
+                        <EntryFrom formData={hotelName.hotelName} handleInputChange={handleInputChangeForHotelName} />
                         <Button onClick={handleSubmit} mt={10} colorScheme='green'>Next Step</Button>
                     </Box>
                 </VStack>
