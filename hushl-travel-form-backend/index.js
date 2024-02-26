@@ -11,8 +11,16 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+
 app.use('/product', productRoute);
-app.use('/document', documentRoutes)
+app.use('/document', documentRoutes);
+app.get('/', async(req,res)=>{
+    try {
+        res.status(200).json({message : "OK"})
+    } catch (error) {
+        res.status(500).json({message : "Error"})
+    }
+})
 app.listen(process.env.PORT, async () => {
     try {
         await connect;
