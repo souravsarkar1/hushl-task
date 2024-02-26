@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_PRODUCT_ERROR, ADD_PRODUCT_MEDIA_ERROR, ADD_PRODUCT_MEDIA_REQUEST, ADD_PRODUCT_MEDIA_SUCCESS, ADD_PRODUCT_REQUEST, ADD_PRODUCT_SUCCESS, GET_ALL_PRODUCTS_ERROR, GET_ALL_PRODUCTS_REQUEST, GET_ALL_PRODUCTS_SUCCESS, GET_SINGLE_PRODUCT_ERROR, GET_SINGLE_PRODUCT_REQUEST, GET_SINGLE_PRODUCT_SUCCESS } from "./actionTypes";
+import { ADD_PRODUCT_ERROR, ADD_PRODUCT_MEDIA_ERROR, ADD_PRODUCT_MEDIA_REQUEST, ADD_PRODUCT_MEDIA_SUCCESS, ADD_PRODUCT_REQUEST, ADD_PRODUCT_SUCCESS, DELETE_PRODUCT_ERROR, DELETE_PRODUCT_REQUEST, DELETE_PRODUCT_SUCCESS, GET_ALL_PRODUCTS_ERROR, GET_ALL_PRODUCTS_REQUEST, GET_ALL_PRODUCTS_SUCCESS, GET_SINGLE_PRODUCT_ERROR, GET_SINGLE_PRODUCT_REQUEST, GET_SINGLE_PRODUCT_SUCCESS } from "./actionTypes";
 const api = process.env.REACT_APP_API
 export const addProduct = (data, toast) => (dispatch) => {
     dispatch({ type: ADD_PRODUCT_REQUEST });
@@ -88,4 +88,33 @@ export const getSingleData = (id)=>(dispatch)=>{
         dispatch({type : GET_SINGLE_PRODUCT_ERROR});
         console.log(err);
     })
+}
+
+export const deleteProduct = (id, toast)=>(dispatch)=>{
+    dispatch({type : DELETE_PRODUCT_REQUEST});
+   return axios.delete(`${api}/product/${id}`).then((res)=>{
+        dispatch({type : DELETE_PRODUCT_SUCCESS});
+        console.log(res.data);
+        toast({
+            title: 'Deleted Successfully',
+            description: "Your Data deleted!",
+            status: 'success',
+            duration: 3000,
+            isClosable: true,
+            position: "top",
+          })
+        
+    }).catch((err)=>{
+        dispatch({type :DELETE_PRODUCT_ERROR });
+        toast({
+            title: 'Something went to Wrong',
+            description: "We've created your account for you.",
+            status: 'error',
+            duration: 3000,
+            isClosable: true,
+            position: "top",
+          })
+        console.log(err);
+
+    })  
 }
