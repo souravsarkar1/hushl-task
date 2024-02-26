@@ -84,6 +84,7 @@ const ProductSchema = mongoose.Schema({
   pool : {
     length: { type: Number, default: 0 },
     depth: { type: Number, default: 0 },
+    width :{type : Number,default : 0},
     lapPool: { type: String, default: '' },
     safetyFeatures: [{type : String, default : ""}] 
   },
