@@ -2,7 +2,7 @@ const express = require('express');
 const { S3Client, PutObjectCommand, ListObjectsV2Command, GetObjectCommand } = require('@aws-sdk/client-s3');
 const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
 require('dotenv').config();
-const { FileTypeToDirectories, FileTypes } = require('../../middleware/document_constants');
+const { FileTypeToDirectories, FileTypes } = require('../constants');
 
 const AWS_S3_REGION = process.env.AWS_S3_REGION;
 const AWS_S3_BUCKET = process.env.AWS_S3_BUCKET;

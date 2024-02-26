@@ -1,5 +1,5 @@
 const express = require('express');
-const { ProductModel } = require('../../Model/Product/product');
+const { ProductModel } = require('../model/product');
 // const { ProductModel } = require('../../model/product/product');
 
 const productRoute = express.Router();
@@ -117,4 +117,4 @@ productRoute.delete('/:id', async (req, res) => {
 });
 
 
-module.exports = {productRoute};
+module.exports = { productRoute };

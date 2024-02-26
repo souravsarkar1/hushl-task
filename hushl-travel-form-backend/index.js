@@ -3,8 +3,8 @@ const { connect } = require('./db');
 
 require('dotenv').config();
 const cors = require('cors');
-const { documentRoutes } = require('./Routes/Document/document');
-const { productRoute } = require('./Routes/Product/product');
+const { productRoute } = require('./routes/product.js');
+const { documentRoutes } = require('./routes/document.js');
 
 const app = express();
 
