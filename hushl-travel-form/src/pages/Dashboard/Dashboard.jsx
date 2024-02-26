@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Thead, Tbody, Tr, Th, Td, TableContainer, Center, Button, useToast, Box } from '@chakra-ui/react';
+import { Table, Thead, Tbody, Tr, Th, Td, TableContainer, Center, Button, useToast, Box, Text } from '@chakra-ui/react';
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct, getAllProduct } from '../../redux/Products/action';
 import Popup from '../../components/Modal/Popup';
@@ -36,19 +36,20 @@ const Dashboard = () => {
   }
   if (loader) {
     return <Box h={"100vh"}>
-    <Center mt={"25vh"}>
-    
-    <HashLoader size={300} color="#36d7b7" />
-    </Center>
-
-
+      <Center mt={"25vh"}>
+        <HashLoader size={300} color="#36d7b7" />
+      </Center>
     </Box>
   }
 
+  // Calculate start and end indices for current page
+  const startIndex = (page - 1) * 4;
+  const endIndex = startIndex + 4;
+
   return (
-    <div>
-      <Center><Link to={'/add'}><Button>Add New Hotel</Button></Link></Center>
-      <TableContainer>
+    <div style={{ height: '100vh', overflow: 'hidden' }}>
+      <Center mb={10}><Link to={'/add'}><Button colorScheme='green'>Add New Hotel</Button></Link></Center>
+      <TableContainer style={{ height: 'calc(100vh - 200px)', overflowY: 'auto' }}>
         <Table size={"lg"}>
           <Thead>
             <Tr>
@@ -68,15 +69,22 @@ const Dashboard = () => {
               <Th>Rooms</Th>
               <Th>Media</Th>
               <Th>Delete</Th>
-
             </Tr>
           </Thead>
           <Tbody>
-            {data.map((property, index) => (
+            {data.slice(startIndex, endIndex).map((property, index) => (
               <Tr key={property._id}>
-                <Td>{index + 1}</Td>
-                <Td>{property.hotelName.name}</Td>
-                <Td>{property.hotelName.address}</Td>
+                <Td>{startIndex + index + 1}</Td>
+                <Td>
+                  <Text fontSize='xl'>
+                    {property.hotelName.name}
+                  </Text>
+                </Td>
+                <Td>
+                  <Text fontSize='xl'>
+                    {property.hotelName.address}
+                  </Text>
+                </Td>
                 <Td><Popup modalTitle={"See Property Data"} colorofModal={"green"} children={<PropertyInformationOnTable propertyInformation={property.propertyInformation} id={property._id} />} /></Td>
                 <Td><Popup modalTitle={"See Health & Safety Data"} colorofModal={"green"} children={<HealthSafetyOnTable healthSafety={property.healthSafety} id={property._id} />} /></Td>
                 <Td><Popup modalTitle={"See Beach Data"} colorofModal={"green"} children={<BeachOnTable beach={property.beach} id={property._id} />} /></Td>
@@ -89,13 +97,18 @@ const Dashboard = () => {
                 <Td><Popup modalTitle={"See Pool Data"} colorofModal={"green"} children={<PoolOnTable pool={property.pool} id={property._id} />} /></Td>
                 <Td><Popup modalTitle={"See Rooms Data"} colorofModal={"green"} children={<RoomsOnTable rooms={property.rooms} id={property._id} />} /></Td>
                 <Td><Popup modalTitle={"See Media Data"} colorofModal={"green"} children={<MediaOnTable media={property.media} id={property._id} />} /></Td>
-                <Td><Popup modalTitle={"Delete"} colorofModal={"red"} children={<Button  colorScheme='red' onClick={() => hanldeDelete(property._id)}>Delete</Button>} /></Td>
+                <Td><Popup modalTitle={"Delete"} colorofModal={"red"} children={
+                  <Box>
+                    <Text color={"#8a0f1d"} >Are You Sure To Delete?</Text>
+                    <Button mt={3} colorScheme='red' onClick={() => hanldeDelete(property._id)}>Delete</Button>
+                  </Box>
+                } /></Td>
               </Tr>
             ))}
           </Tbody>
         </Table>
       </TableContainer>
-      <PaginationAllPage currentPage={page} handlePageChange={setPage} totalPages={10} />
+      <PaginationAllPage currentPage={page} handlePageChange={setPage} totalPages={Math.ceil(data.length / 4)} />
     </div>
   );
 };
