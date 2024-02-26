@@ -1,7 +1,6 @@
 const express = require('express');
-const { ProductModel } = require('../model/product');
-// const { ProductModel } = require('../../model/product/product');
-
+// const { ProductModel } = require('../model/product');
+const {ProductModel} = require('../model/product');
 const productRoute = express.Router();
 
 // GET all products
