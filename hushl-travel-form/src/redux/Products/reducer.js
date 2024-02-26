@@ -1,4 +1,4 @@
-import { ADD_PRODUCT_ERROR, ADD_PRODUCT_MEDIA_ERROR, ADD_PRODUCT_MEDIA_REQUEST, ADD_PRODUCT_MEDIA_SUCCESS, ADD_PRODUCT_REQUEST, ADD_PRODUCT_SUCCESS, GET_ALL_PRODUCTS_ERROR, GET_ALL_PRODUCTS_REQUEST, GET_ALL_PRODUCTS_SUCCESS, GET_SINGLE_PRODUCT_ERROR, GET_SINGLE_PRODUCT_REQUEST, GET_SINGLE_PRODUCT_SUCCESS } from "./actionTypes"
+import { ADD_PRODUCT_ERROR, ADD_PRODUCT_MEDIA_ERROR, ADD_PRODUCT_MEDIA_REQUEST, ADD_PRODUCT_MEDIA_SUCCESS, ADD_PRODUCT_REQUEST, ADD_PRODUCT_SUCCESS, DELETE_PRODUCT_ERROR, DELETE_PRODUCT_REQUEST, DELETE_PRODUCT_SUCCESS, GET_ALL_PRODUCTS_ERROR, GET_ALL_PRODUCTS_REQUEST, GET_ALL_PRODUCTS_SUCCESS, GET_SINGLE_PRODUCT_ERROR, GET_SINGLE_PRODUCT_REQUEST, GET_SINGLE_PRODUCT_SUCCESS } from "./actionTypes"
 
 const initialState = {
     allProducts: [],
@@ -12,7 +12,9 @@ const initialState = {
     getAllProductIsError: false,
     getSingleDataIsLoading: false,
     getSingleDataIsError: false,
-    getSingleData: null
+    getSingleData: null,
+    deleteProductIsLoading: false,
+    deleteProductIsError: false
 }
 
 export const reducer = (state = initialState, { type, payload }) => {
@@ -40,7 +42,13 @@ export const reducer = (state = initialState, { type, payload }) => {
         case GET_SINGLE_PRODUCT_SUCCESS:
             return { ...state, getSingleDataIsLoading: false, getSingleData: payload };
         case GET_SINGLE_PRODUCT_ERROR:
-            return { ...state, getSingleDataIsLoading: false, getSingleDataIsError: true }
+            return { ...state, getSingleDataIsLoading: false, getSingleDataIsError: true };
+        case DELETE_PRODUCT_REQUEST:
+            return { ...state, deleteProductIsLoading: true };
+        case DELETE_PRODUCT_SUCCESS:
+            return { ...state, deleteProductIsLoading: false };
+        case DELETE_PRODUCT_ERROR:
+            return { ...state, deleteProductIsLoading: false, deleteProductIsError: true };
         default:
             return { ...state }
     }

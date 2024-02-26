@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { Table, Thead, Tbody, Tr, Th, Td, TableContainer, Center, Button } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
+import { Table, Thead, Tbody, Tr, Th, Td, TableContainer, Center, Button, useToast, Box } from '@chakra-ui/react';
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProduct } from '../../redux/Products/action';
+import { deleteProduct, getAllProduct } from '../../redux/Products/action';
 import Popup from '../../components/Modal/Popup';
 import PropertyInformationOnTable from '../../components/Table/Property/Property';
 import HealthSafetyOnTable from '../../components/Table/HealthSeafty/HealthSeafty';
@@ -16,21 +16,40 @@ import PoolOnTable from '../../components/Table/Pool/Pool';
 import RoomsOnTable from '../../components/Table/Room/Room';
 import MediaOnTable from '../../components/Table/Media/Media';
 import { Link } from 'react-router-dom';
-// import PaginationAllPage from '../../components/Pagination/Pagination';
+import { HashLoader } from 'react-spinners';
+import PaginationAllPage from '../../components/Pagination/Pagination';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.productReducer.allProducts);
-
+  const loader = useSelector(st => st.productReducer.getAllProductIsLoader);
+  const [page, setPage] = useState(1);
+  const toast = useToast();
+  console.log({ loader });
   useEffect(() => {
     dispatch(getAllProduct());
   }, [dispatch]);
+  const hanldeDelete = (id) => {
+    dispatch(deleteProduct(id, toast)).then((res) => {
+      dispatch(getAllProduct());
+    })
+  }
+  if (loader) {
+    return <Box h={"100vh"}>
+    <Center mt={"25vh"}>
+    
+    <HashLoader size={300} color="#36d7b7" />
+    </Center>
+
+
+    </Box>
+  }
 
   return (
     <div>
       <Center><Link to={'/add'}><Button>Add New Hotel</Button></Link></Center>
       <TableContainer>
-        <Table size='sm'>
+        <Table size={"lg"}>
           <Thead>
             <Tr>
               <Th>Serial No</Th>
@@ -48,8 +67,8 @@ const Dashboard = () => {
               <Th>Pool</Th>
               <Th>Rooms</Th>
               <Th>Media</Th>
-              <Th>Created At</Th>
-              <Th>Updated At</Th>
+              <Th>Delete</Th>
+
             </Tr>
           </Thead>
           <Tbody>
@@ -68,16 +87,15 @@ const Dashboard = () => {
                 <Td><Popup modalTitle={"See Food And Beverage Data"} colorofModal={"green"} children={<FoodAndBeverageOnTable foodAndBeverage={property.foodAndBeverage} id={property._id} />} /></Td>
                 <Td><Popup modalTitle={"See Services Data"} colorofModal={"green"} children={<ServicesOnTable services={property.services} id={property._id} />} /></Td>
                 <Td><Popup modalTitle={"See Pool Data"} colorofModal={"green"} children={<PoolOnTable pool={property.pool} id={property._id} />} /></Td>
-                <Td><Popup modalTitle={"See Rooms Data"} colorofModal={"green"} children={<RoomsOnTable rooms={property.rooms} id={property._id}/>} /></Td>
-                <Td><Popup modalTitle={"See Media Data"} colorofModal={"green"} children={<MediaOnTable media={property.media} id={property._id}/>} /></Td>
-                <Td>{property.createdAt}</Td>
-                <Td>{property.updatedAt}</Td>
+                <Td><Popup modalTitle={"See Rooms Data"} colorofModal={"green"} children={<RoomsOnTable rooms={property.rooms} id={property._id} />} /></Td>
+                <Td><Popup modalTitle={"See Media Data"} colorofModal={"green"} children={<MediaOnTable media={property.media} id={property._id} />} /></Td>
+                <Td><Popup modalTitle={"Delete"} colorofModal={"red"} children={<Button  colorScheme='red' onClick={() => hanldeDelete(property._id)}>Delete</Button>} /></Td>
               </Tr>
             ))}
           </Tbody>
         </Table>
       </TableContainer>
-      
+      <PaginationAllPage currentPage={page} handlePageChange={setPage} totalPages={10} />
     </div>
   );
 };
