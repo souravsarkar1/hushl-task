@@ -63,7 +63,7 @@ if(loader){
                     </Wrap>
                 </CheckboxGroup>
             </FormControl>
-            <Button onClick={hanldeSubmit}>Update Data</Button>
+            <Button colorScheme='teal' onClick={hanldeSubmit}>Update Data</Button>
         </Box>
     );
 };

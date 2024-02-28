@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Thead, Tbody, Tr, Th, Td, TableContainer, Center, Button, useToast, Box, Text } from '@chakra-ui/react';
+import { Table, Thead, Tbody, Tr, Th, Td, TableContainer, Center, Button, useToast, Box, Text, Flex } from '@chakra-ui/react';
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct, getAllProduct } from '../../redux/Products/action';
 import Popup from '../../components/Modal/Popup';
@@ -18,14 +18,18 @@ import MediaOnTable from '../../components/Table/Media/Media';
 import { Link } from 'react-router-dom';
 import { HashLoader } from 'react-spinners';
 import PaginationAllPage from '../../components/Pagination/Pagination';
+import AddressUpdate from '../../components/UpdateData/Address/Address';
+import NameUpdate from '../../components/UpdateData/Name/Name';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.productReducer.allProducts);
+
+  const data = useSelector(st => st.productReducer.allProducts);
   const loader = useSelector(st => st.productReducer.getAllProductIsLoader);
+
   const [page, setPage] = useState(1);
   const toast = useToast();
-  console.log({ loader });
+  console.log({ data });
   useEffect(() => {
     dispatch(getAllProduct());
   }, [dispatch]);
@@ -50,7 +54,7 @@ const Dashboard = () => {
     <div style={{ height: '100vh', overflow: 'hidden' }}>
       <Center mb={10}><Link to={'/add'}><Button colorScheme='green'>Add New Hotel</Button></Link></Center>
       <TableContainer style={{ height: 'calc(100vh - 200px)', overflowY: 'auto' }}>
-        <Table size={"lg"}>
+        <Table size={"lg"} variant="simple">
           <Thead>
             <Tr>
               <Th>Serial No</Th>
@@ -72,18 +76,38 @@ const Dashboard = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {data.slice(startIndex, endIndex).map((property, index) => (
+            {Array.isArray(data) && data?.slice(startIndex, endIndex)?.map((property, index) => (
               <Tr key={property._id}>
                 <Td>{startIndex + index + 1}</Td>
                 <Td>
+                  <Flex alignItems={"center"} flexDir={"column"} gap={5}>
+                  <Box h={100} w={300} overflowX="auto" maxHeight={100}>
+                  
                   <Text fontSize='xl'>
-                    {property.hotelName.name}
+                    {property.hotelName.name.toUpperCase()}
                   </Text>
+                  </Box>
+
+                    <Popup modalTitle={"Edit"} colorofModal={"orange"}
+                      children={<NameUpdate address={property.hotelName.address} name={property.hotelName.name} id={property._id} />}
+                    />
+                  </Flex>
                 </Td>
                 <Td>
-                  <Text fontSize='xl'>
-                    {property.hotelName.address}
-                  </Text>
+
+
+                  <Flex alignItems={"center"} flexDir={"column"} gap={5}>
+
+                    <Box h={100} w={300} overflowX="auto" maxHeight={100}>
+                      <Text fontSize="md" lineHeight="tall">
+                        {property.hotelName.address.toUpperCase()}
+                      </Text>
+                    </Box>
+                    <Popup modalTitle={"Edit"} colorofModal={"orange"}
+                      children={<AddressUpdate name={property.hotelName.name} address={property.hotelName.address} id={property._id} />}
+                    />
+                  </Flex>
+
                 </Td>
                 <Td><Popup modalTitle={"See Property Data"} colorofModal={"green"} children={<PropertyInformationOnTable propertyInformation={property.propertyInformation} id={property._id} />} /></Td>
                 <Td><Popup modalTitle={"See Health & Safety Data"} colorofModal={"green"} children={<HealthSafetyOnTable healthSafety={property.healthSafety} id={property._id} />} /></Td>
