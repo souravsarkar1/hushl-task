@@ -72,9 +72,11 @@ export const addProductMedia = (id, data, toast) => (dispatch) => {
 
 
 export const getAllProduct = () => (dispatch) => {
+    console.log(api);
     dispatch({ type: GET_ALL_PRODUCTS_REQUEST });
     return axios.get(`${api}/product/`).then(res => {
         dispatch({ type: GET_ALL_PRODUCTS_SUCCESS, payload: res.data.products });
+        console.log(res.data.products);
     }).catch(err => {
         dispatch({ type: GET_ALL_PRODUCTS_ERROR });
     })
