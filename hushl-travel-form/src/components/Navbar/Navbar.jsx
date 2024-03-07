@@ -14,22 +14,23 @@ import { FaHouseUser } from "react-icons/fa";
 import { MdPermMedia } from "react-icons/md";
 import { MdEmojiTransportation } from "react-icons/md";
 import { MdOutlineSportsMartialArts } from "react-icons/md";
-// import { FaSpa } from "react-icons/fa";
+
 const tabData = [
   { label: <VscSymbolProperty color="blue" />, text: "Property", href: "propertyInformation" },
   { label: <MdOutlineHealthAndSafety color="blue" />, text: "Health", href: "healthSafety" },
-  { label: <FaUmbrellaBeach color="blue" />, text: "Beach ", href: "beach" },
-  { label: <MdOutlineSportsMartialArts /> , text: "Aquamotion", href: "waterSports" },
-  { label: <MdEmojiTransportation />, text: "Transprotation", href: "transferOptions" },
+  { label: <FaUmbrellaBeach color="blue" />, text: "Beach", href: "beach" },
+  { label: <MdOutlineSportsMartialArts color="blue"/>, text: "Aquamotion", href: "waterSports" },
+  { label: <MdEmojiTransportation color="blue"/>, text: "Transportation", href: "transferOptions" },
   { label: <GiCoral color="blue" />, text: 'Reef', href: "reef" },
-  { label: <MdSportsGymnastics />, text: "Gym", href: "gym" },
-  { label: <FaChild />, text: "Kids", href: "kidsClub" },
-  { label: <FaBowlFood />, text: "Food", href: "foodAndBeverage" },
-  { label: <FaServicestack />, text: "Services", href: "services" },
-  { label: <MdOutlinePool />, text: "Pool", href: "pool" },
-  { label: <FaHouseUser />, text: "Rooms", href: "rooms" },
-  { label: <MdPermMedia />, text: "Media", href: "media" },
+  { label: <MdSportsGymnastics color="blue"/>, text: "Gym", href: "gym" },
+  { label: <FaChild color="blue"/>, text: "Kids", href: "kidsClub" },
+  { label: <FaBowlFood color="blue"/>, text: "Food", href: "foodAndBeverage" },
+  { label: <FaServicestack color="blue"/>, text: "Services", href: "services" },
+  { label: <MdOutlinePool color="blue"/>, text: "Pool", href: "pool" },
+  { label: <FaHouseUser color="blue"/>, text: "Rooms", href: "rooms" },
+  { label: <MdPermMedia color="blue"/>, text: "Media", href: "media" },
 ];
+
 
 const NavBar = () => {
   const [dimensions, setDimensions] = useState({
