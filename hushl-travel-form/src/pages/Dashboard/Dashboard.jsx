@@ -52,7 +52,14 @@ const Dashboard = () => {
 
   return (
     <div style={{ height: '100vh', overflow: 'hidden' }}>
-      <Center mb={10}><Link to={'/add'}><Button colorScheme='green'>Add New Hotel</Button></Link></Center>
+      <Flex mb={10}>
+        <Box cursor={"pointer"} pr={4}>
+        <Link to={'/test'}><Button colorScheme='green'>Test</Button></Link>
+        </Box>
+        <Box cursor={"pointer"} pr={4}>
+        <Link to={'/add'}><Button colorScheme='green'>Add New Hotel</Button></Link>
+        </Box>
+      </Flex>
       <TableContainer style={{ height: 'calc(100vh - 200px)', overflowY: 'auto' }}>
         <Table size={"lg"} variant="simple">
           <Thead>

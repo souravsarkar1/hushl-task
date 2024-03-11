@@ -1,0 +1,22 @@
+Table {
+    width: 90%;
+    margin: auto;
+    margin-top: 50px;
+    text-align: center;
+  }
+  
+  Table Td,
+  Table Th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    color: white;
+  }
+  
+  Table Th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    color: white;
+    text-align: center;
+  }
