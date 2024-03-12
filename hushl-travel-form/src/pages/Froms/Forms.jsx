@@ -51,7 +51,7 @@ const Forms = () => {
   };
 
   const handleInputChange = (section, field, value) => {
-    console.log({ section, field, value });
+    // console.log({ section, field, value });
     setFormData(prevData => ({
       ...prevData,
       [section]: {
@@ -61,7 +61,7 @@ const Forms = () => {
     }));
   };
   const handleInputChangeForHotelName = (section, field, value) => {
-    console.log({ section, field, value });
+    // console.log({ section, field, value });
     setHotelName(prevData => ({
       ...prevData,
       [section]: {
@@ -71,7 +71,7 @@ const Forms = () => {
     }));
   };
   const handleCheckboxChange = (section, field, checkboxValues) => {
-    console.log({ section, field, checkboxValues });
+    // console.log({ section, field, checkboxValues });
     setFormData(prevData => ({
       ...prevData,
       [section]: {
@@ -83,7 +83,7 @@ const Forms = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('Form submitted with data:', formData);
+    // console.log('Form submitted with data:', formData);
     const flag = initialFromValidations(hotelName, toast);
     if (flag) {
       dispatch(addProduct(hotelName, toast)).then(() => {
@@ -94,7 +94,7 @@ const Forms = () => {
 
   const uploadMedia = () => {
     const flag = validateFormData(formData, toast);
-    console.log(formData);
+    // console.log(formData);
     if (flag) {
       dispatch(addProductMedia(id, formData, toast)).then(res => {
         window.location.href = '/thankyou';
@@ -102,7 +102,7 @@ const Forms = () => {
     }
   };
   const handleMediaDataChange = (section, index, updatedMedia) => {
-    console.log({ updatedMedia });
+    // console.log({ updatedMedia });
     setFormData(prevData => ({
       ...prevData,
       [section]: {
