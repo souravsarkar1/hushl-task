@@ -52,12 +52,14 @@ export const initialFormData = {
     nearestClinicHospital: '',
     specialitiesOfNearestHospital: '',
     nearestChildrenHospital: '',
-    images: [
-      {
-        title: '',
-        url: '',
-      },
-    ],
+    media: {
+      images: [
+        {
+          title: '',
+          url: '',
+        },
+      ],
+    },
   },
 
   beach: {
@@ -74,17 +76,19 @@ export const initialFormData = {
     cleanliness: '',
     include: '',
     BBQSpots: '',
-    Images: [
-      {
-        title: '',
-        url: '',
-      },
-    ],
+    media: {
+      images: [
+        {
+          title: '',
+          url: '',
+        },
+      ],
+    },
+
     // outerReef: ""
   },
   transferOptions: {
     weatherlimited: '',
-    // TimeLimitedbyTransferType: "",
     timeLimitedbyTransferType: '',
     hotelFacilitatesTransferBooking: '',
     qualityofBoats: '',
@@ -106,12 +110,14 @@ export const initialFormData = {
     submarineTour: '',
     costs: '',
     maximumOccupancy: '',
-    images: [
-      {
-        title: '',
-        url: '',
-      },
-    ],
+    media: {
+      images: [
+        {
+          title: '',
+          url: '',
+        },
+      ],
+    },
     whatflotationDevicesProvided: '',
     minimumAge: '',
     equipmentProvided: '',
@@ -138,13 +144,15 @@ export const initialFormData = {
     onsiteMarineBiologist: '',
     entryPointsAndLengthOfSwim: '',
     abundanceOfReefSharks: '',
-    ReviewsSentiments: '',
-    images: [
-      {
-        title: '',
-        url: '',
-      },
-    ],
+    reviewsSentiments: '',
+    media: {
+      images: [
+        {
+          title: '',
+          url: '',
+        },
+      ],
+    },
   },
   gym: {
     qualityOfEquipment: '',
@@ -155,12 +163,14 @@ export const initialFormData = {
     trainerOnSite: '',
     cost: '',
     openingTimes: '',
-    images: [
-      {
-        title: '',
-        url: '',
-      },
-    ],
+    media: {
+      images: [
+        {
+          title: '',
+          url: '',
+        },
+      ],
+    },
     reviewsSentiments: '',
   },
   kidsClub: {
@@ -172,38 +182,42 @@ export const initialFormData = {
     preBbookingAdvised: '',
     agesAccommodated: '',
     activities: [],
-    images: [
-      {
-        title: '',
-        url: '',
-      },
-    ],
+    media: {
+      images: [
+        {
+          title: '',
+          url: '',
+        },
+      ],
+    },
   },
   foodAndBeverage: {
     InclusionsOrExclusionsforFullOrhalfBoard: '',
     extraCostForRoomService: '',
-    numberOfBarsAndNames: [],
+    numberOfBarsAndNames: '',
     hoursOfOperation: '',
     specialties: '',
     reviewsSentiments: '',
-    numberOfRestaurantsandNames: [],
+    numberOfRestaurantsandNames: '',
     typesOfCuisine: '',
     halaalOption: '',
     kidsMenu: '',
     roomService: '',
     seviewsSentiments: '',
-    images: [
-      {
-        title: '',
-        url: '',
-      },
-    ],
+    media: {
+      images: [
+        {
+          title: '',
+          url: '',
+        },
+      ],
+    },
   },
   services: {
-    trainingOrQualifications: [],
+    trainingOrQualifications: '',
     needToPreBook: '',
     //(limited number available:
-    safetyFeatures: [],
+    safetyFeatures: '',
     isNannyavAilable: '',
     cost: '',
   },
@@ -211,11 +225,11 @@ export const initialFormData = {
     length: '',
     depth: '',
     lapPool: '',
-    safetyFeatures: [],
+    safetyFeatures: '',
     totalNumberOfPool: '',
     reviewsSentiments: '',
     IsadultOnly: '', // boolean
-    kidsFeatures: [''],
+    kidsFeatures: '',
     heated: '',
     cleanliness: '',
   },

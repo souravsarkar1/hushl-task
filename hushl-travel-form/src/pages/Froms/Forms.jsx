@@ -21,6 +21,7 @@ import { initialFromValidations } from '../../utils/validationsInitialFrom';
 import TransferOptions from '../../components/Froms/TransferOptions/TransferOptions';
 import WaterSports from '../../components/Froms/WaterSports/WaterSports';
 import { initialFormData } from '../../utils/initialFormData';
+import LocationForm from '../../components/Froms/Location/Location';
 const Forms = () => {
   const [formData, setFormData] = useState({ ...initialFormData });
 
@@ -36,7 +37,8 @@ const Forms = () => {
   const toast = useToast();
   const id = useSelector(st => st.productReducer.updateProductId);
 
-  const firstStep = useSelector(st => st.productReducer.addProductFirstStep);
+  // const firstStep = useSelector(st => st.productReducer.addProductFirstStep);
+  let firstStep = true;
 
   const handlePropertyDataChange = newPropertyData => {
     setFormData(prevData => ({
@@ -169,6 +171,10 @@ const Forms = () => {
                   Complete This Step
                 </Button>
               </Link>
+              <Box id="location">
+                <Heading>Location</Heading>
+                <LocationForm formData={formData.location} handleInputChange={handleInputChange} />
+              </Box>
 
               <Box id="healthSafety" style={{ marginTop: '40vh' }}>
                 <Heading as="h5">Health And Safety</Heading>
