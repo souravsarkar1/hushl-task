@@ -61,8 +61,8 @@ const Dashboard = () => {
     const filteredData = data.filter(hotel => {
       // Customize the conditions based on your search requirements
       return (
-        hotel.hotel.name.toLowerCase().includes(searchQuerry.toLowerCase()) ||
-        hotel.hotel.address.toLowerCase().includes(searchQuerry.toLowerCase())
+        hotel?.hotel?.name?.toLowerCase()?.includes(searchQuerry?.toLowerCase()) ||
+        hotel?.hotel?.address?.toLowerCase()?.includes(searchQuerry?.toLowerCase())
       );
     });
     if (filteredData.length <= 0) {

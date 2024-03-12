@@ -1,63 +1,99 @@
 import React from 'react';
-import { FormControl, FormLabel, Input, Radio, RadioGroup, Stack, CheckboxGroup, Checkbox, Wrap, WrapItem } from '@chakra-ui/react';
+import {
+  FormControl,
+  FormLabel,
+  Input,
+  Radio,
+  RadioGroup,
+  Stack,
+  CheckboxGroup,
+  Checkbox,
+  Wrap,
+  WrapItem,
+} from '@chakra-ui/react';
 
 const ServicesForm = ({ formData, handleInputChange, handleCheckboxChange }) => {
-    const commonSafetyFeatures = [
-        'Lifeguards on duty',
-        'First aid kit available',
-        'Emergency phone',
-        'Pool depth markers',
-        'Non-slip surfaces',
-    ];
+  const commonSafetyFeatures = [
+    'Lifeguards on duty',
+    'First aid kit available',
+    'Emergency phone',
+    'Pool depth markers',
+    'Non-slip surfaces',
+  ];
 
-    return (
-        <>
-            <FormControl>
-                <FormLabel>Nanny Available or Not:</FormLabel>
-                <RadioGroup onChange={(value) => handleInputChange('services', 'isNannyavAilable', value)} value={formData.isNannyavAilable.toString()}>
-                    <Stack direction="row">
-                        <Radio value="true">Yes</Radio>
-                        <Radio value="false">No</Radio>
-                    </Stack>
-                </RadioGroup>
-            </FormControl>
-            <FormControl>
-                <FormLabel>{`Nanny's Training or Qualifications:`}</FormLabel>
-                <Input
-                    type="text"
-                    value={formData.trainingOrQualifications}
-                    onChange={(e) => handleInputChange('services', 'trainingOrQualifications', e.target.value)}
-                    size="sm"
-                    borderRadius="md"
-                />
-            </FormControl>
-            <FormControl>
-                <FormLabel>Need to Pre-Book:</FormLabel>
-                <RadioGroup onChange={(value) => handleInputChange('services', 'needToPreBook', value)} value={formData.needToPreBook.toString()}>
-                    <Stack direction="row">
-                        <Radio value="true">Yes</Radio>
-                        <Radio value="false">No</Radio>
-                    </Stack>
-                </RadioGroup>
-            </FormControl>
-            <FormControl>
-                <FormLabel>Safety Features:</FormLabel>
-                <CheckboxGroup
-                    colorScheme="teal"
-                    onChange={(values) => handleCheckboxChange('services', 'safetyFeatures', values)}
-                    value={formData.safetyFeatures}
-                >
-                    <Wrap spacing={4} justify="flex-start">
-                        {commonSafetyFeatures.map((feature) => (
-                            <WrapItem key={feature}>
-                                <Checkbox value={feature}>{feature}</Checkbox>
-                            </WrapItem>
-                        ))}
-                    </Wrap>
-                </CheckboxGroup>
-            </FormControl>
-        </>
-    );
+  return (
+    <>
+      <FormControl>
+        <FormLabel>Nanny Available or Not:</FormLabel>
+        <RadioGroup
+          onChange={value => handleInputChange('services', 'isNannyavAilable', value)}
+          value={formData.isNannyavAilable.toString()}
+        >
+          <Stack direction="row">
+            <Radio value="true">Yes</Radio>
+            <Radio value="false">No</Radio>
+          </Stack>
+        </RadioGroup>
+      </FormControl>
+      <FormControl>
+        <FormLabel>{`Nanny's Training or Qualifications:`}</FormLabel>
+        <Input
+          type="text"
+          value={formData.trainingOrQualifications}
+          onChange={e => handleInputChange('services', 'trainingOrQualifications', e.target.value)}
+          size="sm"
+          borderRadius="md"
+        />
+      </FormControl>
+      <FormControl>
+        <FormLabel>Need to Pre-Book:</FormLabel>
+        <RadioGroup
+          onChange={value => handleInputChange('services', 'needToPreBook', value)}
+          value={formData.needToPreBook.toString()}
+        >
+          <Stack direction="row">
+            <Radio value="true">Yes</Radio>
+            <Radio value="false">No</Radio>
+          </Stack>
+        </RadioGroup>
+      </FormControl>
+      <FormControl>
+        <FormLabel>Safety Features:</FormLabel>
+        <CheckboxGroup
+          colorScheme="teal"
+          onChange={values => handleCheckboxChange('services', 'safetyFeatures', values)}
+          value={formData.safetyFeatures}
+        >
+          <Wrap spacing={4} justify="flex-start">
+            {commonSafetyFeatures.map(feature => (
+              <WrapItem key={feature}>
+                <Checkbox value={feature}>{feature}</Checkbox>
+              </WrapItem>
+            ))}
+          </Wrap>
+        </CheckboxGroup>
+      </FormControl>
+      <FormControl>
+        <FormLabel>isNannyavAilable:</FormLabel>
+        <Input
+          type="text"
+          value={formData.isNannyavAilable}
+          onChange={e => handleInputChange('services', 'isNannyavAilable', e.target.value)}
+          size="sm"
+          borderRadius="md"
+        />
+      </FormControl>
+      <FormControl>
+        <FormLabel>Cost(MRF):</FormLabel>
+        <Input
+          type="number"
+          value={formData.cost}
+          onChange={e => handleInputChange('services', 'cost', e.target.value)}
+          size="sm"
+        />
+      </FormControl>
+    </>
+  );
 };
 
 export default ServicesForm;

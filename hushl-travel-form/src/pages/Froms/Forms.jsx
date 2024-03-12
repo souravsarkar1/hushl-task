@@ -20,122 +20,10 @@ import HandleImageUpload from '../../components/Froms/HandleImageUplaod/HandleIm
 import { initialFromValidations } from '../../utils/validationsInitialFrom';
 import TransferOptions from '../../components/Froms/TransferOptions/TransferOptions';
 import WaterSports from '../../components/Froms/WaterSports/WaterSports';
+import { initialFormData } from '../../utils/initialFormData';
+import LocationForm from '../../components/Froms/Location/Location';
 const Forms = () => {
-  const [formData, setFormData] = useState({
-    propertyInformation: {
-      scopeOfRenovation: [],
-      stateOfRepair: '',
-    },
-    healthSafety: {
-      lastReviewDate: '',
-      rating: 0,
-      comments: '',
-      policyForEvacuation: [
-        {
-          title: '',
-          url: '',
-        },
-      ],
-      medicalEmergencyPolicy: [
-        {
-          title: '',
-          url: '',
-        },
-      ],
-      doctorOnSite: '',
-      doctorIsPermanent: '',
-      nurseOnsite: '',
-      nurseIsPermanent: '',
-      onPremiseQualifications: '',
-      defibrillatorsOnProperty: '',
-      defibrillatorsByPool: '',
-    },
-
-    beach: {
-      length: '',
-      features: '',
-      beachType: [],
-      areSomePartsofTheBeachOnlyForPrivateUse: '',
-      willBeachVillasbeDisturbed: '',
-      instagramSpots: '',
-      tidesRips: '',
-      hoursofLifeguardDuty: '',
-      areoffBeachPatrolledbyLifeguards: '',
-      lifeguardQualifications: [],
-      // outerReef: ""
-    },
-    transferOptions: {
-      weatherlimited: '',
-      // TimeLimitedbyTransferType: "",
-      timeLimitedbyTransferType: '',
-      hotelFacilitatesTransferBooking: '',
-      qualityofBoats: '',
-    },
-    waterSports: {
-      sites: '',
-    },
-
-    reef: {
-      entryPointSandLengthofSwim: '',
-      accessibleFromBeach: [],
-      houseReefAccessiblebyBoat: '',
-      houseReefAccessibleCost: '',
-      accessiblebyBoat: '',
-      costTravel: '',
-      travelTime: '',
-      sites: '',
-      outerReef: '',
-    },
-    gym: {
-      qualityOfEquipment: '',
-      rangeofEquipment: [],
-      spaPreBookingAdvised: '',
-    },
-    kidsClub: {
-      ratioofStafftoChildren: '',
-      staffQualifications: [],
-      languagesSpoken: [],
-    },
-    foodAndBeverage: {
-      InclusionsOrExclusionsforFullOrhalfBoard: '',
-      extraCostForRoomService: '',
-    },
-    services: {
-      trainingOrQualifications: [],
-      needToPreBook: '',
-      //(limited number available:
-      safetyFeatures: [],
-      isNannyavAilable: '',
-    },
-    pool: {
-      length: '',
-      depth: '',
-      lapPool: '',
-      safetyFeatures: [],
-    },
-    rooms: {
-      maxOccupancyAdult: '',
-      maxOccupancyChild: '',
-      //adultAndChildCombinations: "",
-      NeedtoPreBookExtraBedding: '',
-      safetyFeaturesifOverwaterBungalow: [],
-      safetyFeaturesForBalcony: [],
-      safetyFeaturesForPool: [],
-      commentsOnHowPrivacyIsImpacted: '',
-      interconnected: '',
-      noiseAtNight: '',
-      privacyLevelsGoodEnoughForStrictMuslim: '',
-      movieSystemsOrDVDs: '',
-    },
-    media: {
-      images: [
-        {
-          title: '',
-          url: '',
-        },
-      ],
-    },
-  });
+  const [formData, setFormData] = useState({ ...initialFormData });
 
   const [hotelName, setHotelName] = useState({
     hotel: {
@@ -149,7 +37,8 @@ const Forms = () => {
   const toast = useToast();
   const id = useSelector(st => st.productReducer.updateProductId);
 
-  const firstStep = useSelector(st => st.productReducer.addProductFirstStep);
+  // const firstStep = useSelector(st => st.productReducer.addProductFirstStep);
+  let firstStep = true;
 
   const handlePropertyDataChange = newPropertyData => {
     setFormData(prevData => ({
@@ -282,6 +171,10 @@ const Forms = () => {
                   Complete This Step
                 </Button>
               </Link>
+              <Box id="location">
+                <Heading>Location</Heading>
+                <LocationForm formData={formData.location} handleInputChange={handleInputChange} />
+              </Box>
 
               <Box id="healthSafety" style={{ marginTop: '40vh' }}>
                 <Heading as="h5">Health And Safety</Heading>
