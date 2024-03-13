@@ -102,7 +102,6 @@ const Forms = () => {
     }
   };
   const handleMediaDataChange = (section, index, updatedMedia) => {
-    // console.log({ updatedMedia });
     setFormData(prevData => ({
       ...prevData,
       [section]: {

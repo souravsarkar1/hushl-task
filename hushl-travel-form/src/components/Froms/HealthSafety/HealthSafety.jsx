@@ -4,8 +4,7 @@ import { FormControl, FormLabel, Input, Textarea, RadioGroup, Radio, Stack } fro
 import Rating from '../../Rating/Rating';
 import HandleUploadMedicalEmergencyPolicyPdf from '../HandleUploadPdf/HandleUploadmedicalEmergencyPolicyDocs';
 import HandleUploadPolicyForEvacuationPdf from '../HandleUploadPdf/HandleHandleUploadPolicyForEvacuationPdfUploadPdf';
-import UploadImage from '../HandleImageUplaod/UploadImage';
-// import HandleImageUpload from '../HandleImageUplaod/HandleImageUpload';
+import HandleImage from '../HandleImage/HandleImage';
 
 const HealthAndSafetyForm = ({
   formData,
@@ -156,7 +155,7 @@ const HealthAndSafetyForm = ({
       </FormControl>
       <FormControl>
         <FormLabel>Images</FormLabel>
-        <UploadImage formData={formData} setFormData={setFormData} id={'12345gfdgd'} />
+        <HandleImage id={'jklskljds'} field={'healthSafety'} formData={fullData} setFormData={setFormData} />
       </FormControl>
     </>
   );

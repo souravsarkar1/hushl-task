@@ -21,8 +21,8 @@ export const handleUploadMedia = async (currentPhoto, toast, id, contentType) =>
       // const base64Data = await getBase64(currentPhoto);
 
       // 3. Upload the photo to S3 using the generated link
-      const uploaded = await uploadImage(uploadUrl, currentPhoto, contentType);
-      console.log(uploaded);
+      await uploadImage(uploadUrl, currentPhoto, contentType);
+
       // 4. Update the state with the new photo URL
       const uploadLinkResponseFinal = await axios.post(`${api}/document/getviewmedialink`, {
         fileName: currentPhoto.name,

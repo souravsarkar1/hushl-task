@@ -52,14 +52,13 @@ export const initialFormData = {
     nearestClinicHospital: '',
     specialitiesOfNearestHospital: '',
     nearestChildrenHospital: '',
-    media: {
-      images: [
-        {
-          title: '',
-          url: '',
-        },
-      ],
-    },
+
+    images: [
+      {
+        title: '',
+        url: '',
+      },
+    ],
   },
 
   beach: {
@@ -76,16 +75,12 @@ export const initialFormData = {
     cleanliness: '',
     include: '',
     BBQSpots: '',
-    media: {
-      images: [
-        {
-          title: '',
-          url: '',
-        },
-      ],
-    },
-
-    // outerReef: ""
+    images: [
+      {
+        title: '',
+        url: '',
+      },
+    ],
   },
   transferOptions: {
     weatherlimited: '',
@@ -110,14 +105,12 @@ export const initialFormData = {
     submarineTour: '',
     costs: '',
     maximumOccupancy: '',
-    media: {
-      images: [
-        {
-          title: '',
-          url: '',
-        },
-      ],
-    },
+    images: [
+      {
+        title: '',
+        url: '',
+      },
+    ],
     whatflotationDevicesProvided: '',
     minimumAge: '',
     equipmentProvided: '',
@@ -145,14 +138,12 @@ export const initialFormData = {
     entryPointsAndLengthOfSwim: '',
     abundanceOfReefSharks: '',
     reviewsSentiments: '',
-    media: {
-      images: [
-        {
-          title: '',
-          url: '',
-        },
-      ],
-    },
+    images: [
+      {
+        title: '',
+        url: '',
+      },
+    ],
   },
   gym: {
     qualityOfEquipment: '',
@@ -163,14 +154,13 @@ export const initialFormData = {
     trainerOnSite: '',
     cost: '',
     openingTimes: '',
-    media: {
-      images: [
-        {
-          title: '',
-          url: '',
-        },
-      ],
-    },
+    images: [
+      {
+        title: '',
+        url: '',
+      },
+    ],
+
     reviewsSentiments: '',
   },
   kidsClub: {
@@ -204,14 +194,12 @@ export const initialFormData = {
     kidsMenu: '',
     roomService: '',
     seviewsSentiments: '',
-    media: {
-      images: [
-        {
-          title: '',
-          url: '',
-        },
-      ],
-    },
+    images: [
+      {
+        title: '',
+        url: '',
+      },
+    ],
   },
   services: {
     trainingOrQualifications: '',
