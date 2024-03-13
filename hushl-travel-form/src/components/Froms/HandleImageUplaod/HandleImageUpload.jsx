@@ -14,9 +14,9 @@ const HandleImageUpload = ({ setFormData, formData, id }) => {
       const formData = new FormData();
       formData.append('image', e.target.files[0]);
 
-      const imageUrl = await handleUploadMedia(e.target.files[0], toast, id,e.target.files[0].type);
+      const imageUrl = await handleUploadMedia(e.target.files[0], toast, id, e.target.files[0].type);
 
-      setFormData((prevData) => ({
+      setFormData(prevData => ({
         ...prevData,
         media: {
           ...prevData.media,
@@ -32,17 +32,17 @@ const HandleImageUpload = ({ setFormData, formData, id }) => {
     }
   };
 
-  const handleRemoveImgUrl = async (index) => {
-    setLoaderRemove((prevLoaderRemove) => {
+  const handleRemoveImgUrl = async index => {
+    setLoaderRemove(prevLoaderRemove => {
       const updatedLoaderRemove = [...prevLoaderRemove];
       updatedLoaderRemove[index] = true;
       return updatedLoaderRemove;
     });
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulating asynchronous removal process
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulating asynchronous removal process
 
-      setFormData((prevData) => ({
+      setFormData(prevData => ({
         ...prevData,
         media: {
           ...prevData.media,
@@ -52,7 +52,7 @@ const HandleImageUpload = ({ setFormData, formData, id }) => {
     } catch (error) {
       console.error('Error removing photo:', error);
     } finally {
-      setLoaderRemove((prevLoaderRemove) => {
+      setLoaderRemove(prevLoaderRemove => {
         const updatedLoaderRemove = [...prevLoaderRemove];
         updatedLoaderRemove[index] = false;
         return updatedLoaderRemove;
@@ -63,7 +63,7 @@ const HandleImageUpload = ({ setFormData, formData, id }) => {
   const handleAddImgUrl = () => {
     setLoader(true);
     setTimeout(() => {
-      setFormData((prevData) => ({
+      setFormData(prevData => ({
         ...prevData,
         media: {
           ...prevData.media,
@@ -77,7 +77,7 @@ const HandleImageUpload = ({ setFormData, formData, id }) => {
   const handleChangeMediaTitle = (e, mediaType, index) => {
     const { value } = e.target;
 
-    setFormData((prevData) => {
+    setFormData(prevData => {
       const updatedMedia = [...prevData.media[mediaType]];
       updatedMedia[index] = { ...updatedMedia[index], title: value };
 
@@ -91,43 +91,40 @@ const HandleImageUpload = ({ setFormData, formData, id }) => {
     });
   };
 
-  const isAddButtonDisabled =
-    formData.media.images?.some((img) => img.url === '' || img.title === '') 
-    // ||
-    // formData.media.images?.length === 0; // Disable if any image URL or title is empty, or if there are no images
+  const isAddButtonDisabled = formData.media.images?.some(img => img.url === '' || img.title === '');
+  // ||
+  // formData.media.images?.length === 0; // Disable if any image URL or title is empty, or if there are no images
 
   const isRemoveButtonDisabled = formData.media.images?.length === 1;
-// console.log(formData)
+  // console.log(formData)
   return (
     <div>
       <FormControl id="images">
         <FormLabel>Image URLs</FormLabel>
         {formData.media.images?.map((imgUrl, index) => (
           <Box p={2} key={index} gap={3} display="flex" alignItems="center">
-
-             
-              <FormControl id="title">
+            <FormControl id="title">
               <FormLabel>Image *</FormLabel>
               <Input
-              type="file"
-              accept="image/*"
-              name="imgUrl"
-              onChange={(e) => handleImgUrlChange(e, index)}
-              style={{ marginRight: '8px' }}
-              placeholder='Select Image'
-            />
-          </FormControl>
+                type="file"
+                accept="image/*"
+                name="imgUrl"
+                onChange={e => handleImgUrlChange(e, index)}
+                style={{ marginRight: '8px' }}
+                placeholder="Select Image"
+              />
+            </FormControl>
 
-          <FormControl id="title">
-          <FormLabel>Image Title *</FormLabel>
-            
-            <Input
-              type="text"
-              placeholder={`Image ${index + 1} Title`}
-              value={imgUrl.title}
-              onChange={(e) => handleChangeMediaTitle(e, 'images', index)}
-              isRequired={true}
-            />
+            <FormControl id="title">
+              <FormLabel>Image Title *</FormLabel>
+
+              <Input
+                type="text"
+                placeholder={`Image ${index + 1} Title`}
+                value={imgUrl.title}
+                onChange={e => handleChangeMediaTitle(e, 'images', index)}
+                isRequired={true}
+              />
             </FormControl>
             <Button
               w={300}
@@ -136,7 +133,7 @@ const HandleImageUpload = ({ setFormData, formData, id }) => {
               onClick={() => handleRemoveImgUrl(index)}
               mt={8}
             >
-              {loaderRemove[index] ? <ClipLoader  /> : ' Remove'}
+              {loaderRemove[index] ? <ClipLoader /> : ' Remove'}
             </Button>
           </Box>
         ))}

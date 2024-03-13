@@ -22,7 +22,7 @@ export const addProduct = (data, toast) => dispatch => {
   return axios
     .post(`${api}/product/`, data)
     .then(res => {
-      console.log({ id: res.data.product._id });
+      //   console.log({ id: res.data.product._id });
       dispatch({ type: ADD_PRODUCT_SUCCESS, payload: res.data.product._id });
       toast({
         title: 'Hotel Nmae and Address are Registerd',
@@ -91,13 +91,13 @@ export const addProductMedia = (id, data, toast) => dispatch => {
 };
 
 export const getAllProduct = () => dispatch => {
-  console.log(api);
+  //   console.log(api);
   dispatch({ type: GET_ALL_PRODUCTS_REQUEST });
   return axios
     .get(`${api}/product/`)
     .then(res => {
       dispatch({ type: GET_ALL_PRODUCTS_SUCCESS, payload: res.data.products });
-      console.log(res.data.products);
+      //   console.log(res.data.products);
     })
     .catch(err => {
       dispatch({ type: GET_ALL_PRODUCTS_ERROR });
@@ -113,7 +113,7 @@ export const getSingleData = id => dispatch => {
     })
     .catch(err => {
       dispatch({ type: GET_SINGLE_PRODUCT_ERROR });
-      console.log(err);
+      //   console.log(err);
     });
 };
 
@@ -123,7 +123,7 @@ export const deleteProduct = (id, toast) => dispatch => {
     .delete(`${api}/product/${id}`)
     .then(res => {
       dispatch({ type: DELETE_PRODUCT_SUCCESS });
-      console.log(res.data);
+      //   console.log(res.data);
       toast({
         title: 'Deleted Successfully',
         description: 'Your Data deleted!',
@@ -143,6 +143,6 @@ export const deleteProduct = (id, toast) => dispatch => {
         isClosable: true,
         position: 'top',
       });
-      console.log(err);
+      //   console.log(err);
     });
 };
