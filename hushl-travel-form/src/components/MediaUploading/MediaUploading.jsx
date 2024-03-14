@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { ClipLoader } from 'react-spinners';
 
-const HandleMediaUpload = ({  mediaData, onMediaDataChange }) => {
+const HandleMediaUpload = ({ mediaData, onMediaDataChange }) => {
   const [loaderRemove, setLoaderRemove] = useState(Array(mediaData?.length).fill(false));
 
   const handleMediaChange = async (e, index) => {
@@ -11,17 +11,17 @@ const HandleMediaUpload = ({  mediaData, onMediaDataChange }) => {
       formData.append('file', e.target.files[0]);
 
       // Simulating asynchronous upload process
-      setLoaderRemove((prevLoaderRemove) => {
+      setLoaderRemove(prevLoaderRemove => {
         const updatedLoaderRemove = [...prevLoaderRemove];
         updatedLoaderRemove[index] = true;
         return updatedLoaderRemove;
       });
 
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 1000));
 
       const mediaUrl = 'https://example.com'; // Replace with the actual URL from your upload process
 
-      onMediaDataChange((prevMediaData) => [
+      onMediaDataChange(prevMediaData => [
         ...prevMediaData.slice(0, index),
         { title: '', url: mediaUrl },
         ...prevMediaData.slice(index + 1),
@@ -29,7 +29,7 @@ const HandleMediaUpload = ({  mediaData, onMediaDataChange }) => {
     } catch (error) {
       console.error('Error uploading media:', error);
     } finally {
-      setLoaderRemove((prevLoaderRemove) => {
+      setLoaderRemove(prevLoaderRemove => {
         const updatedLoaderRemove = [...prevLoaderRemove];
         updatedLoaderRemove[index] = false;
         return updatedLoaderRemove;
@@ -37,8 +37,8 @@ const HandleMediaUpload = ({  mediaData, onMediaDataChange }) => {
     }
   };
 
-  const handleRemoveMedia = async (index) => {
-    setLoaderRemove((prevLoaderRemove) => {
+  const handleRemoveMedia = async index => {
+    setLoaderRemove(prevLoaderRemove => {
       const updatedLoaderRemove = [...prevLoaderRemove];
       updatedLoaderRemove[index] = true;
       return updatedLoaderRemove;
@@ -46,17 +46,13 @@ const HandleMediaUpload = ({  mediaData, onMediaDataChange }) => {
 
     try {
       // Simulating asynchronous removal process
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 1000));
 
-      onMediaDataChange((prevMediaData) => [
-        ...prevMediaData.slice(0, index),
-        null,
-        ...prevMediaData.slice(index + 1),
-      ]);
+      onMediaDataChange(prevMediaData => [...prevMediaData.slice(0, index), null, ...prevMediaData.slice(index + 1)]);
     } catch (error) {
       console.error('Error removing media:', error);
     } finally {
-      setLoaderRemove((prevLoaderRemove) => {
+      setLoaderRemove(prevLoaderRemove => {
         const updatedLoaderRemove = [...prevLoaderRemove];
         updatedLoaderRemove[index] = false;
         return updatedLoaderRemove;
@@ -71,7 +67,7 @@ const HandleMediaUpload = ({  mediaData, onMediaDataChange }) => {
   const handleChangeMediaTitle = (e, index) => {
     const { value } = e.target;
 
-    onMediaDataChange((prevMediaData) => [
+    onMediaDataChange(prevMediaData => [
       ...prevMediaData.slice(0, index),
       { ...prevMediaData[index], title: value },
       ...prevMediaData.slice(index + 1),
@@ -91,7 +87,7 @@ const HandleMediaUpload = ({  mediaData, onMediaDataChange }) => {
                 <Input
                   type="file"
                   accept=".doc, .docx, .xml, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                  onChange={(e) => handleMediaChange(e, index)}
+                  onChange={e => handleMediaChange(e, index)}
                   style={{ marginRight: '8px' }}
                 />
               </FormControl>
@@ -101,7 +97,7 @@ const HandleMediaUpload = ({  mediaData, onMediaDataChange }) => {
                   type="text"
                   placeholder={`File ${index + 1} Title`}
                   value={media.title}
-                  onChange={(e) => handleChangeMediaTitle(e, index)}
+                  onChange={e => handleChangeMediaTitle(e, index)}
                 />
               </FormControl>
               <Button
