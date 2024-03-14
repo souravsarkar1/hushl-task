@@ -93,15 +93,17 @@ const Dashboard = () => {
   const endIndex = startIndex + 4;
 
   return (
-
-    <div style={{ height: '100vh', overflow: 'hidden' }}>
-
+    <div style={{ height: '120vh', overflow: 'hidden' }}>
       <Flex mb={10}>
-        <Box cursor={"pointer"} pr={4}>
-        <Link to={'/test'}><Button colorScheme='green'>Test</Button></Link>
+        <Box cursor={'pointer'} pr={4}>
+          <Link to={'/test'}>
+            <Button colorScheme="green">Test</Button>
+          </Link>
         </Box>
-        <Box cursor={"pointer"} pr={4}>
-        <Link to={'/add'}><Button colorScheme='green'>Add New Hotel</Button></Link>
+        <Box cursor={'pointer'} pr={4}>
+          <Link to={'/add'}>
+            <Button colorScheme="green">Add New Hotel</Button>
+          </Link>
         </Box>
       </Flex>
       <Center mb={10}>
