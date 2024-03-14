@@ -4,6 +4,7 @@ import { FormControl, FormLabel, Input, Textarea, RadioGroup, Radio, Stack } fro
 import Rating from '../../Rating/Rating';
 import HandleUploadMedicalEmergencyPolicyPdf from '../HandleUploadPdf/HandleUploadmedicalEmergencyPolicyDocs';
 import HandleUploadPolicyForEvacuationPdf from '../HandleUploadPdf/HandleHandleUploadPolicyForEvacuationPdfUploadPdf';
+import HandleImage from '../HandleImage/HandleImage';
 
 const HealthAndSafetyForm = ({
   formData,
@@ -125,7 +126,38 @@ const HealthAndSafetyForm = ({
       <FormControl>
         <HandleUploadPolicyForEvacuationPdf formData={fullData} setFormData={setFormData} />
       </FormControl>
-      {/* Add other health and safety form elements here */}
+
+      <FormControl>
+        <FormLabel>Nearest ClinicHospital</FormLabel>
+        <Input
+          type="text"
+          value={formData.nearestClinicHospital}
+          onChange={e => handleInputChange('healthSafety', 'nearestClinicHospital', e.target.value)}
+          size="sm"
+        />
+      </FormControl>
+      <FormControl>
+        <FormLabel>Specialities Of NearestHospital</FormLabel>
+        <Input
+          type="text"
+          value={formData.specialitiesOfNearestHospital}
+          onChange={e => handleInputChange('healthSafety', 'specialitiesOfNearestHospital', e.target.value)}
+          size="sm"
+        />
+      </FormControl>
+      <FormControl>
+        <FormLabel>Nearest Children Hospital</FormLabel>
+        <Input
+          type="text"
+          value={formData.nearestChildrenHospital}
+          onChange={e => handleInputChange('healthSafety', 'nearestChildrenHospital', e.target.value)}
+          size="sm"
+        />
+      </FormControl>
+      <FormControl>
+        <FormLabel>Images</FormLabel>
+        <HandleImage id={'jklskljds'} field={'healthSafety'} formData={fullData} setFormData={setFormData} />
+      </FormControl>
     </>
   );
 };

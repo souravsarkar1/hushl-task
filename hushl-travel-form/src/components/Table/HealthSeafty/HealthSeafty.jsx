@@ -32,12 +32,15 @@ const HealthSafetyOnTable = ({ healthSafety, id }) => {
       </Heading>
       <UnorderedList>
         {policyForEvacuation.map((policy, index) => (
-          <ListItem key={index}> 
+          <ListItem p={2} key={index}> 
           <Popup
             modalTitle={"See Pdf"}
             colorofModal={"blue"}
             children={
               <object
+              style={{
+                padding : "4px"
+              }}
               data={policy.url}
               width="400"
               height="400">
@@ -52,7 +55,7 @@ const HealthSafetyOnTable = ({ healthSafety, id }) => {
       </Heading>
       <UnorderedList>
         {medicalEmergencyPolicy.map((policy, index) => (
-          <ListItem key={index}>
+          <ListItem p={2} key={index}>
           <Popup
           modalTitle={"See Pdf"}
           colorofModal={"blue"}
