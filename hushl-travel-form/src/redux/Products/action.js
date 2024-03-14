@@ -17,6 +17,7 @@ import {
   GET_SINGLE_PRODUCT_SUCCESS,
 } from './actionTypes';
 const api = process.env.REACT_APP_API;
+
 export const addProduct = (data, toast) => dispatch => {
   dispatch({ type: ADD_PRODUCT_REQUEST });
   return axios
