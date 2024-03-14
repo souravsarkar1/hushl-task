@@ -1,5 +1,5 @@
-import React from "react";
-import { Button } from "@chakra-ui/react";
+import React from 'react';
+import { Button } from '@chakra-ui/react';
 
 function createArrayOfSize(n) {
   return new Array(n).fill(0);
@@ -7,12 +7,12 @@ function createArrayOfSize(n) {
 
 function PaginationAllPage({ currentPage, totalPages, handlePageChange }) {
   const showPageButtons = 5;
-  console.log({totalPages})
+  console.log({ totalPages });
 
   const startPage = Math.max(1, currentPage - 2);
   const endPage = Math.min(totalPages, startPage + showPageButtons - 1);
 
-  const pages = createArrayOfSize(endPage - startPage + 1).map((_, index) => {
+  const pages = createArrayOfSize(endPage - startPage + 1)?.map((_, index) => {
     const pageNumber = startPage + index;
     const isActive = pageNumber === currentPage;
 
