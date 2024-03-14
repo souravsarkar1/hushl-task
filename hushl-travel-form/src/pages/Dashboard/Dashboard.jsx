@@ -93,7 +93,7 @@ const Dashboard = () => {
   const endIndex = startIndex + 4;
 
   return (
-    <div style={{ height: '100vh', overflow: 'hidden' }}>
+    <div style={{ height: '120vh', overflow: 'hidden' }}>
       <Center mb={10}>
         <Link to={'/add'}>
           <Button colorScheme="green">Add New Hotel</Button>
