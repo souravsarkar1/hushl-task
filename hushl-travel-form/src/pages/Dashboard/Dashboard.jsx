@@ -33,8 +33,8 @@ import MediaOnTable from '../../components/Table/Media/Media';
 import { Link } from 'react-router-dom';
 import { HashLoader } from 'react-spinners';
 import PaginationAllPage from '../../components/Pagination/Pagination';
-import AddressUpdate from '../../components/UpdateData/Address/Address';
-import NameUpdate from '../../components/UpdateData/Name/Name';
+// import AddressUpdate from '../../components/UpdateData/Address/Address';
+// import NameUpdate from '../../components/UpdateData/Name/Name';
 import { IoSearch } from 'react-icons/io5';
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -146,13 +146,7 @@ const Dashboard = () => {
                         <Text fontSize="xl">{property.hotel?.name.toUpperCase()}</Text>
                       </Box>
 
-                      <Popup
-                        modalTitle={'Edit'}
-                        colorofModal={'orange'}
-                        children={
-                          <NameUpdate address={property.hotel?.address} name={property.hotel.name} id={property._id} />
-                        }
-                      />
+                      <Popup modalTitle={'Edit'} colorofModal={'orange'} />
                     </Flex>
                   </Td>
                   <Td>
@@ -166,11 +160,13 @@ const Dashboard = () => {
                         modalTitle={'Edit'}
                         colorofModal={'orange'}
                         children={
-                          <AddressUpdate
+                          {
+                            /*                          <AddressUpdate
                             name={property.hotel.name}
                             address={property.hotel.address}
                             id={property._id}
-                          />
+                        />*/
+                          }
                         }
                       />
                     </Flex>
