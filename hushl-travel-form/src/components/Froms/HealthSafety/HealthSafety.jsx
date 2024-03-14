@@ -126,6 +126,7 @@ const HealthAndSafetyForm = ({
       <FormControl>
         <HandleUploadPolicyForEvacuationPdf formData={fullData} setFormData={setFormData} />
       </FormControl>
+
       <FormControl>
         <FormLabel>Nearest ClinicHospital</FormLabel>
         <Input
