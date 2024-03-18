@@ -95,18 +95,14 @@ const Dashboard = () => {
   return (
     <div style={{ height: '120vh', overflow: 'hidden' }}>
       <Flex mb={10}>
+
+        <Box cursor={"pointer"} pl={4} pr={4}>
+        <Link to={'/test'}><Button colorScheme='green'>Test</Button></Link>
+
         <Box cursor={'pointer'} pr={4}>
           <Link to={'/test'}>
             <Button colorScheme="green">Test</Button>
-          </Link>
-        </Box>
-        <Box cursor={'pointer'} pr={4}>
-          <Link to={'/add'}>
-            <Button colorScheme="green">Add New Hotel</Button>
-          </Link>
-        </Box>
-      </Flex>
-      <Center mb={10}>
+          </Link>       
         <Link to={'/add'}>
           <Button colorScheme="green">Add New Hotel</Button>
         </Link>
