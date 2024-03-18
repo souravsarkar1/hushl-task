@@ -13,8 +13,8 @@ const NewsApi = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setLoading(true);
-        // axios.post('http://13.234.116.79/news/', { query_params: query_params })
-        axios.post('http://127.0.0.1:8000/news/', { query_params: query_params })
+        axios.post('http://13.234.116.79/news/', { query_params: query_params })
+        // axios.post('http://127.0.0.1:8000/news/', { query_params: query_params })
             .then((res) => {
                 if (res && res.data) {
                     console.log(res.data);
