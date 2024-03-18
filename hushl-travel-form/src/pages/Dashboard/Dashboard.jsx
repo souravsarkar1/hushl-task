@@ -96,7 +96,7 @@ const Dashboard = () => {
     <div style={{ height: '100vh', overflow: 'hidden' }}>
 
       <Flex mb={10}>
-        <Box cursor={"pointer"} pr={4}>
+        <Box cursor={"pointer"} pl={4} pr={4}>
         <Link to={'/test'}><Button colorScheme='green'>Test</Button></Link>
         </Box>
         <Box cursor={"pointer"} pr={4}>

@@ -4,6 +4,8 @@ import axios from "axios";
 import { BeatLoader } from 'react-spinners';
 
 const fields = [
+    // { label: "Title", key: "title" },
+    // { label: "Video", key: "video" },
     { label: "Summary", key: "summary" },
     { label: "ReefQuality", key: "reefQuality" },
     { label: "KidsFriendly", key: "kidsFriendly" },
@@ -55,7 +57,7 @@ const fields = [
     { label: "Average Room Size", key: "averageRoomSize" },
     { label: "Rollaway Bed Policy & Costs", key: "rollawayBedPolicyCosts" },
     { label: "Kitchen Facilities", key: "kitchenFacilities" },
-    { label: "Children's Cutlery Availability", key:"childrensCutleryAvailability" }
+    { label: "Children's Cutlery Availability", key: "childrensCutleryAvailability" }
 ];
 
 const YouTube = () => {
@@ -66,6 +68,7 @@ const YouTube = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setLoading(true);
+        // axios.post('http://13.234.116.79/you/', { query_params: query_params })
         axios.post('http://127.0.0.1:8000/you/', { query_params: query_params })
             .then((res) => {
                 console.log(res.data);
@@ -138,7 +141,7 @@ const YouTube = () => {
     //             childrensCutleryAvailability: item.summaries.childrensCutleryAvailability,
     //         });
     //     });
-        
+
     //     const you_tube_data = {
     //         isStore: true,
     //         summaries: summaries1,
@@ -190,25 +193,61 @@ const YouTube = () => {
             <br /><br />
 
             <Box style={{ border: "1px solid teal", margin: "20px" }}>
+                <Center>
+                    {loading && <Center><BeatLoader color="#36d7b7" /></Center>}
+                    {!loading && showdata.length > 0 && (
+                        <Table variant="striped">
+                            <Tbody>
+                                {fields.map((field, index) => (
+                                    <Tr key={index}>
+                                        <Th>{field.label}</Th>
+                                        {showdata.map((item, idx) => (
+                                            // <Td key={idx}>{item.summaries[field.key]}</Td>
+                                            <Td key={idx}>{item ?  item.summaries[field.key] : item[field.key] }</Td>
+
+                                        ))}
+                                    </Tr>
+                                ))}
+                            </Tbody>
+                        </Table>
+                    )}
+                    {!loading && (Object.keys(showdata).length === 0 || showdata === null || Object.keys(showdata) === null) && <Center style={{ fontSize: "30px", color: "teal" }}>Data Not found 😔</Center>}
+                </Center>
+            </Box>
+
+
+{/* 
+<Box style={{ border: "1px solid teal", margin: "20px" }}>
     <Center>
         {loading && <Center><BeatLoader color="#36d7b7" /></Center>}
         {!loading && showdata.length > 0 && (
             <Table variant="striped">
                 <Tbody>
-                    {fields.map((field, index) => (
-                        <Tr key={index}>
-                            <Th>{field.label}</Th>
-                            {showdata.map((item, idx) => (
-                                <Td key={idx}>{item.summaries[field.key]}</Td>
+                    {showdata.map((item, idx) => (
+                        <React.Fragment key={idx}>
+                            <Tr>
+                                <Th>Video</Th>
+                                <Td>{item.video}</Td>
+                            </Tr>
+                            <Tr>
+                                <Th>Title</Th>
+                                <Td>{item.title}</Td>
+                            </Tr>
+                            {fields.map((field, index) => (
+                                <Tr key={index}>
+                                    <Th>{field.label}</Th>
+                                    <Td>{item.summaries[field.key]}</Td>
+                                </Tr>
                             ))}
-                        </Tr>
+                        </React.Fragment>
                     ))}
                 </Tbody>
             </Table>
         )}
         {!loading && (Object.keys(showdata).length === 0 || showdata === null || Object.keys(showdata) === null) && <Center style={{ fontSize: "30px", color: "teal" }}>Data Not found 😔</Center>}
     </Center>
-</Box>
+</Box> */}
+
 
 
         </Box >
