@@ -38,7 +38,6 @@ import NameUpdate from '../../components/UpdateData/Name/Name';
 import { IoSearch } from 'react-icons/io5';
 const Dashboard = () => {
   const dispatch = useDispatch();
-
   const data = useSelector(st => st.productReducer.allProducts);
   const loader = useSelector(st => st.productReducer.getAllProductIsLoader);
   const [searchQuerry, setSearchQuerry] = useState('');
@@ -78,31 +77,32 @@ const Dashboard = () => {
     const newFilteredData = [...filteredData];
     setHotelData(newFilteredData);
   };
-
   if (loader) {
     return (
       <Box h={'100vh'}>
         <Center mt={'25vh'}>
-          <HashLoader size={300} color="#36d7b7" />
+          <HashLoader size={300} color="#36D7B7" />
         </Center>
       </Box>
     );
   }
-
   const startIndex = (page - 1) * 4;
   const endIndex = startIndex + 4;
-
   return (
     <div style={{ height: '120vh', overflow: 'hidden' }}>
       <Flex mb={10}>
-
-        <Box cursor={"pointer"} pl={4} pr={4}>
-        <Link to={'/test'}><Button colorScheme='green'>Test</Button></Link>
-
         <Box cursor={'pointer'} pr={4}>
           <Link to={'/test'}>
             <Button colorScheme="green">Test</Button>
-          </Link>       
+          </Link>
+        </Box>
+        <Box cursor={'pointer'} pr={4}>
+          <Link to={'/add'}>
+            <Button colorScheme="green">Add New Hotel</Button>
+          </Link>
+        </Box>
+      </Flex>
+      <Center mb={10}>
         <Link to={'/add'}>
           <Button colorScheme="green">Add New Hotel</Button>
         </Link>
@@ -120,7 +120,6 @@ const Dashboard = () => {
           </Button>
         </Flex>
       </Box>
-
       <TableContainer style={{ height: 'calc(100vh - 200px)', overflowY: 'auto' }}>
         <Table size={'lg'} variant="simple">
           <Thead>
@@ -154,7 +153,6 @@ const Dashboard = () => {
                       <Box h={100} w={300} overflowX="auto" maxHeight={100}>
                         <Text fontSize="xl">{property.hotel?.name.toUpperCase()}</Text>
                       </Box>
-
                       <Popup
                         modalTitle={'Edit'}
                         colorofModal={'orange'}
@@ -284,7 +282,7 @@ const Dashboard = () => {
                       colorofModal={'red'}
                       children={
                         <Box>
-                          <Text color={'#8a0f1d'}>Are You Sure To Delete?</Text>
+                          <Text color={'#8A0F1D'}>Are You Sure To Delete?</Text>
                           <Button mt={3} colorScheme="red" onClick={() => hanldeDelete(property._id)}>
                             Delete
                           </Button>
@@ -301,5 +299,4 @@ const Dashboard = () => {
     </div>
   );
 };
-
 export default Dashboard;
