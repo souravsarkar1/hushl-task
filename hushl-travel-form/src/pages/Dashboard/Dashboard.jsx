@@ -45,7 +45,7 @@ const Dashboard = () => {
   const [page, setPage] = useState(1);
   const [hotelData, setHotelData] = useState([...data]);
   const toast = useToast();
-  console.log({ data });
+  // console.log({ data });
   useEffect(() => {
     dispatch(getAllProduct());
   }, [dispatch]);
@@ -61,8 +61,8 @@ const Dashboard = () => {
     const filteredData = data.filter(hotel => {
       // Customize the conditions based on your search requirements
       return (
-        hotel.hotel.name.toLowerCase().includes(searchQuerry.toLowerCase()) ||
-        hotel.hotel.address.toLowerCase().includes(searchQuerry.toLowerCase())
+        hotel?.hotel?.name?.toLowerCase()?.includes(searchQuerry?.toLowerCase()) ||
+        hotel?.hotel?.address?.toLowerCase()?.includes(searchQuerry?.toLowerCase())
       );
     });
     if (filteredData.length <= 0) {
@@ -93,18 +93,16 @@ const Dashboard = () => {
   const endIndex = startIndex + 4;
 
   return (
-    <div style={{ height: '100vh', overflow: 'hidden' }}>
-
+    <div style={{ height: '120vh', overflow: 'hidden' }}>
       <Flex mb={10}>
+
         <Box cursor={"pointer"} pl={4} pr={4}>
         <Link to={'/test'}><Button colorScheme='green'>Test</Button></Link>
-        </Box>
-        <Box cursor={"pointer"} pr={4}>
-        <Link to={'/add'}><Button colorScheme='green'>Add New Hotel</Button></Link>
-        </Box>
-      </Flex>
 
-      <Center mb={10}>
+        <Box cursor={'pointer'} pr={4}>
+          <Link to={'/test'}>
+            <Button colorScheme="green">Test</Button>
+          </Link>       
         <Link to={'/add'}>
           <Button colorScheme="green">Add New Hotel</Button>
         </Link>
