@@ -7,6 +7,9 @@ import Dashboard from '../pages/Dashboard/Dashboard';
 import NewsApi from '../pages/Extension/NewsApi/NewsApi';
 import Extension from '../pages/Extension/Extension';
 import YouTube from '../pages/Extension/YouTube/YouTube';
+import Login from '../pages/Authentication/Login';
+import HotelHomePage from '../pages/Hotel/HotelHomePage';
+import { PrivateRoute } from './PrivateRoute';
 
 const AllRoutes = () => {
   return (
@@ -18,6 +21,15 @@ const AllRoutes = () => {
         <Route path="/test" element={<Extension />} />
         <Route path="/newsapi" element={<NewsApi />} />
         <Route path="/you-tube" element={<YouTube />} />
+        <Route path="/hotel-login" element={<Login />} />
+        <Route
+          path="/hotel-home"
+          element={
+            <PrivateRoute>
+              <HotelHomePage />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );
