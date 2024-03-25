@@ -172,14 +172,12 @@ export const initialFormData = {
     preBbookingAdvised: '',
     agesAccommodated: '',
     activities: [],
-    media: {
-      images: [
-        {
-          title: '',
-          url: '',
-        },
-      ],
-    },
+    images: [
+      {
+        title: '',
+        url: '',
+      },
+    ],
   },
   foodAndBeverage: {
     InclusionsOrExclusionsforFullOrhalfBoard: '',
@@ -204,7 +202,6 @@ export const initialFormData = {
   services: {
     trainingOrQualifications: '',
     needToPreBook: '',
-    //(limited number available:
     safetyFeatures: '',
     isNannyavAilable: '',
     cost: '',

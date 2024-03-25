@@ -12,6 +12,7 @@ import {
   Drawer,
   DrawerContent,
   useDisclosure,
+  Button,
 } from '@chakra-ui/react';
 import { FiMenu } from 'react-icons/fi';
 import { FaHotel, FaHouseUser, FaUmbrellaBeach } from 'react-icons/fa';
@@ -29,6 +30,19 @@ import {
 import { FaChildren, FaPersonSwimming } from 'react-icons/fa6';
 import { GiCoral } from 'react-icons/gi';
 import { IoFastFood } from 'react-icons/io5';
+import LocationCardOnHotelHome from '../HotelHome/Location';
+import HealthAndSeaftyOnHotelHome from '../HotelHome/HealthAndSeafty';
+import WaterSportsOnHotelHome from '../HotelHome/WaterSports';
+import ReefOnHotelHome from '../HotelHome/Reef';
+import GYMOnHotelHome from '../HotelHome/GYM';
+import KidsClubOnHotelHome from '../HotelHome/KidsClub';
+import FoodAndBeverageOnHotelHome from '../HotelHome/FoodAndBeverage';
+import ServicesOnHotelHome from '../HotelHome/Services';
+import PoolOnHotelHome from '../HotelHome/Pool';
+import RoomOnHotelHome from '../HotelHome/Room';
+import { useDispatch } from 'react-redux';
+import { hotelLogout } from '../../redux/User/action';
+import { useNavigate } from 'react-router-dom';
 const LinkItems = [
   { name: 'Property', icon: FaHotel },
   { name: 'Location', icon: CiLocationOn },
@@ -40,10 +54,10 @@ const LinkItems = [
   { name: 'GYM', icon: MdOutlineSportsGymnastics },
   { name: 'Kids Club', icon: FaChildren },
   { name: 'Food & Beverage', icon: IoFastFood },
-  { name: 'services', icon: MdCleaningServices },
+  { name: 'Services', icon: MdCleaningServices },
   { name: 'Pool', icon: MdOutlinePool },
   { name: 'Room', icon: FaHouseUser },
-  { name: 'Media', icons: MdPermMedia },
+  { name: 'Media', icon: MdPermMedia },
 ];
 
 export default function Sidebar({ hotelData }) {
@@ -80,13 +94,36 @@ export default function Sidebar({ hotelData }) {
         {selectedNavItem === 'Property' && (
           <PropertyInformationOnHotelHome propertyInformation={hotelData.propertyInformation} />
         )}
-        {selectedNavItem === 'Location' && <BeachOnHotelHome beach={hotelData.beach} />}
+        {selectedNavItem === 'Location' && <LocationCardOnHotelHome location={hotelData.location} />}
+        {selectedNavItem === 'Beach' && <BeachOnHotelHome beach={hotelData.beach} />}
+        {selectedNavItem === 'Healt Data' && <HealthAndSeaftyOnHotelHome healthSafety={hotelData.healthSafety} />}
+        {selectedNavItem === 'Transportation' && <BeachOnHotelHome beach={hotelData.beach} />}
+        {selectedNavItem === 'Aquamotion' && <WaterSportsOnHotelHome waterSports={hotelData.waterSports} />}
+        {selectedNavItem === 'Reef' && <ReefOnHotelHome reef={hotelData.reef} />}
+        {selectedNavItem === 'GYM' && <GYMOnHotelHome gym={hotelData.gym} />}
+        {selectedNavItem === 'Kids Club' && <KidsClubOnHotelHome kidsClub={hotelData.kidsClub} />}
+        {selectedNavItem === 'Food & Beverage' && (
+          <FoodAndBeverageOnHotelHome foodAndBeverage={hotelData.foodAndBeverage} />
+        )}
+        {selectedNavItem === 'Services' && <ServicesOnHotelHome services={hotelData.services} />}
+        {selectedNavItem === 'Pool' && <PoolOnHotelHome pool={hotelData.pool} />}
+        {selectedNavItem === 'Room' && <RoomOnHotelHome room={hotelData.room} />}
+        {selectedNavItem === 'Media' && <BeachOnHotelHome beach={hotelData.beach} />}
       </Box>
     </Box>
   );
 }
 
 const SidebarContent = ({ onClose, handleNavItemClick, selectedNavItem, ...rest }) => {
+  const dispatch = useDispatch();
+  const navigation = useNavigate();
+  const handleLogout = () => {
+    console.log('clicked=====');
+    dispatch(hotelLogout());
+    setTimeout(() => {
+      navigation('/hotel-login');
+    }, 1000);
+  };
   return (
     <Box
       bg={useColorModeValue('white', 'gray.900')}
@@ -95,10 +132,15 @@ const SidebarContent = ({ onClose, handleNavItemClick, selectedNavItem, ...rest 
       w={{ base: 'full', md: 60 }}
       pos="fixed"
       h="full"
-      overflowY="auto" // Add this to enable vertical scrolling
+      overflowY="auto"
       {...rest}
+      // mb={30}
+      // border={'1px solid red'}
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
+        <Button colorScheme="red" onClick={handleLogout}>
+          Logout
+        </Button>
         <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
           Logo
         </Text>
@@ -106,7 +148,6 @@ const SidebarContent = ({ onClose, handleNavItemClick, selectedNavItem, ...rest 
       </Flex>
       <Box maxHeight="calc(100vh - 80px)" overflowY="auto">
         {' '}
-        {/* Add this container for scrollable items */}
         {LinkItems.map(link => (
           <NavItem
             key={link.name}
@@ -133,7 +174,7 @@ const NavItem = ({ icon, children, onClick, isActive, ...rest }) => {
         role="group"
         cursor="pointer"
         _hover={{
-          bg: 'cyan.400',
+          bg: 'blue.400',
           color: 'white',
         }}
         bg={isActive ? 'cyan.400' : 'transparent'}

@@ -40,5 +40,5 @@ export const hotelLogin = (data, toast) => async dispatch => {
 };
 
 export const hotelLogout = () => dispatch => {
-  dispatch({ type: LOGOUT_HOTEL_USER });
+  return dispatch({ type: LOGOUT_HOTEL_USER });
 };
