@@ -3,11 +3,13 @@ import { thunk } from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { reducer as productReducer } from './Products/reducer';
-import hardSet from 'redux-persist/lib/stateReconciler/hardSet'
+import { reducer as authReducer } from './User/reducer';
+import hardSet from 'redux-persist/lib/stateReconciler/hardSet';
 
 // Combine your reducers
 const rootReducer = combineReducers({
- productReducer
+  productReducer,
+  authReducer,
 });
 
 // Configure Redux Persist
@@ -15,7 +17,6 @@ const persistConfig = {
   key: 'root',
   storage,
   stateReconciler: hardSet,
-
 };
 
 // Wrap your rootReducer with persistReducer
