@@ -6,7 +6,7 @@ import {
   LOGOUT_HOTEL_USER,
   STORE_NAME_PASS,
 } from './actionTypes';
-const api = process.env.REACT_APP_API;
+const api = process.env.REACT_APP_API_DEPLOYED;
 export const hotelLogin = (data, toast) => async dispatch => {
   dispatch({ type: HOTEL_LOGIN_REQUEST });
   return axios
