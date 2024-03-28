@@ -30,6 +30,8 @@ const Forms = () => {
       name: '',
       address: '',
       website: '',
+      useName: '',
+      pawword: '',
     },
   });
 
@@ -37,8 +39,8 @@ const Forms = () => {
   const toast = useToast();
   const id = useSelector(st => st.productReducer.updateProductId);
 
-  // const firstStep = useSelector(st => st.productReducer.addProductFirstStep);
-  let firstStep = true;
+  const firstStep = useSelector(st => st.productReducer.addProductFirstStep);
+  // let firstStep = true;
 
   const handlePropertyDataChange = newPropertyData => {
     setFormData(prevData => ({

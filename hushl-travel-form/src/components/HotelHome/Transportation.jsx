@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import {
   Box,
   Button,
@@ -8,11 +7,11 @@ import {
   Grid,
   GridItem,
   Heading,
-  Image,
   Input,
   Text,
   useToast,
 } from '@chakra-ui/react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addProductMedia, getSingleData } from '../../redux/Products/action';
 import Popup from '../Modal/Popup';
@@ -20,96 +19,89 @@ import { CiEdit } from 'react-icons/ci';
 import { TiTick } from 'react-icons/ti';
 import { ImCross } from 'react-icons/im';
 
-const FoodAndBeverageOnHotelHome = ({ foodAndBeverage, id }) => {
+const TransportationOnHotelHome = ({ transferOptions, id }) => {
   const {
-    InclusionsOrExclusionsforFullOrhalfBoard,
-    extraCostForRoomService,
-    numberOfBarsAndNames,
-    hoursOfOperation,
-    specialties,
-    reviewsSentiments,
-    numberOfRestaurantsandNames,
-    typesOfCuisine,
-    halaalOption,
-    kidsMenu,
-    roomService,
-    seviewsSentiments,
-    images,
-  } = foodAndBeverage;
-  const [foodAndBeverageData, setFootAndBeverageData] = useState({
-    InclusionsOrExclusionsforFullOrhalfBoardData: InclusionsOrExclusionsforFullOrhalfBoard,
-    extraCostForRoomServiceData: extraCostForRoomService,
-    numberOfBarsAndNamesData: numberOfBarsAndNames,
-    hoursOfOperationData: hoursOfOperation,
-    specialtiesData: specialties,
-    reviewsSentimentsData: reviewsSentiments,
-    numberOfRestaurantsandNamesData: numberOfRestaurantsandNames,
-    typesOfCuisineData: typesOfCuisine,
-    halaalOptionData: halaalOption,
-    kidsMenuData: kidsMenu,
-    roomServiceData: roomService,
-    seviewsSentimentsData: seviewsSentiments,
-    imagesData: [...images],
-  });
+    weatherlimited,
+    timeLimitedbyTransferType,
+    hotelFacilitatesTransferBooking,
+    qualityofBoats,
+    transferOption,
+    boatschedules,
+    seaplaneSchedules,
+    seaplaneProvider,
+    domesticAirlineSchedules,
+    likelihoodofDelays,
+    distanceOrTimeFromMale,
+    meetAndGreetAtAirport,
+  } = transferOptions;
   const dispatch = useDispatch();
   const toast = useToast();
+  const [transferOptionData, setTransferOptionsData] = useState({
+    weatherlimitedData: weatherlimited,
+    timeLimitedbyTransferTypeData: timeLimitedbyTransferType,
+    hotelFacilitatesTransferBookingData: hotelFacilitatesTransferBooking,
+    qualityofBoatsData: qualityofBoats,
+    transferOptionData: transferOption,
+    boatschedulesData: boatschedules,
+    seaplaneSchedulesData: seaplaneSchedules,
+    seaplaneProviderData: seaplaneProvider,
+    domesticAirlineSchedulesData: domesticAirlineSchedules,
+    likelihoodofDelaysData: likelihoodofDelays,
+    distanceOrTimeFromMaleData: distanceOrTimeFromMale,
+    meetAndGreetAtAirportData: meetAndGreetAtAirport,
+  });
   const handleInputChange = (field, value) => {
-    setFootAndBeverageData(prevData => ({
+    setTransferOptionsData(prevData => ({
       ...prevData,
       [field]: value,
     }));
   };
   const handleUpdate = params => {
-    if (params === 'InclusionsOrExclusionsforFullOrhalfBoard')
-      foodAndBeverageData.InclusionsOrExclusionsforFullOrhalfBoardData = '';
-    if (params === 'extraCostForRoomService') foodAndBeverageData.extraCostForRoomServiceData = '';
-    if (params === 'numberOfBarsAndNames') foodAndBeverageData.numberOfBarsAndNamesData = '';
-    if (params === 'hoursOfOperation') foodAndBeverageData.hoursOfOperationData = '';
-    if (params === 'specialties') foodAndBeverageData.specialtiesData = '';
-    if (params === 'reviewsSentiments') foodAndBeverageData.reviewsSentimentsData = '';
-    if (params === 'numberOfRestaurantsandNames') foodAndBeverageData.numberOfRestaurantsandNamesData = '';
-    if (params === 'typesOfCuisine') foodAndBeverageData.typesOfCuisineData = '';
-    if (params === 'halalOption') foodAndBeverageData.halalOptionData = '';
-    if (params === 'kidsMenu') foodAndBeverageData.kidsMenuData = '';
-    if (params === 'roomService') foodAndBeverageData.roomServiceData = '';
-    if (params === 'seviewsSentiments') foodAndBeverageData.seviewsSentimentsData = '';
-    if (params === 'images') foodAndBeverageData.imagesData = [];
-    if (params === 'specialties') foodAndBeverageData.specialtiesData = '';
-    if (params === 'halaalOption') foodAndBeverageData.halaalOptionData = '';
+    if (params === 'weatherlimited') transferOptionData.weatherlimitedData = '';
+    if (params === 'timeLimitedbyTransferType') transferOptionData.timeLimitedbyTransferTypeData = '';
+    if (params === 'hotelFacilitatesTransferBooking') transferOptionData.hotelFacilitatesTransferBookingData = '';
+    if (params === 'qualityofBoats') transferOptionData.qualityofBoatsData = '';
+    if (params === 'transferOption') transferOptionData.transferOptionData = '';
+    if (params === 'boatschedules') transferOptionData.boatschedulesData = '';
+    if (params === 'seaplaneSchedules') transferOptionData.seaplaneSchedulesData = '';
+    if (params === 'seaplaneProvider') transferOptionData.seaplaneProviderData = '';
+    if (params === 'domesticAirlineSchedules') transferOptionData.domesticAirlineSchedulesData = '';
+    if (params === 'likelihoodofDelays') transferOptionData.likelihoodofDelaysData = '';
+    if (params === 'distanceOrTimeFromMale') transferOptionData.distanceOrTimeFromMaleData = '';
+    if (params === 'meetAndGreetAtAirport') transferOptionData.meetAndGreetAtAirportData = '';
 
     const data = {
-      foodAndBeverage: {
-        InclusionsOrExclusionsforFullOrhalfBoard: foodAndBeverageData.InclusionsOrExclusionsforFullOrhalfBoardData,
-        extraCostForRoomService: foodAndBeverageData.extraCostForRoomServiceData,
-        numberOfBarsAndNames: foodAndBeverageData.numberOfBarsAndNamesData,
-        hoursOfOperation: foodAndBeverageData.hoursOfOperationData,
-        specialties: foodAndBeverageData.specialtiesData,
-        reviewsSentiments: foodAndBeverageData.reviewsSentimentsData,
-        numberOfRestaurantsandNames: foodAndBeverageData.numberOfRestaurantsandNamesData,
-        typesOfCuisine: foodAndBeverageData.typesOfCuisineData,
-        halaalOption: foodAndBeverageData.halaalOptionData,
-        kidsMenu: foodAndBeverageData.kidsMenuData,
-        roomService: foodAndBeverageData.roomServiceData,
-        seviewsSentiments: foodAndBeverageData.seviewsSentimentsData,
-        images: [...foodAndBeverageData.imagesData],
-      },
+      transferOptions: {},
     };
+    data.transferOptions.weatherlimited = transferOptionData.weatherlimitedData;
+    data.transferOptions.timeLimitedbyTransferType = transferOptionData.timeLimitedbyTransferTypeData;
+    data.transferOptions.hotelFacilitatesTransferBooking = transferOptionData.hotelFacilitatesTransferBookingData;
+    data.transferOptions.qualityofBoats = transferOptionData.qualityofBoatsData;
+    data.transferOptions.transferOption = transferOptionData.transferOptionData;
+    data.transferOptions.boatschedules = transferOptionData.boatschedulesData;
+    data.transferOptions.seaplaneSchedules = transferOptionData.seaplaneSchedulesData;
+    data.transferOptions.seaplaneProvider = transferOptionData.seaplaneProviderData;
+    data.transferOptions.domesticAirlineSchedules = transferOptionData.domesticAirlineSchedulesData;
+    data.transferOptions.likelihoodofDelays = transferOptionData.likelihoodofDelaysData;
+    data.transferOptions.distanceOrTimeFromMale = transferOptionData.distanceOrTimeFromMaleData;
+    data.transferOptions.meetAndGreetAtAirport = transferOptionData.meetAndGreetAtAirportData;
+    console.log(data);
     dispatch(addProductMedia(id, data, toast)).then(res => {
       dispatch(getSingleData(id));
     });
   };
 
   return (
-    <Box bgGradient="linear(to-tr, gray.100, gray.200)" p={4} borderRadius="lg" minH={'90vh'}>
-      <Heading as="h2" size="md" mb={2}>
-        Food and Beverage Information
+    <Box>
+      <Heading as="h3" size="md" mb={2}>
+        Transportation
       </Heading>
       <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={4}>
         <GridItem p={20} borderRadius="md" bgGradient="linear(to-tr, red.100, gray.200)">
           <Text mb={2} fontWeight="bold">
-            Inclusions/Exclusions for Full or Half Board:
+            Weather Limited:
           </Text>
-          <Text>{InclusionsOrExclusionsforFullOrhalfBoard}</Text>
+          <Text>{weatherlimited}</Text>
           <Popup
             modalTitle={<CiEdit />}
             colorofModal={'blue'}
@@ -117,14 +109,14 @@ const FoodAndBeverageOnHotelHome = ({ foodAndBeverage, id }) => {
               <Center>
                 <FormControl>
                   <Input
-                    value={foodAndBeverageData.InclusionsOrExclusionsforFullOrhalfBoardData}
-                    onChange={e => handleInputChange('InclusionsOrExclusionsforFullOrhalfBoardData', e.target.value)}
+                    value={transferOptionData.weatherlimitedData}
+                    onChange={e => handleInputChange('weatherlimitedData', e.target.value)}
                   />
                   <Flex alignItems={'center'} flexDir={'row'} justifyContent={'space-around'} mt={3}>
                     <Button colorScheme="green" onClick={handleUpdate}>
                       <TiTick />
                     </Button>
-                    <Button colorScheme="red" onClick={() => handleUpdate('InclusionsOrExclusionsforFullOrhalfBoard')}>
+                    <Button colorScheme="red" onClick={() => handleUpdate('weatherlimited')}>
                       <ImCross />
                     </Button>
                   </Flex>
@@ -133,11 +125,11 @@ const FoodAndBeverageOnHotelHome = ({ foodAndBeverage, id }) => {
             }
           />
         </GridItem>
-        <GridItem p={20} borderRadius="md" bgGradient="linear(to-tr, yellow.300, gray.500)">
+        <GridItem p={20} borderRadius="md" bgGradient="linear(to-tr, red.300, green.500)">
           <Text mb={2} fontWeight="bold">
-            Extra Cost for Room Service:
+            Time Limited by Transfer Type:
           </Text>
-          <Text>{extraCostForRoomService}</Text>
+          <Text>{timeLimitedbyTransferType}</Text>
           <Popup
             modalTitle={<CiEdit />}
             colorofModal={'blue'}
@@ -145,14 +137,42 @@ const FoodAndBeverageOnHotelHome = ({ foodAndBeverage, id }) => {
               <Center>
                 <FormControl>
                   <Input
-                    value={foodAndBeverageData.extraCostForRoomServiceData}
-                    onChange={e => handleInputChange('extraCostForRoomServiceData', e.target.value)}
+                    value={transferOptionData.timeLimitedbyTransferTypeData}
+                    onChange={e => handleInputChange('timeLimitedbyTransferTypeData', e.target.value)}
                   />
                   <Flex alignItems={'center'} flexDir={'row'} justifyContent={'space-around'} mt={3}>
                     <Button colorScheme="green" onClick={handleUpdate}>
                       <TiTick />
                     </Button>
-                    <Button colorScheme="red" onClick={() => handleUpdate('extraCostForRoomService')}>
+                    <Button colorScheme="red" onClick={() => handleUpdate('timeLimitedbyTransferType')}>
+                      <ImCross />
+                    </Button>
+                  </Flex>
+                </FormControl>
+              </Center>
+            }
+          />
+        </GridItem>
+        <GridItem p={20} borderRadius="md" bgGradient="linear(to-tr, yellow.300, red.500)">
+          <Text mb={2} fontWeight="bold">
+            Hotel Facilitates Transfer Booking:
+          </Text>
+          <Text>{hotelFacilitatesTransferBooking}</Text>
+          <Popup
+            modalTitle={<CiEdit />}
+            colorofModal={'blue'}
+            children={
+              <Center>
+                <FormControl>
+                  <Input
+                    value={transferOptionData.hotelFacilitatesTransferBookingData}
+                    onChange={e => handleInputChange('hotelFacilitatesTransferBookingData', e.target.value)}
+                  />
+                  <Flex alignItems={'center'} flexDir={'row'} justifyContent={'space-around'} mt={3}>
+                    <Button colorScheme="green" onClick={handleUpdate}>
+                      <TiTick />
+                    </Button>
+                    <Button colorScheme="red" onClick={() => handleUpdate('hotelFacilitatesTransferBooking')}>
                       <ImCross />
                     </Button>
                   </Flex>
@@ -163,9 +183,9 @@ const FoodAndBeverageOnHotelHome = ({ foodAndBeverage, id }) => {
         </GridItem>
         <GridItem p={20} borderRadius="md" bgGradient="linear(to-tr, green.300, gray.500)">
           <Text mb={2} fontWeight="bold">
-            Number of Bars and Names:
+            Quality of Boats:
           </Text>
-          <Text>{numberOfBarsAndNames}</Text>
+          <Text>{qualityofBoats}</Text>
           <Popup
             modalTitle={<CiEdit />}
             colorofModal={'blue'}
@@ -173,14 +193,14 @@ const FoodAndBeverageOnHotelHome = ({ foodAndBeverage, id }) => {
               <Center>
                 <FormControl>
                   <Input
-                    value={foodAndBeverageData.numberOfBarsAndNamesData}
-                    onChange={e => handleInputChange('numberOfBarsAndNamesData', e.target.value)}
+                    value={transferOptionData.qualityofBoatsData}
+                    onChange={e => handleInputChange('qualityofBoatsData', e.target.value)}
                   />
                   <Flex alignItems={'center'} flexDir={'row'} justifyContent={'space-around'} mt={3}>
                     <Button colorScheme="green" onClick={handleUpdate}>
                       <TiTick />
                     </Button>
-                    <Button colorScheme="red" onClick={() => handleUpdate('numberOfBarsAndNames')}>
+                    <Button colorScheme="red" onClick={() => handleUpdate('qualityofBoats')}>
                       <ImCross />
                     </Button>
                   </Flex>
@@ -189,11 +209,11 @@ const FoodAndBeverageOnHotelHome = ({ foodAndBeverage, id }) => {
             }
           />
         </GridItem>
-        <GridItem p={20} borderRadius="md" bgGradient="linear(to-tr, blue.300, gray.500)">
+        <GridItem p={20} borderRadius="md" bgGradient="linear(to-tr, blue.300, red.500)">
           <Text mb={2} fontWeight="bold">
-            Hours of Operation:
+            Transfer Option:
           </Text>
-          <Text>{hoursOfOperation}</Text>
+          <Text>{transferOption}</Text>
           <Popup
             modalTitle={<CiEdit />}
             colorofModal={'blue'}
@@ -201,154 +221,14 @@ const FoodAndBeverageOnHotelHome = ({ foodAndBeverage, id }) => {
               <Center>
                 <FormControl>
                   <Input
-                    value={foodAndBeverageData.hoursOfOperationData}
-                    onChange={e => handleInputChange('hoursOfOperationData', e.target.value)}
+                    value={transferOptionData.transferOptionData}
+                    onChange={e => handleInputChange('transferOptionData', e.target.value)}
                   />
                   <Flex alignItems={'center'} flexDir={'row'} justifyContent={'space-around'} mt={3}>
                     <Button colorScheme="green" onClick={handleUpdate}>
                       <TiTick />
                     </Button>
-                    <Button colorScheme="red" onClick={() => handleUpdate('hoursOfOperation')}>
-                      <ImCross />
-                    </Button>
-                  </Flex>
-                </FormControl>
-              </Center>
-            }
-          />
-        </GridItem>
-        <GridItem p={20} borderRadius="md" bgGradient="linear(to-tr, purple.300, gray.500)">
-          <Text mb={2} fontWeight="bold">
-            Specialties:
-          </Text>
-          <Text>{specialties}</Text>
-          <Popup
-            modalTitle={<CiEdit />}
-            colorofModal={'blue'}
-            children={
-              <Center>
-                <FormControl>
-                  <Input
-                    value={foodAndBeverageData.specialtiesData}
-                    onChange={e => handleInputChange('specialtiesData', e.target.value)}
-                  />
-                  <Flex alignItems={'center'} flexDir={'row'} justifyContent={'space-around'} mt={3}>
-                    <Button colorScheme="green" onClick={handleUpdate}>
-                      <TiTick />
-                    </Button>
-                    <Button colorScheme="red" onClick={() => handleUpdate('specialties')}>
-                      <ImCross />
-                    </Button>
-                  </Flex>
-                </FormControl>
-              </Center>
-            }
-          />
-        </GridItem>
-        <GridItem p={20} borderRadius="md" bgGradient="linear(to-tr, pink.300, gray.500)">
-          <Text mb={2} fontWeight="bold">
-            Reviews Sentiments:
-          </Text>
-          <Text>{reviewsSentiments}</Text>
-          <Popup
-            modalTitle={<CiEdit />}
-            colorofModal={'blue'}
-            children={
-              <Center>
-                <FormControl>
-                  <Input
-                    value={foodAndBeverageData.reviewsSentimentsData}
-                    onChange={e => handleInputChange('reviewsSentimentsData', e.target.value)}
-                  />
-                  <Flex alignItems={'center'} flexDir={'row'} justifyContent={'space-around'} mt={3}>
-                    <Button colorScheme="green" onClick={handleUpdate}>
-                      <TiTick />
-                    </Button>
-                    <Button colorScheme="red" onClick={() => handleUpdate('openingTimes')}>
-                      <ImCross />
-                    </Button>
-                  </Flex>
-                </FormControl>
-              </Center>
-            }
-          />
-        </GridItem>
-        <GridItem p={20} borderRadius="md" bgGradient="linear(to-tr, teal.300, gray.500)">
-          <Text mb={2} fontWeight="bold">
-            Number of Restaurants and Names:
-          </Text>
-          <Text>{numberOfRestaurantsandNames}</Text>
-          <Popup
-            modalTitle={<CiEdit />}
-            colorofModal={'blue'}
-            children={
-              <Center>
-                <FormControl>
-                  <Input
-                    value={foodAndBeverageData.numberOfRestaurantsandNamesData}
-                    onChange={e => handleInputChange('numberOfRestaurantsandNamesData', e.target.value)}
-                  />
-                  <Flex alignItems={'center'} flexDir={'row'} justifyContent={'space-around'} mt={3}>
-                    <Button colorScheme="green" onClick={handleUpdate}>
-                      <TiTick />
-                    </Button>
-                    <Button colorScheme="red" onClick={() => handleUpdate('numberOfRestaurantsandNames')}>
-                      <ImCross />
-                    </Button>
-                  </Flex>
-                </FormControl>
-              </Center>
-            }
-          />
-        </GridItem>
-        <GridItem p={20} borderRadius="md" bgGradient="linear(to-tr, orange.300, gray.500)">
-          <Text mb={2} fontWeight="bold">
-            Types of Cuisine:
-          </Text>
-          <Text>{typesOfCuisine}</Text>
-          <Popup
-            modalTitle={<CiEdit />}
-            colorofModal={'blue'}
-            children={
-              <Center>
-                <FormControl>
-                  <Input
-                    value={foodAndBeverageData.typesOfCuisineData}
-                    onChange={e => handleInputChange('typesOfCuisineData', e.target.value)}
-                  />
-                  <Flex alignItems={'center'} flexDir={'row'} justifyContent={'space-around'} mt={3}>
-                    <Button colorScheme="green" onClick={handleUpdate}>
-                      <TiTick />
-                    </Button>
-                    <Button colorScheme="red" onClick={() => handleUpdate('typesOfCuisine')}>
-                      <ImCross />
-                    </Button>
-                  </Flex>
-                </FormControl>
-              </Center>
-            }
-          />
-        </GridItem>
-        <GridItem p={20} borderRadius="md" bgGradient="linear(to-tr, red.300, gray.500)">
-          <Text mb={2} fontWeight="bold">
-            Halaal Option:
-          </Text>
-          <Text>{halaalOption}</Text>
-          <Popup
-            modalTitle={<CiEdit />}
-            colorofModal={'blue'}
-            children={
-              <Center>
-                <FormControl>
-                  <Input
-                    value={foodAndBeverageData.halaalOptionData}
-                    onChange={e => handleInputChange('halaalOptionData', e.target.value)}
-                  />
-                  <Flex alignItems={'center'} flexDir={'row'} justifyContent={'space-around'} mt={3}>
-                    <Button colorScheme="green" onClick={handleUpdate}>
-                      <TiTick />
-                    </Button>
-                    <Button colorScheme="red" onClick={() => handleUpdate('halaalOption')}>
+                    <Button colorScheme="red" onClick={() => handleUpdate('transferOption')}>
                       <ImCross />
                     </Button>
                   </Flex>
@@ -359,9 +239,9 @@ const FoodAndBeverageOnHotelHome = ({ foodAndBeverage, id }) => {
         </GridItem>
         <GridItem p={20} borderRadius="md" bgGradient="linear(to-tr, yellow.300, gray.500)">
           <Text mb={2} fontWeight="bold">
-            Kids Menu:
+            Boat Schedules:
           </Text>
-          <Text>{kidsMenu}</Text>
+          <Text>{boatschedules}</Text>
           <Popup
             modalTitle={<CiEdit />}
             colorofModal={'blue'}
@@ -369,14 +249,126 @@ const FoodAndBeverageOnHotelHome = ({ foodAndBeverage, id }) => {
               <Center>
                 <FormControl>
                   <Input
-                    value={foodAndBeverageData.kidsMenuData}
-                    onChange={e => handleInputChange('kidsMenuData', e.target.value)}
+                    value={transferOptionData.boatschedulesData}
+                    onChange={e => handleInputChange('boatschedulesData', e.target.value)}
                   />
                   <Flex alignItems={'center'} flexDir={'row'} justifyContent={'space-around'} mt={3}>
                     <Button colorScheme="green" onClick={handleUpdate}>
                       <TiTick />
                     </Button>
-                    <Button colorScheme="red" onClick={() => handleUpdate('kidsMenu')}>
+                    <Button colorScheme="red" onClick={() => handleUpdate('boatschedules')}>
+                      <ImCross />
+                    </Button>
+                  </Flex>
+                </FormControl>
+              </Center>
+            }
+          />
+        </GridItem>
+        <GridItem p={20} borderRadius="md" bgGradient="linear(to-tr, green.300, gray.500)">
+          <Text mb={2} fontWeight="bold">
+            Seaplane Schedules:
+          </Text>
+          <Text>{seaplaneSchedules}</Text>
+          <Popup
+            modalTitle={<CiEdit />}
+            colorofModal={'blue'}
+            children={
+              <Center>
+                <FormControl>
+                  <Input
+                    value={transferOptionData.seaplaneSchedulesData}
+                    onChange={e => handleInputChange('seaplaneSchedulesData', e.target.value)}
+                  />
+                  <Flex alignItems={'center'} flexDir={'row'} justifyContent={'space-around'} mt={3}>
+                    <Button colorScheme="green" onClick={handleUpdate}>
+                      <TiTick />
+                    </Button>
+                    <Button colorScheme="red" onClick={() => handleUpdate('seaplaneSchedules')}>
+                      <ImCross />
+                    </Button>
+                  </Flex>
+                </FormControl>
+              </Center>
+            }
+          />
+        </GridItem>
+        <GridItem p={20} borderRadius="md" bgGradient="linear(to-tr, red.300, pink.500)">
+          <Text mb={2} fontWeight="bold">
+            Seaplane Provider:
+          </Text>
+          <Text>{seaplaneProvider}</Text>
+          <Popup
+            modalTitle={<CiEdit />}
+            colorofModal={'blue'}
+            children={
+              <Center>
+                <FormControl>
+                  <Input
+                    value={transferOptionData.seaplaneProviderData}
+                    onChange={e => handleInputChange('seaplaneProviderData', e.target.value)}
+                  />
+                  <Flex alignItems={'center'} flexDir={'row'} justifyContent={'space-around'} mt={3}>
+                    <Button colorScheme="green" onClick={handleUpdate}>
+                      <TiTick />
+                    </Button>
+                    <Button colorScheme="red" onClick={() => handleUpdate('seaplaneProvider')}>
+                      <ImCross />
+                    </Button>
+                  </Flex>
+                </FormControl>
+              </Center>
+            }
+          />
+        </GridItem>
+        <GridItem p={20} borderRadius="md" bgGradient="linear(to-tr, blue.300, red.500)">
+          <Text mb={2} fontWeight="bold">
+            Domestic Airline Schedules:
+          </Text>
+          <Text>{domesticAirlineSchedules}</Text>
+          <Popup
+            modalTitle={<CiEdit />}
+            colorofModal={'blue'}
+            children={
+              <Center>
+                <FormControl>
+                  <Input
+                    value={transferOptionData.domesticAirlineSchedulesData}
+                    onChange={e => handleInputChange('domesticAirlineSchedulesData', e.target.value)}
+                  />
+                  <Flex alignItems={'center'} flexDir={'row'} justifyContent={'space-around'} mt={3}>
+                    <Button colorScheme="green" onClick={handleUpdate}>
+                      <TiTick />
+                    </Button>
+                    <Button colorScheme="red" onClick={() => handleUpdate('domesticAirlineSchedules')}>
+                      <ImCross />
+                    </Button>
+                  </Flex>
+                </FormControl>
+              </Center>
+            }
+          />
+        </GridItem>
+        <GridItem p={20} borderRadius="md" bgGradient="linear(to-tr, yellow.300, gray.500)">
+          <Text mb={2} fontWeight="bold">
+            Likelihood of Delays:
+          </Text>
+          <Text>{likelihoodofDelays}</Text>
+          <Popup
+            modalTitle={<CiEdit />}
+            colorofModal={'blue'}
+            children={
+              <Center>
+                <FormControl>
+                  <Input
+                    value={transferOptionData.likelihoodofDelaysData}
+                    onChange={e => handleInputChange('likelihoodofDelaysData', e.target.value)}
+                  />
+                  <Flex alignItems={'center'} flexDir={'row'} justifyContent={'space-around'} mt={3}>
+                    <Button colorScheme="green" onClick={handleUpdate}>
+                      <TiTick />
+                    </Button>
+                    <Button colorScheme="red" onClick={() => handleUpdate('likelihoodofDelays')}>
                       <ImCross />
                     </Button>
                   </Flex>
@@ -387,9 +379,9 @@ const FoodAndBeverageOnHotelHome = ({ foodAndBeverage, id }) => {
         </GridItem>
         <GridItem p={20} borderRadius="md" bgGradient="linear(to-tr, green.300, blue.500)">
           <Text mb={2} fontWeight="bold">
-            Room Service:
+            Distance or Time From Male:
           </Text>
-          <Text>{roomService}</Text>
+          <Text>{distanceOrTimeFromMale}</Text>
           <Popup
             modalTitle={<CiEdit />}
             colorofModal={'blue'}
@@ -397,14 +389,14 @@ const FoodAndBeverageOnHotelHome = ({ foodAndBeverage, id }) => {
               <Center>
                 <FormControl>
                   <Input
-                    value={foodAndBeverageData.roomServiceData}
-                    onChange={e => handleInputChange('roomServiceData', e.target.value)}
+                    value={transferOptionData.distanceOrTimeFromMaleData}
+                    onChange={e => handleInputChange('distanceOrTimeFromMaleData', e.target.value)}
                   />
                   <Flex alignItems={'center'} flexDir={'row'} justifyContent={'space-around'} mt={3}>
                     <Button colorScheme="green" onClick={handleUpdate}>
                       <TiTick />
                     </Button>
-                    <Button colorScheme="red" onClick={() => handleUpdate('roomService')}>
+                    <Button colorScheme="red" onClick={() => handleUpdate('distanceOrTimeFromMale')}>
                       <ImCross />
                     </Button>
                   </Flex>
@@ -413,11 +405,11 @@ const FoodAndBeverageOnHotelHome = ({ foodAndBeverage, id }) => {
             }
           />
         </GridItem>
-        <GridItem p={20} borderRadius="md" bgGradient="linear(to-tr, red.300, yellow.500)">
+        <GridItem p={20} borderRadius="md" bgGradient="linear(to-tr, yellow.300, red.500)">
           <Text mb={2} fontWeight="bold">
-            Reviews Sentiments for Room Service:
+            Meet and Greet at Airport:
           </Text>
-          <Text>{seviewsSentiments}</Text>
+          <Text>{meetAndGreetAtAirport}</Text>
           <Popup
             modalTitle={<CiEdit />}
             colorofModal={'blue'}
@@ -425,15 +417,14 @@ const FoodAndBeverageOnHotelHome = ({ foodAndBeverage, id }) => {
               <Center>
                 <FormControl>
                   <Input
-                    placeholder="Reviews Sentiments"
-                    value={foodAndBeverageData.reviewsSentimentsData}
-                    onChange={e => handleInputChange('reviewsSentimentsData', e.target.value)}
+                    value={transferOptionData.meetAndGreetAtAirportData}
+                    onChange={e => handleInputChange('meetAndGreetAtAirportData', e.target.value)}
                   />
                   <Flex alignItems={'center'} flexDir={'row'} justifyContent={'space-around'} mt={3}>
                     <Button colorScheme="green" onClick={handleUpdate}>
                       <TiTick />
                     </Button>
-                    <Button colorScheme="red" onClick={() => handleUpdate('seviewsSentiments')}>
+                    <Button colorScheme="red" onClick={() => handleUpdate('meetAndGreetAtAirport')}>
                       <ImCross />
                     </Button>
                   </Flex>
@@ -443,23 +434,8 @@ const FoodAndBeverageOnHotelHome = ({ foodAndBeverage, id }) => {
           />
         </GridItem>
       </Grid>
-      {/* Render images if available */}
-      {images && images.length > 0 && (
-        <Box mt={20}>
-          <Heading as="h3" size="sm" mb={2}>
-            Images:
-          </Heading>
-          <Grid templateColumns="repeat(auto-fit, minmax(150px, 1fr))" gap={2}>
-            {images.map((image, index) => (
-              <Box key={index} borderRadius="md" overflow="hidden">
-                <Image src={image} alt={`Image ${index}`} />
-              </Box>
-            ))}
-          </Grid>
-        </Box>
-      )}
     </Box>
   );
 };
 
-export default FoodAndBeverageOnHotelHome;
+export default TransportationOnHotelHome;
