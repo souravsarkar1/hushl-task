@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useState } from 'react';
 import {
   IconButton,
@@ -43,6 +41,7 @@ import RoomOnHotelHome from '../HotelHome/Room';
 import { useDispatch } from 'react-redux';
 import { hotelLogout } from '../../redux/User/action';
 import { useNavigate } from 'react-router-dom';
+import TransportationOnHotelHome from '../HotelHome/Transportation';
 const LinkItems = [
   { name: 'Property', icon: FaHotel },
   { name: 'Location', icon: CiLocationOn },
@@ -92,23 +91,29 @@ export default function Sidebar({ hotelData }) {
       <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
         {selectedNavItem === 'Property' && (
-          <PropertyInformationOnHotelHome propertyInformation={hotelData.propertyInformation} />
+          <PropertyInformationOnHotelHome id={hotelData._id} propertyInformation={hotelData.propertyInformation} />
         )}
-        {selectedNavItem === 'Location' && <LocationCardOnHotelHome location={hotelData.location} />}
-        {selectedNavItem === 'Beach' && <BeachOnHotelHome beach={hotelData.beach} />}
-        {selectedNavItem === 'Healt Data' && <HealthAndSeaftyOnHotelHome healthSafety={hotelData.healthSafety} />}
-        {selectedNavItem === 'Transportation' && <BeachOnHotelHome beach={hotelData.beach} />}
-        {selectedNavItem === 'Aquamotion' && <WaterSportsOnHotelHome waterSports={hotelData.waterSports} />}
-        {selectedNavItem === 'Reef' && <ReefOnHotelHome reef={hotelData.reef} />}
-        {selectedNavItem === 'GYM' && <GYMOnHotelHome gym={hotelData.gym} />}
-        {selectedNavItem === 'Kids Club' && <KidsClubOnHotelHome kidsClub={hotelData.kidsClub} />}
+        {selectedNavItem === 'Location' && <LocationCardOnHotelHome id={hotelData._id} location={hotelData.location} />}
+        {selectedNavItem === 'Beach' && <BeachOnHotelHome id={hotelData._id} beach={hotelData.beach} />}
+        {selectedNavItem === 'Healt Data' && (
+          <HealthAndSeaftyOnHotelHome id={hotelData._id} healthSafety={hotelData.healthSafety} />
+        )}
+        {selectedNavItem === 'Transportation' && (
+          <TransportationOnHotelHome id={hotelData._id} transferOptions={hotelData.transferOptions} />
+        )}
+        {selectedNavItem === 'Aquamotion' && (
+          <WaterSportsOnHotelHome id={hotelData._id} waterSports={hotelData.waterSports} />
+        )}
+        {selectedNavItem === 'Reef' && <ReefOnHotelHome id={hotelData._id} reef={hotelData.reef} />}
+        {selectedNavItem === 'GYM' && <GYMOnHotelHome id={hotelData._id} gym={hotelData.gym} />}
+        {selectedNavItem === 'Kids Club' && <KidsClubOnHotelHome id={hotelData._id} kidsClub={hotelData.kidsClub} />}
         {selectedNavItem === 'Food & Beverage' && (
-          <FoodAndBeverageOnHotelHome foodAndBeverage={hotelData.foodAndBeverage} />
+          <FoodAndBeverageOnHotelHome id={hotelData._id} foodAndBeverage={hotelData.foodAndBeverage} />
         )}
-        {selectedNavItem === 'Services' && <ServicesOnHotelHome services={hotelData.services} />}
-        {selectedNavItem === 'Pool' && <PoolOnHotelHome pool={hotelData.pool} />}
-        {selectedNavItem === 'Room' && <RoomOnHotelHome room={hotelData.room} />}
-        {selectedNavItem === 'Media' && <BeachOnHotelHome beach={hotelData.beach} />}
+        {selectedNavItem === 'Services' && <ServicesOnHotelHome id={hotelData._id} services={hotelData.services} />}
+        {selectedNavItem === 'Pool' && <PoolOnHotelHome id={hotelData._id} pool={hotelData.pool} />}
+        {selectedNavItem === 'Room' && <RoomOnHotelHome id={hotelData._id} room={hotelData.rooms} />}
+        {selectedNavItem === 'Media' && <BeachOnHotelHome id={hotelData._id} beach={hotelData.beach} />}
       </Box>
     </Box>
   );

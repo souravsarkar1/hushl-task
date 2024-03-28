@@ -1,13 +1,20 @@
 import axios from 'axios';
-import { HOTEL_LOGIN_ERROR, HOTEL_LOGIN_REQUEST, HOTEL_LOGIN_SUCCESS, LOGOUT_HOTEL_USER } from './actionTypes';
+import {
+  HOTEL_LOGIN_ERROR,
+  HOTEL_LOGIN_REQUEST,
+  HOTEL_LOGIN_SUCCESS,
+  LOGOUT_HOTEL_USER,
+  STORE_NAME_PASS,
+} from './actionTypes';
 const api = process.env.REACT_APP_API;
 export const hotelLogin = (data, toast) => async dispatch => {
   dispatch({ type: HOTEL_LOGIN_REQUEST });
   return axios
     .post(`${api}/user/login`, data)
     .then(res => {
-      console.log(res.data);
-      dispatch({ type: HOTEL_LOGIN_SUCCESS, payload: res.data });
+      console.log(res.data.id);
+      dispatch({ type: HOTEL_LOGIN_SUCCESS, payload: res.data.id });
+      dispatch({ type: STORE_NAME_PASS, payload: data });
       toast({
         title: res.data.message || 'Login Successfully',
         status: 'success',

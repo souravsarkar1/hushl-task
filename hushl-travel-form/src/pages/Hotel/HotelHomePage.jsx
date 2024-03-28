@@ -1,20 +1,28 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSingleData as getSingleDataFunction } from '../../redux/Products/action';
+// import { getSingleData as getSingleDataFunction } from '../../redux/Products/action';
 import Sidebar from '../../components/Hotel/SideBar';
-
+import Lottie from 'lottie-react';
+import hotelAnimation from '../../utils/animations/hotelloading.json';
+import { getSingleData as getSingleDataFunction } from '../../redux/Products/action';
 const HotelHomePage = () => {
   const hotelData = useSelector(st => st.authReducer.hotelData);
   const getSingleData = useSelector(st => st.productReducer.getSingleData);
-  console.log(getSingleData);
-  const { hotelId } = hotelData.hotelUser;
+  const [animationsFlag, setAnimations] = useState(true);
   const dispatch = useDispatch();
+  // console.log(getSingleData);
   useEffect(() => {
-    dispatch(getSingleDataFunction(hotelId));
-  }, [dispatch, hotelId]);
+    dispatch(getSingleDataFunction(hotelData));
+  }, [dispatch, hotelData]);
+  useEffect(() => {
+    setTimeout(() => {
+      setAnimations(false);
+    }, 3000);
+  }, []);
   return (
     <div>
-      <Sidebar hotelData={getSingleData} />
+      {animationsFlag && <Lottie animationData={hotelAnimation} loop={true} />}
+      {!animationsFlag && <Sidebar hotelData={getSingleData} />}
     </div>
   );
 };

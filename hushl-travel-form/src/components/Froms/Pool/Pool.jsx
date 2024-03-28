@@ -11,7 +11,7 @@ import {
   WrapItem,
   Checkbox,
 } from '@chakra-ui/react';
-const poolSafetyFeatures = [
+export const poolSafetyFeatures = [
   'Pool fence with self-closing gate',
   'Lifebuoy rings',
   'Swimming lessons for guests',
