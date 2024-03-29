@@ -23,8 +23,8 @@ import {
 import { useDispatch } from 'react-redux';
 import { addProductMedia, getSingleData } from '../../redux/Products/action';
 import Popup from '../Modal/Popup';
-import { TiEdit, TiTick } from 'react-icons/ti';
-import { ImCross } from 'react-icons/im';
+import { MdDelete, MdEdit } from 'react-icons/md';
+import { TiTick } from 'react-icons/ti';
 
 const BeachOnHotelHome = ({ beach, id }) => {
   const {
@@ -108,7 +108,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
         images: beachData.imagesData,
       },
     };
-    console.log(singleData);
+    // console.log(singleData);
     dispatch(addProductMedia(id, singleData, toast)).then(res => {
       dispatch(getSingleData(id));
     });
@@ -126,7 +126,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
           </Text>
           <Text>{beachType.join(', ')}</Text>
           <Popup
-            modalTitle={<TiEdit />}
+            modalTitle={<MdEdit />}
             colorofModal={'blue'}
             children={
               <Center>
@@ -164,7 +164,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
                       <TiTick />
                     </Button>
                     <Button colorScheme="red" onClick={() => handleUpdate('beachType')}>
-                      <ImCross />
+                      <MdDelete />
                     </Button>
                   </Flex>
                 </FormControl>
@@ -178,7 +178,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
           </Text>
           <Text>{length}</Text>
           <Popup
-            modalTitle={<TiEdit />}
+            modalTitle={<MdEdit />}
             colorofModal={'blue'}
             children={
               <Center>
@@ -189,7 +189,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
                       <TiTick />
                     </Button>
                     <Button colorScheme="red" onClick={() => handleUpdate('length')}>
-                      <ImCross />
+                      <MdDelete />
                     </Button>
                   </Flex>
                 </FormControl>
@@ -203,7 +203,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
           </Text>
           <Text>{features}</Text>
           <Popup
-            modalTitle={<TiEdit />}
+            modalTitle={<MdEdit />}
             colorofModal={'blue'}
             children={
               <Center>
@@ -217,7 +217,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
                       <TiTick />
                     </Button>
                     <Button colorScheme="red" onClick={() => handleUpdate('features')}>
-                      <ImCross />
+                      <MdDelete />
                     </Button>
                   </Flex>
                 </FormControl>
@@ -231,7 +231,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
           </Text>
           <Text>{instagramSpots}</Text>
           <Popup
-            modalTitle={<TiEdit />}
+            modalTitle={<MdEdit />}
             colorofModal={'blue'}
             children={
               <Center>
@@ -245,7 +245,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
                       <TiTick />
                     </Button>
                     <Button colorScheme="red" onClick={() => handleUpdate('instagramSpots')}>
-                      <ImCross />
+                      <MdDelete />
                     </Button>
                   </Flex>
                 </FormControl>
@@ -260,7 +260,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
           <Text>{tidesRips}</Text>
 
           <Popup
-            modalTitle={<TiEdit />}
+            modalTitle={<MdEdit />}
             colorofModal={'blue'}
             children={
               <Center>
@@ -274,7 +274,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
                       <TiTick />
                     </Button>
                     <Button colorScheme="red" onClick={() => handleUpdate('tidesRips')}>
-                      <ImCross />
+                      <MdDelete />
                     </Button>
                   </Flex>
                 </FormControl>
@@ -288,7 +288,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
           </Text>
           <Text>{hoursofLifeguardDuty}</Text>
           <Popup
-            modalTitle={<TiEdit />}
+            modalTitle={<MdEdit />}
             colorofModal={'blue'}
             children={
               <Center>
@@ -302,7 +302,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
                       <TiTick />
                     </Button>
                     <Button colorScheme="red" onClick={() => handleUpdate('hoursofLifeguardDuty')}>
-                      <ImCross />
+                      <MdDelete />
                     </Button>
                   </Flex>
                 </FormControl>
@@ -316,7 +316,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
           </Text>
           <Text>{lifeguardQualifications.join(', ')}</Text>
           <Popup
-            modalTitle={<TiEdit />}
+            modalTitle={<MdEdit />}
             colorofModal={'blue'}
             children={
               <Center>
@@ -337,7 +337,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
                       <TiTick />
                     </Button>
                     <Button colorScheme="red" onClick={() => handleUpdate('lifeguardQualifications')}>
-                      <ImCross />
+                      <MdDelete />
                     </Button>
                   </Flex>
                 </FormControl>
@@ -351,7 +351,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
           </Text>
           <Text>{areSomePartsofTheBeachOnlyForPrivateUse}</Text>
           <Popup
-            modalTitle={<TiEdit />}
+            modalTitle={<MdEdit />}
             colorofModal={'blue'}
             children={
               <Center>
@@ -365,7 +365,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
                       <TiTick />
                     </Button>
                     <Button colorScheme="red" onClick={() => handleUpdate('areSomePartsofTheBeachOnlyForPrivateUse')}>
-                      <ImCross />
+                      <MdDelete />
                     </Button>
                   </Flex>
                 </FormControl>
@@ -379,7 +379,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
           </Text>
           <Text>{willBeachVillasbeDisturbed}</Text>
           <Popup
-            modalTitle={<TiEdit />}
+            modalTitle={<MdEdit />}
             colorofModal={'blue'}
             children={
               <Center>
@@ -398,7 +398,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
                       <TiTick />
                     </Button>
                     <Button colorScheme="red" onClick={() => handleUpdate('willBeachVillasbeDisturbed')}>
-                      <ImCross />
+                      <MdDelete />
                     </Button>
                   </Flex>
                 </FormControl>
@@ -412,7 +412,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
           </Text>
           <Text>{cleanliness}</Text>
           <Popup
-            modalTitle={<TiEdit />}
+            modalTitle={<MdEdit />}
             colorofModal={'blue'}
             children={
               <Center>
@@ -427,7 +427,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
                       <TiTick />
                     </Button>
                     <Button colorScheme="red" onClick={() => handleUpdate('cleanliness')}>
-                      <ImCross />
+                      <MdDelete />
                     </Button>
                   </Flex>
                 </FormControl>
@@ -441,7 +441,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
           </Text>
           <Text>{include}</Text>
           <Popup
-            modalTitle={<TiEdit />}
+            modalTitle={<MdEdit />}
             colorofModal={'blue'}
             children={
               <Center>
@@ -456,7 +456,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
                       <TiTick />
                     </Button>
                     <Button colorScheme="red" onClick={() => handleUpdate('include')}>
-                      <ImCross />
+                      <MdDelete />
                     </Button>
                   </Flex>
                 </FormControl>
@@ -470,7 +470,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
           </Text>
           <Text>{BBQSpots}</Text>
           <Popup
-            modalTitle={<TiEdit />}
+            modalTitle={<MdEdit />}
             colorofModal={'blue'}
             children={
               <Center>
@@ -485,7 +485,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
                       <TiTick />
                     </Button>
                     <Button colorScheme="red" onClick={() => handleUpdate('BBQSpots')}>
-                      <ImCross />
+                      <MdDelete />
                     </Button>
                   </Flex>
                 </FormControl>
@@ -499,7 +499,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
           </Text>
           <Text>{areoffBeachPatrolledbyLifeguards}</Text>
           <Popup
-            modalTitle={<TiEdit />}
+            modalTitle={<MdEdit />}
             colorofModal={'blue'}
             children={
               <Center>
@@ -518,7 +518,7 @@ const BeachOnHotelHome = ({ beach, id }) => {
                       <TiTick />
                     </Button>
                     <Button colorScheme="red" onClick={() => handleUpdate('areoffBeachPatrolledbyLifeguards')}>
-                      <ImCross />
+                      <MdDelete />
                     </Button>
                   </Flex>
                 </FormControl>

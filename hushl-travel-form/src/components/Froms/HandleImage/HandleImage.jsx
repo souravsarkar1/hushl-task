@@ -4,7 +4,7 @@ import { ClipLoader } from 'react-spinners';
 import { handleUploadMedia } from '../../../utils/mediaUpload';
 
 const HandleImage = ({ setFormData, formData, id, field }) => {
-  console.log(formData);
+  // console.log(formData);
   const [loader, setLoader] = useState(false);
   const [loaderRemove, setLoaderRemove] = useState(Array(formData[field].images?.length).fill(false));
   const toast = useToast();

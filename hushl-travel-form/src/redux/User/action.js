@@ -12,7 +12,7 @@ export const hotelLogin = (data, toast) => async dispatch => {
   return axios
     .post(`${api}/user/login`, data)
     .then(res => {
-      console.log(res.data.id);
+      // console.log(res.data.id);
       dispatch({ type: HOTEL_LOGIN_SUCCESS, payload: res.data.id });
       dispatch({ type: STORE_NAME_PASS, payload: data });
       toast({
@@ -29,7 +29,7 @@ export const hotelLogin = (data, toast) => async dispatch => {
       });
     })
     .catch(err => {
-      console.log(err);
+      // console.log(err);
       dispatch({ type: HOTEL_LOGIN_ERROR });
       toast({
         title: err.message || 'Something went wrong',

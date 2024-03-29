@@ -67,7 +67,7 @@ const PoolOnHotelHome = ({ pool, id }) => {
   };
 
   const handleUpdate = params => {
-    console.log(params);
+    // console.log(params);
     if (params === 'length') poolData.lengthData = 0;
     if (params === 'depth') poolData.depthData = 0;
     if (params === 'lapPool') poolData.lapPoolData = 0;
@@ -91,7 +91,7 @@ const PoolOnHotelHome = ({ pool, id }) => {
         cleanliness: poolData.cleanlinessData,
       },
     };
-    console.log(data);
+    // console.log(data);
     dispatch(addProductMedia(id, data, toast)).then(() => {
       dispatch(getSingleData(id));
     });

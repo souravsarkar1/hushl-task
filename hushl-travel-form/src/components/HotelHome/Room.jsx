@@ -124,7 +124,7 @@ const RoomOnHotelHome = ({ room, id }) => {
     setRoomData({ ...roomData, [name]: value });
   };
   const handleUpdate = params => {
-    console.log(params);
+    // console.log(params);
     if (params === 'maxOccupancyChild') roomData.maxOccupancyChildData = 0;
     if (params === 'maxOccupancyAdult') roomData.maxOccupancyAdultData = 0;
     if (params === 'adultAndChildCombinations') roomData.adultAndChildCombinationsData = [];

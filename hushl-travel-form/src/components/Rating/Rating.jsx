@@ -7,7 +7,7 @@ const Rating = ({ value, max = 5, onChange }) => {
   // console.log(value);
   const handleClick = ratingValue => {
     if (onChange) {
-      console.log('clicked');
+      // console.log('clicked');
       // Toggle the rating if the clicked star is already filled
       const newValue = value === ratingValue ? ratingValue - 1 : ratingValue;
       onChange(newValue);

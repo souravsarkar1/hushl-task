@@ -85,7 +85,7 @@ const TransportationOnHotelHome = ({ transferOptions, id }) => {
     data.transferOptions.likelihoodofDelays = transferOptionData.likelihoodofDelaysData;
     data.transferOptions.distanceOrTimeFromMale = transferOptionData.distanceOrTimeFromMaleData;
     data.transferOptions.meetAndGreetAtAirport = transferOptionData.meetAndGreetAtAirportData;
-    console.log(data);
+    // console.log(data);
     dispatch(addProductMedia(id, data, toast)).then(res => {
       dispatch(getSingleData(id));
     });
