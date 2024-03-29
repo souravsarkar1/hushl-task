@@ -5,7 +5,7 @@ import PropertyInformationUpdate from '../../UpdateData/PropertyInformation/Prop
 
 const PropertyInformationOnTable = ({ propertyInformation, id }) => {
   const { scopeOfRenovation, stateOfRepair } = propertyInformation;
-console.log({id});
+  // console.log({id});
   return (
     <Box>
       <Heading as="h3" size="md" mb={2}>
@@ -13,7 +13,13 @@ console.log({id});
       </Heading>
       <Text mb={2}>Scope of Renovation: {scopeOfRenovation.join(', ')}</Text>
       <Text>State of Repair: {stateOfRepair}</Text>
-      <Popup modalTitle={"Edit"} colorofModal={"orange"} children={<PropertyInformationUpdate scopeOfRenovation={scopeOfRenovation} stateOfRepair={stateOfRepair} id={id}/>}/>
+      <Popup
+        modalTitle={'Edit'}
+        colorofModal={'orange'}
+        children={
+          <PropertyInformationUpdate scopeOfRenovation={scopeOfRenovation} stateOfRepair={stateOfRepair} id={id} />
+        }
+      />
     </Box>
   );
 };

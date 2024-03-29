@@ -54,7 +54,7 @@ const GYMOnHotelHome = ({ gym, id }) => {
   };
 
   const handleUpdate = param => {
-    console.log(gymData);
+    // console.log(gymData);
     if (param === '1') gymData.qualityOfEquipmentData = '';
     if (param === '2') gymData.rangeofEquipmentData = '';
     if (param === '3') gymData.spaPreBookingAdvisedData = '';

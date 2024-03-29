@@ -123,7 +123,7 @@ const SidebarContent = ({ onClose, handleNavItemClick, selectedNavItem, ...rest 
   const dispatch = useDispatch();
   const navigation = useNavigate();
   const handleLogout = () => {
-    console.log('clicked=====');
+    // console.log('clicked=====');
     dispatch(hotelLogout());
     setTimeout(() => {
       navigation('/hotel-login');

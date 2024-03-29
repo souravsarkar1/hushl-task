@@ -74,7 +74,7 @@ const LocationCardOnHotelHome = ({ location, id }) => {
       },
     };
 
-    console.log(data);
+    // console.log(data);
     dispatch(addProductMedia(id, data, toast)).then(res => {
       dispatch(getSingleData(id));
     });
