@@ -20,8 +20,8 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
   const [userInformations, setUserInformations] = useState({
-    userName: 'adaaran@123',
-    password: 'ada123f8',
+    userName: '',
+    password: '',
   });
   const [showPassword, setShowPassword] = useState(false);
 

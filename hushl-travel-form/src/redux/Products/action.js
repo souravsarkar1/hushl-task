@@ -17,7 +17,7 @@ import {
   GET_SINGLE_PRODUCT_SUCCESS,
 } from './actionTypes';
 // const api = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_API : process.env.REACT_APP_API_DEPLOYED;
-const api = process.env.REACT_APP_API_DEPLOYED;
+const api = process.env.REACT_APP_API_RENDER;
 
 console.log(api);
 export const addProduct = (data, toast) => dispatch => {
