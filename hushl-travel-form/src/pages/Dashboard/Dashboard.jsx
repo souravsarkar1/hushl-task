@@ -44,7 +44,8 @@ const Dashboard = () => {
   const [page, setPage] = useState(1);
   const [hotelData, setHotelData] = useState([...data]);
   const toast = useToast();
-  // console.log({ data });
+  console.log('sourav');
+  console.log(data);
   useEffect(() => {
     dispatch(getAllProduct());
   }, [dispatch]);
