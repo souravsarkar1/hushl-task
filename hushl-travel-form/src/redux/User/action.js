@@ -7,7 +7,7 @@ import {
   STORE_NAME_PASS,
 } from './actionTypes';
 // const api = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_API : process.env.REACT_APP_API_DEPLOYED;
-const api = process.env.REACT_APP_API_DEPLOYED;
+const api = process.env.REACT_APP_API_RENDER;
 export const hotelLogin = (data, toast) => async dispatch => {
   dispatch({ type: HOTEL_LOGIN_REQUEST });
   return axios
