@@ -13,11 +13,19 @@
 - You can also add a new hotel through the `Add New Hotel` button.
 - If you click the `Test` button, you will be redirected to the test page where you will find three different buttons: `Download Chrome Extension`, `News API`, `YouTube API`.
 
+  
+![Hotel Management System](https://i.ibb.co/F0GcfBT/Screenshot-2024-04-01-at-3-15-57-PM.png)
+
+
 ## Test Page
 
 - If you click the `Download Chrome Extension` button, the Chrome extension will be downloaded.
 - If you click the `News API` button, you will be redirected to the `News API` page.
 - If you click the `YouTube API` button, you will be redirected to the `YouTube API` page.
+
+  
+![Hotel Management System](https://i.ibb.co/NCNttwG/Screenshot-2024-04-01-at-3-19-19-PM.png)
+ 
 
 ## Login Page
 
@@ -27,6 +35,8 @@
 - Validates user input and displays appropriate error messages.
 - Initiates login action and redirects to the hotel home page upon successful login.
 
+  ![Hotel Managment System](https://i.ibb.co/GxxSPMB/Screenshot-2024-04-01-at-3-22-27-PM.png)
+
 ## Hotel Home
 
 - Displays a sidebar menu with navigation links for different sections of the hotel management system.
@@ -35,6 +45,9 @@
 - Provides icons for each navigation link to enhance user experience.
 - Includes a logout button for hotel users to sign out of the system.
 - You will get all the information about your hotel and you will get the `Edit Option` for each section and you will get also the `Make Empty Option` for all sections.
+
+  ![Hotel Managment System](https://i.ibb.co/Rg1tfjN/Screenshot-2024-04-01-at-3-25-27-PM.png)
+  
 
 ## Chrome Extension - Summary
 
@@ -68,6 +81,8 @@ The News API component is a part of the user interface designed to interact with
 - Once the response is received, it renders the data in a table format, showing various fields of information for each hotel.
 - If no data is found for the given query parameters, it displays a message indicating that the data is not found.
 
+  ![Hotel Managment System](https://i.ibb.co/hWQ5xZM/Screenshot-2024-04-01-at-3-27-49-PM.png)
+
 ## YouTube Transcripter Component
 
 The YouTube Transcripter component is a part of the user interface designed to interact with a YouTube transcript API endpoint. It allows users to query YouTube transcripts based on keywords and display the results in a tabular format.
@@ -79,3 +94,5 @@ The YouTube Transcripter component is a part of the user interface designed to i
 - Displays a loading animation while waiting for the response from the API.
 - Once the response is received, it renders the data in a table format, showing various fields of information for each YouTube transcript.
 - If no data is found for the given query parameters, it displays a message indicating that the data is not found.
+
+  ![Hotel Managment System](https://i.ibb.co/RTTdjCH/Screenshot-2024-04-01-at-3-29-39-PM.png)
